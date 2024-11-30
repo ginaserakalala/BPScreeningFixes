@@ -197,9 +197,9 @@ button:hover {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: linear-gradient(#03506e, #005d82);
+  background: linear-gradient(#012a3a, #005d82);
   box-sizing: border-box;
-  box-shadow: 015px 25px rgba(0, 0, 0, 6);
+
   border-radius: 10px;
 }
 
@@ -247,5 +247,5 @@ button:hover {
   transform: translateY(-50%);
 }
 .custom-container {
-  background: linear-gradient(#03506e, #023d54);
+  background: linear-gradient(#012a3a, #005d82);
 }

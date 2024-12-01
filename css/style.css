@@ -120,7 +120,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: colorChange 10s infinite; /* Animation for color transition */
+  /* animation: colorChange 10s infinite; /* Animation for color transition */
 }
 
 /* Define the animation 

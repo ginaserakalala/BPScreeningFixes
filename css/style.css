@@ -254,7 +254,3 @@ button:hover {
 .custom-container {
   background: linear-gradient(#e1b169, #279cca); /* (#dd4cdf, #066a92)  #e1b169, #279cca*/
 }
-
-#first-name {
-  color: pink;
-}

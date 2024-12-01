@@ -266,7 +266,7 @@ button:hover {
   box-sizing: border-box;
   border-radius: 80px; /* Adjusted border-radius */
   text-align: center; /* Optional: Center text inside the button */
-  animation: colorChange 7s infinite; /* Apply the animation */
+  animation: colorChange 2s infinite; /* Apply the animation */
   color: white; /* Change text color to white */
   font-weight: 600;
 }

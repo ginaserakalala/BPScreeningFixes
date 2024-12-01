@@ -112,7 +112,7 @@ button:hover {
 }
 
 .index-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
   background-size: 50%; /* Adjust size as needed */
   background-repeat: no-repeat;
   background-position: center 30%; /* Move image down */
@@ -123,14 +123,14 @@ button:hover {
   animation: colorChange 10s infinite; /* Animation for color transition */
 }
 
-/* Define the animation */
+/* Define the animation 
 @keyframes colorChange {
   0% {
-    background-color: #081b29;
+    background-color: #0d63a1;
   }
   50% {
-    background-color: #081b29;
-  } /* Intermediate color */
+    background-color: #093f65;
+  } /* Intermediate color 
   100% {
     background-color: #03395f;
   }
@@ -151,31 +151,36 @@ button:hover {
 } */
 
 .login-page {
-  background-color: #081b29;
+  background-color: rgba(
+    48,
+    144,
+    182,
+    0.771
+  ); /* background: linear-gradient(#0f7caf, #86b9e6);*/
   padding: 20px;
 }
 
 .dashboard-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
 }
 
 .demographics-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
   padding: 20px;
 }
 
 .organs-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
   padding: 20px;
 }
 
 .eyes-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
   padding: 20px;
 }
 
 .ears-page {
-  background-color: #081b29;
+  background-color: rgba(48, 144, 182, 0.771);
   padding: 20px;
 }
 
@@ -197,7 +202,7 @@ button:hover {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: linear-gradient(#012a3a, #005d82);
+  background: linear-gradient(#e1b169, #279cca); /*(#d305d7, #005d82)*/
   box-sizing: border-box;
 
   border-radius: 10px;
@@ -228,9 +233,9 @@ button:hover {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #ffff;
+  color: #282222;
   font-weight: 600;
-  border-bottom: 2px solid #f2eded;
+  border-bottom: 2px solid #757579;
   padding-right: 25px;
 }
 
@@ -247,5 +252,9 @@ button:hover {
   transform: translateY(-50%);
 }
 .custom-container {
-  background: linear-gradient(#012a3a, #005d82);
+  background: linear-gradient(#e1b169, #279cca); /* (#dd4cdf, #066a92)  #e1b169, #279cca*/
+}
+
+#first-name {
+  color: pink;
 }

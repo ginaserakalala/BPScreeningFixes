@@ -254,3 +254,33 @@ button:hover {
 .custom-container {
   background: linear-gradient(#e1b169, #279cca); /* (#dd4cdf, #066a92)  #e1b169, #279cca*/
 }
+
+.btn-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(#e1b169, #279cca); /* Initial gradient */
+  box-sizing: border-box;
+  border-radius: 80px; /* Adjusted border-radius */
+  text-align: center; /* Optional: Center text inside the button */
+  animation: colorChange 7s infinite; /* Apply the animation */
+  color: white; /* Change text color to white */
+  font-weight: 600;
+}
+
+/* Define the keyframes for the color change animation */
+@keyframes colorChange {
+  0% {
+    background: linear-gradient(#e1b169, #279cca);
+  }
+
+  25% {
+    background: linear-gradient(#00bfff, #f8644a);
+  }
+  100% {
+    background: linear-gradient(#e1b169, #279cca);
+  }
+}

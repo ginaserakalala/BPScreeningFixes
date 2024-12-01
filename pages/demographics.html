@@ -48,19 +48,19 @@
         <!-- Screening ID -->
         <div class="mb-3">
           <label for="screening-id" class="form-label" ></label>
-          <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required>
+          <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required pattern="[0-9]*" title="Screening ID must contain only numbers.">
         </div>
 
         <!-- First Name -->
         <div class="mb-3">
           <label for="first-name" class="form-label"></label>
-          <input type="text" class="form-control" id="first-name" placeholder="First Name" required pattern="[A-Za-z]" title="Only letters are allowed">
+          <input type="text" class="form-control" id="first-name" placeholder="First Name" required>
         </div>
 
         <!-- Last Name -->
         <div class="mb-3">
           <label for="last-name" class="form-label"></label>
-          <input type="text" class="form-control" id="last-name" placeholder="Last Name" required pattern="[A-Za-z]+" title="Only letters are allowed">
+          <input type="text" class="form-control" id="last-name" placeholder="Last Name" required>
         </div>
 
         <!-- Date of Birth -->
@@ -120,5 +120,6 @@
   
   <!-- Custom JS -->
   <script src="../js/script.js"></script>
+  <script src="validation.js"></script>
 </body>
 </html>

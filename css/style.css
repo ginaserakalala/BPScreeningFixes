@@ -150,6 +150,10 @@ button:hover {
   background-color: rgba(123, 42, 42, 0.8); /* Add a background color to the image 
 } */
 
+.oral-page {
+  background-color: rgba(48, 144, 182, 0.771);
+}
+
 .login-page {
   background-color: rgba(
     48,

@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // *** Updated Code for Severity Dropdown ***
-  const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"];
+  const conditions = ["discharge", "inflammation", "squint", "otherAbnormality", "npc"]; // Added 'npc'
 
   conditions.forEach((condition) => {
     const yesCheckbox = document.getElementById(`${condition}Yes`);
@@ -173,4 +173,18 @@ document.addEventListener("DOMContentLoaded", () => {
       printWindow.print();
     });
   }
+});
+
+document.getElementById("specialSubmit").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the form from submitting
+
+  // Show the message
+  const messageDiv = document.getElementById("message");
+  messageDiv.textContent = "Form Submitted";
+  messageDiv.style.display = "block";
+
+  // Hide the message after 3000ms (3 seconds)
+  setTimeout(function () {
+    messageDiv.style.display = "none";
+  }, 3000);
 });

@@ -13,19 +13,15 @@
       <h2 class="text-center mb-4 eyetext">Eye Screening Form</h2>
       <form id="eyes-form" >
 
-         <!-- Screening ID -->
+       
         <div class="mb-3">
           <label for="screening-id" class="form-label" ></label>
           <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required pattern="[0-9]*" title="Screening ID must contain only numbers.">
         </div>
 
-          <div class="form-check"></div>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-  <label class="form-check-label" for="flexCheckChecked">
-    Wears Glasses
-  </label><br><br>
+          
 
-        <!-- Discharge -->
+       
         <label class="form-check-label" for="discharge">Discharge</label>
         <div>
           <input class="form-check-input" type="checkbox" name="discharge" id="dischargeYes" value="yes">
@@ -33,7 +29,7 @@
           <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
           <label class="form-check-label" for="dischargeNo">No</label>
         </div>
-        <!-- Severity Dropdown -->
+       
         <div id="discharge-severity" class="mt-2" style="display: none;">
           <label for="dischargeSeverity">Severity:</label>
           <select class="form-select" id="dischargeSeverity" name="dischargeSeverity">
@@ -44,7 +40,7 @@
         </div>
         <br>
 
-        <!-- Inflammation -->
+       
         <label class="form-check-label" for="inflammation">Inflammation</label>
         <div>
           <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationYes" value="yes">
@@ -52,7 +48,7 @@
           <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationNo" value="no">
           <label class="form-check-label" for="inflammationNo">No</label>
         </div>
-        <!-- Severity Dropdown -->
+      
         <div id="inflammation-severity" class="mt-2" style="display: none;">
           <label for="inflammationSeverity">Severity:</label>
           <select class="form-select" id="inflammationSeverity" name="inflammationSeverity">
@@ -63,7 +59,7 @@
         </div>
         <br>
 
-        <!-- Squint -->
+       
         <label class="form-check-label" for="squint">Squint</label>
         <div>
           <input class="form-check-input" type="checkbox" name="squint" id="squintYes" value="yes">
@@ -71,7 +67,7 @@
           <input class="form-check-input" type="checkbox" name="squint" id="squintNo" value="no">
           <label class="form-check-label" for="squintNo">No</label>
         </div>
-        <!-- Severity Dropdown -->
+        
         <div id="squint-severity" class="mt-2" style="display: none;">
           <label for="squintSeverity">Severity:</label>
           <select class="form-select" id="squintSeverity" name="squintSeverity">
@@ -82,8 +78,7 @@
         </div>
         <br>
 
-        
-        <!-- Other Abnormality -->
+      
         <label class="form-check-label" for="otherAbnormality">Other Abnormality</label>
         <div>
           <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
@@ -91,7 +86,7 @@
           <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
           <label class="form-check-label" for="otherAbnormalityNo">No</label>
         </div>
-        <!-- Severity Dropdown -->
+       
         <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
           <label for="otherAbnormalitySeverity">Severity:</label>
           <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
@@ -101,25 +96,8 @@
           </select>
         </div>
         <br>
- <!-- NPC -->
-<label class="form-check-label" for="npc">NPC over 6cm</label>
-<div>
-  <input class="form-check-input" type="checkbox" name="npc" id="npcYes" value="yes">
-  <label class="form-check-label" for="npcYes">Yes</label>
-  <input class="form-check-input" type="checkbox" name="npc" id="npcNo" value="no">
-  <label class="form-check-label" for="npcNo">No</label>
-</div>
-<!-- Severity Dropdown -->
-<div id="npc-severity" class="mt-2" style="display: none;">
-  <label for="npcSeverity">Severity:</label>
-  <select class="form-select" id="npcSeverity" name="npcSeverity">
-    <option value="mild">Mild</option>
-    <option value="moderate">Moderate</option>
-    <option value="severe">Severe</option>
-  </select>
-</div><br>
-<input class="form-control form-control-sm" type="text" placeholder="Right Eye" aria-label=".form-control-sm example"><br>
-<input class="form-control form-control-sm" type="text" placeholder="Left Eye" aria-label=".form-control-sm example">
+
+
 
 
 
@@ -127,7 +105,7 @@
       
   <div></div>
 <br><br>
-        <!-- Buttons -->
+       
         <div class="d-flex justify-content-between">
           <button  type="submit" class="btn btn-primary">Submit</button>
           <button type="button" class="btn btn-primary" id="home-btn">Home</button>

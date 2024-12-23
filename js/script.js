@@ -1,36 +1,22 @@
-// Mock login system
-const demoUsers = [
-  { username: "HW001", password: "HW1", redirectPage: "demographics.html" },
-  { username: "HW002", password: "HW2", redirectPage: "eyes.html" },
-  { username: "HW003", password: "HW3", redirectPage: "ears.html" },
-  { username: "HW004", password: "HW4", redirectPage: "oral-health.html" },
-  { username: "HW005", password: "HW5", redirectPage: "Referral.html" },
-];
-
-// Login handler
 document.addEventListener("DOMContentLoaded", () => {
-  // Login form handling
+  // *** Login handler ***
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-      // Check credentials
-      const matchedUser = demoUsers.find(
-        (user) => user.username === username && user.password === password
-      );
-
-      if (matchedUser) {
-        window.location.href = matchedUser.redirectPage; // Redirect on success
+      // Check credentials for the single allowed user
+      if (username === "HW001" && password === "HW1") {
+        window.location.href = "/pages/dashboard.html"; // Redirect to dashboard
       } else {
         document.getElementById("loginError").style.display = "block"; // Show error
       }
     });
   }
 
-  // Consent modal handling
+  // *** Consent modal handling ***
   const openConsentBtn = document.getElementById("open-consent-btn");
   if (openConsentBtn) {
     openConsentBtn.addEventListener("click", function () {
@@ -56,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Age calculation
+  // *** Age calculation ***
   const dobInput = document.getElementById("dob");
   if (dobInput) {
     dobInput.addEventListener("change", function () {
@@ -73,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Demographics form submission
+  // *** Demographics form submission ***
   const demographicsForm = document.getElementById("demographics-form");
   if (demographicsForm) {
     demographicsForm.addEventListener("submit", function (event) {
@@ -84,11 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Home button click handler
+  // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
   if (homeBtn) {
     homeBtn.addEventListener("click", function () {
-      window.location.href = "/pages/login.html";
+      window.location.href = "/pages/dashboard.html";
     });
   }
 
@@ -127,64 +113,107 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn(`Elements for condition ${condition} are missing in the HTML.`);
     }
   });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  // Existing code ...
 
-  // Generate Report Button Logic
+  // *** Generate Report Button Logic ***
   const generateReportBtn = document.getElementById("generate-report-btn");
+
   if (generateReportBtn) {
     generateReportBtn.addEventListener("click", function () {
-      // Get values from the form
+      // Get value of the Screening ID from the form
       const screeningId = document.getElementById("screening-id").value;
-      const additionalComments = document.getElementById(
-        "exampleFormControlTextarea1"
-      ).value;
 
-      // Validate if the fields are filled
-      if (!screeningId || !additionalComments) {
-        alert("Please provide both Screening ID and Additional Comments.");
+      // Validate if the Screening ID is filled
+      if (!screeningId) {
+        alert("Please provide the Screening ID.");
         return;
       }
 
       // Create the report content dynamically
       const reportContent = `
-        <h4>Screening Report</h4>
-        <p><strong>Screening ID:</strong> ${screeningId}</p>
-        <p><strong>Additional Comments:</strong> ${additionalComments}</p>
-      `;
+      <h4>Screening Report</h4>
+      <p><strong>Screening ID:</strong> ${screeningId}</p>
+    `;
 
       // Show the Report Preview
-      document.getElementById("report-content").innerHTML = reportContent;
-      document.getElementById("report-preview").style.display = "block";
+      const reportPreview = document.getElementById("report-preview");
+      if (reportPreview) {
+        // Set the generated content inside the preview section
+        document.getElementById("report-content").innerHTML = reportContent;
+
+        // Make the preview section visible
+        reportPreview.style.display = "block";
+      } else {
+        console.error("Report preview section not found!");
+      }
     });
   }
 
-  // Print Report Logic
-  const printReportBtn = document.getElementById("print-report-btn");
-  if (printReportBtn) {
-    printReportBtn.addEventListener("click", function () {
-      const printContent = document.getElementById("report-content").innerHTML;
-      const printWindow = window.open("", "", "height=600,width=800");
-      printWindow.document.write("<html><head><title>Report</title></head><body>");
-      printWindow.document.write(printContent);
-      printWindow.document.write("</body></html>");
+  // *** Print Button Logic ***
+  const printBtn = document.getElementById("print-report-btn");
+  if (printBtn) {
+    printBtn.addEventListener("click", function () {
+      const reportContent = document.getElementById("report-content").innerHTML;
+
+      // Check if content is available
+      if (!reportContent) {
+        alert("No content to print.");
+        return;
+      }
+
+      const printWindow = window.open("", "_blank", "width=800,height=600");
+
+      printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            h4 { color: #333; }
+            p { color: #555; }
+          </style>
+        </head>
+        <body>
+          ${reportContent}
+        </body>
+      </html>
+    `);
+
       printWindow.document.close();
+      printWindow.focus();
       printWindow.print();
     });
   }
-});
 
-document.getElementById("specialSubmit").addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent the form from submitting
+  // *** Send Button Logic (basic simulation) ***
+  const sendBtn = document.getElementById("send-btn");
+  if (sendBtn) {
+    sendBtn.addEventListener("click", function () {
+      const reportContent = document.getElementById("report-content").innerHTML;
 
-  // Show the message
-  const messageDiv = document.getElementById("message");
-  messageDiv.textContent = "Form Submitted";
-  messageDiv.style.display = "block";
+      // Simple simulation of sending the report (e.g., via email)
+      // You can replace this with actual server-side logic
+      alert(`Report content sent:\n\n${reportContent}`);
 
-  // Hide the message after 3000ms (3 seconds)
-  setTimeout(function () {
-    messageDiv.style.display = "none";
-  }, 3000);
+      // Reset preview after sending
+      document.getElementById("report-preview").style.display = "none";
+    });
+  }
+
+  // *** Form Submission Success Message ***
+  const specialSubmitBtn = document.getElementById("specialSubmit");
+  if (specialSubmitBtn) {
+    specialSubmitBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      // Show the message
+      const messageDiv = document.getElementById("message");
+      messageDiv.textContent = "Form Submitted";
+      messageDiv.style.display = "block";
+
+      // Hide the message after 3000ms (3 seconds)
+      setTimeout(function () {
+        messageDiv.style.display = "none";
+      }, 3000);
+    });
+  }
 });

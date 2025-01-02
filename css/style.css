@@ -1,8 +1,46 @@
 body {
-  background-color: #f7f9fc;
+  background-color: lightgray;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+/*.toggle-mode{*/
+/*  position:fixed;*/
+/*  top: 10px;*/
+/*  right: 10px;*/
+/*  background:none;*/
+/*  padding:5px;*/
+/*  width:40px;*/
+/*  height: 40px;*/
+/*  border-radius: 80%;*/
+/*  display: flex;*/
+/*}*/
 
+.image-alignment img{
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:none;
+  padding:5px;
+  width:40px;
+  height: 40px;
+  border-radius: 80%;
+  display: flex;
+}
+.page-heading h1
+{
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform:capitalize;
+  font-family: "Roboto Light", system-ui;
+  color:black;
+}
+.page-heading
+{
+
+}
+body.dark-mode{
+  background-color: black;
+  color: white;
+}
 h1,
 h2 {
   font-weight: 600;
@@ -26,7 +64,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: lightgreen;
   cursor: pointer;
   opacity: 0.8;
 }
@@ -51,7 +89,7 @@ textarea {
 }
 
 .btn-info:hover {
-  background-color: #17a2b8;
+  background-color: lightgreen;
 }
 
 .btn-warning:hover {
@@ -144,37 +182,36 @@ button:hover {
 } */
 
 .oral-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
 }
 
 .login-page {
-  background-image: url("/assets/images/RSA.png");
   background-size: cover;
   background-position: center;
   padding: 20px;
 }
 
 .dashboard-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
 }
 
 .demographics-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
   padding: 20px;
 }
 
 .organs-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
   padding: 20px;
 }
 
 .eyes-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
   padding: 20px;
 }
 
 .ears-page {
-  background-color: rgba(245, 225, 185, 0.771);
+  background-color: lightgrey;
   padding: 20px;
 }
 
@@ -211,7 +248,7 @@ button:hover {
 
 .btn-primary {
   position: relative;
-  width: 100;
+  width: 100px;
   height: 45px;
   background: transparent;
   border-radius: 40px;
@@ -219,7 +256,7 @@ button:hover {
   font-size: 16px;
   font-weight: 600;
   background: linear-gradient(#2ea503, #05a808, #038719, #1c8f05);
-  border: 2px solid rgb(24, 136, 180);
+  border: 2px solid black;
 }
 
 .form-control {
@@ -257,7 +294,6 @@ button:hover {
   max-width: 400px;
   margin: 10px auto;
   padding: 40px;
-  background: linear-gradient(#e1b169, #279cca);
   border-radius: 20px;
   text-align: center;
   animation: colorChange 2s infinite;
@@ -279,3 +315,4 @@ button:hover {
     background: linear-gradient(#e1b169, #279cca);
   }
 }
+

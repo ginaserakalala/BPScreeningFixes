@@ -71,10 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Show the consent modal on Demographics button click
+/*  // Show the consent modal on Demographics button click
   document.querySelector('#demographicsBtn').addEventListener('click', function() {
     document.getElementById('consent-modal').style.display = 'flex';
-  });
+  });*/
 
     const demographicsBtn = document.getElementById("demographicsBtn");
     if (demographicsBtn) {
@@ -245,6 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-document.getElementById('toggleDarkMode').addEventListener('click', function(){
-  document.body.classList.toggle('dark-mode');
-});
+// document.getElementById('toggleDarkMode').addEventListener('click', function(){
+//   document.body.classList.toggle('dark-mode');
+// });

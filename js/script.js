@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
   // *** Demographics form submission ***
   const demographicsForm = document.getElementById("demographics-form");
   if (demographicsForm) {
@@ -69,6 +70,28 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("success-message").style.display = "block"; // Show success
     });
   }
+
+    const demographicsBtn = document.getElementById("demographicsBtn");
+    if (demographicsBtn) {
+        demographicsBtn.addEventListener("click", function () {
+            // Show the consent modal
+            const consentModal = new bootstrap.Modal(document.getElementById("consentModal"));
+            consentModal.show();
+
+            // Show the demographics form only after the consent modal has been accepted or dismissed
+            const acceptConsentBtn = document.getElementById("accept-consent-btn");
+            acceptConsentBtn.addEventListener("click", function () {
+                consentModal.hide();
+                document.getElementById("demographics-form").style.display = "block";
+            });
+
+            // Also show the demographics form if the modal is dismissed
+            const consentModalElement = document.getElementById("consentModal");
+            consentModalElement.addEventListener("hidden.bs.modal", function () {
+                document.getElementById("demographics-form").style.display = "block";
+            });
+        });
+    }
 
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");

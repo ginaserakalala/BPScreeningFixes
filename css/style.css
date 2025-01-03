@@ -20,7 +20,7 @@ body {
   right:10px;
   background:transparent;
   padding:5px;
-  width:70px;
+  width:95px;
   height: 70px;
   border-radius: 6px;
 }
@@ -64,7 +64,7 @@ button {
 }
 
 button:hover {
-  background-color: lightgreen;
+  background-color: #4A90E2;
   cursor: pointer;
   opacity: 0.8;
 }
@@ -89,7 +89,7 @@ textarea {
 }
 
 .btn-info:hover {
-  background-color: lightgreen;
+  background-color: #4A90E2;
 }
 
 .btn-warning:hover {
@@ -97,7 +97,7 @@ textarea {
 }
 
 .btn-success:hover {
-  background-color: #28a745;
+  background-color: #4A90E2;
 }
 
 .container {
@@ -242,7 +242,18 @@ button:hover {
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: rgb(30, 28, 28);
+  /*color: rgb(30, 28, 28);*/
+  text-align: center;
+  color: #003366;
+}
+.login-box h1{
+
+}
+.login-box button{
+  color:white;
+}
+.login-box h6{
+  font-weight:700;
   text-align: center;
 }
 
@@ -250,12 +261,11 @@ button:hover {
   position: relative;
   width: 100px;
   height: 45px;
-  background: transparent;
-  border-radius: 40px;
+  border-radius: 16px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  background: linear-gradient(#2ea503, #05a808, #038719, #1c8f05);
+  background: #003366;
   border: 2px solid black;
 }
 
@@ -285,6 +295,9 @@ button:hover {
 .custom-container {
   background-color: white;
 }
+.text-center.mb-4.blue{
+  color:#003366;
+}
 
 .btn-info {
   width: 100%;
@@ -297,7 +310,7 @@ button:hover {
   color: white;
   font-weight: 600;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #28a745;
+  background-color: #003366;
 }
 
 /*@keyframes colorChange {

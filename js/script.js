@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // *** Demographics form submission ***
+  // fr*** Demographics form submission ***
   const demographicsForm = document.getElementById("demographics-form");
   if (demographicsForm) {
     demographicsForm.addEventListener("submit", function (event) {
@@ -71,11 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Show the consent modal on Demographics button click
+  document.querySelector('#demographicsBtn').addEventListener('click', function() {
+    document.getElementById('consent-modal').style.display = 'flex';
+  });
+
     const demographicsBtn = document.getElementById("demographicsBtn");
     if (demographicsBtn) {
         demographicsBtn.addEventListener("click", function () {
             // Show the consent modal
-            const consentModal = new bootstrap.Modal(document.getElementById("consentModal"));
+            const consentModal = new bootstrap.Modal(document.getElementById("consent-modal"));
             consentModal.show();
 
             // Show the demographics form only after the consent modal has been accepted or dismissed

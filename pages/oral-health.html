@@ -92,6 +92,25 @@
           </select>
         </div>
         <br>
+        <label class="form-check-label" for="teethStaining">Teeth Staining</label>
+        <div>
+          <input class="form-check-input" type="checkbox" name="teethStaining" id="teethStainingYes" value="yes">
+          <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
+          <input class="form-check-input" type="checkbox" name="teethStaining" id="teethStainingNo" value="no">
+          <label class="form-check-label" for="otherAbnormalityNo">No</label>
+        </div>
+
+
+        <div id="teeth-staining" class="mt-2" style="display: none;">
+          <label for="teethStainingAbnormality">Severity:</label>
+          <select class="form-select" id="teethStainingAbnormality" name="teethStainingAbnormality">
+            <option value="mild">Mild</option>
+            <option value="moderate">Moderate</option>
+            <option value="severe">Severe</option>
+          </select>
+        </div>
+        <br>
+        <br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

@@ -161,6 +161,25 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
+  // Get the checkboxes and the severity dropdown container
+  const teethStainingYes = document.getElementById('teethStainingYes');
+  const teethStainingNo = document.getElementById('teethStainingNo');
+  const teethStainingAbnormalityContainer = document.getElementById('teeth-staining');
+
+// Add event listeners to the checkboxes
+  teethStainingYes.addEventListener('change', () => {
+    if (teethStainingYes.checked) {
+      teethStainingAbnormalityContainer.style.display = 'block';
+      teethStainingNo.checked = false; // Uncheck 'No' when 'Yes' is selected
+    }
+  });
+
+  teethStainingNo.addEventListener('change', () => {
+    if (teethStainingNo.checked) {
+      teethStainingAbnormalityContainer.style.display = 'none';
+      teethStainingYes.checked = false; // Uncheck 'Yes' when 'No' is selected
+    }
+  });
   // *** Updated Code for Severity Dropdown ***
   const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
 

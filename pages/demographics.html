@@ -11,26 +11,14 @@
 </head>
 <body class="demographics-page">
 
-<!-- Consent Modal -->
-<div id="consent-modal" class="modal">
-    <div class="modal-content">
-        <h2>Consent Information</h2>
-        <label class="consent-label">
-            <input type="checkbox" id="consent-confirmation"> Consent form received?
-        </label>
-        <p>By proceeding to the Demographics form, you confirm that you received the consent form from the student.</p>
-        <button id="modal-ok-btn">OK</button>
-        <button id="modal-cancel-btn">Cancel</button>
-    </div>
-</div>
+
 
 <!--<div id="success-message" class="alert alert-success" style="display:none;" role="alert">-->
 <!--    Consent accepted successfully!-->
 <!--</div>-->
 
 
-
-<div class="container mt-5 " >
+<div class="container mt-5 ">
 
     <!-- Demographics Form Card -->
     <div class="card shadow-lg p-4 rounded-4 custom-container">
@@ -39,8 +27,9 @@
         <form id="demographics-form">
             <!-- Screening ID -->
             <div class="mb-3">
-                <label for="screening-id" class="form-label" ></label>
-                <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required pattern="[0-9]*" title="Screening ID must contain only numbers.">
+                <label for="screening-id" class="form-label"></label>
+                <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required
+                       pattern="[0-9]*" title="Screening ID must contain only numbers.">
             </div>
             <div class="mb-3">
                 <label for="grade" class="form-label"></label>
@@ -60,7 +49,6 @@
                     <option value="12">Shorwane Secondary School</option>
                 </select>
             </div>
-
 
 
             <div class="mb-3">
@@ -118,19 +106,19 @@
 
 
             <div class="d-flex justify-content-between">
-<!--                <button type="button" class="btn btn-primary" id="open-consent-btn">Submit</button>-->
-                <button type="submit" class="btn btn-primary" >Submit</button>
+                <!--                <button type="button" class="btn btn-primary" id="open-consent-btn">Submit</button>-->
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-primary" id="home-btn">Back</button>
             </div>
         </form>
     </div>
+</div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-
-    <script src="/js/script.js"></script>
-<!--    <script src="validation.js"></script>-->
+<script src="../js/script.js"></script>
+<script src="validation.js"></script>
 </body>
 </html>

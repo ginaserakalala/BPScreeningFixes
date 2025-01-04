@@ -1,5 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // *** Login handler ***
+// Helper function to trigger sinking effect
+function addSinkingEffect(element) {
+    element.classList.add('sinking');
+    // After the sinking effect, add 'sunk' to make it stay sunk
+    setTimeout(() => {
+        element.classList.add('sunk');
+    }, 300); // Wait for the sinking transition to complete before adding 'sunk'
+}
+
+document.addEventListener('DOMContentLoaded',() => {
+
+// *** Login handler ***
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
@@ -16,30 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // *** Consent modal handling ***
-  const openConsentBtn = document.getElementById("open-consent-btn");
-  if (openConsentBtn) {
-    openConsentBtn.addEventListener("click", function () {
-      const consentModal = new bootstrap.Modal(document.getElementById("consentModal"));
-      consentModal.show();
+  // Check if elements exist before adding event listeners
+  const modalOkButton = document.getElementById('modal-ok-btn');
+  const modalCancelButton = document.getElementById('modal-cancel-btn');
+  const consentModal = document.getElementById('consent-modal');
+
+  if (modalOkButton) {
+    modalOkButton.addEventListener('click', function() {
+      addSinkingEffect(modalOkButton); // Trigger sinking effect on OK button click
+      if (consentModal) {
+        consentModal.style.display = 'none';
+      }
+      window.location.href = "/pages/demographics.html";
     });
+  } else {
+    console.error("Modal OK button not found");
   }
 
-  const acceptConsentBtn = document.getElementById("accept-consent-btn");
-  if (acceptConsentBtn) {
-    acceptConsentBtn.addEventListener("click", function () {
-      const consentModal = bootstrap.Modal.getInstance(
-        document.getElementById("consentModal")
-      );
-      consentModal.hide();
-      document.getElementById("demographics-form").style.display = "block";
-
-      const successMessage = document.getElementById("success-message");
-      successMessage.style.display = "block";
-      setTimeout(() => {
-        successMessage.style.display = "none";
-      }, 3000);
+  if (modalCancelButton) {
+    modalCancelButton.addEventListener('click', function() {
+      addSinkingEffect(modalCancelButton); // Trigger sinking effect on Cancel button click
+      if (consentModal) {
+        consentModal.style.display = 'none';
+      }
+      window.location.href = "/pages/dashboard.html";
     });
+  } else {
+    console.error("Modal Cancel button not found");
   }
 
   // *** Age calculation ***
@@ -60,7 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // fr*** Demographics form submission ***
+  // Demographics form submission
+
   const demographicsForm = document.getElementById("demographics-form");
   if (demographicsForm) {
     demographicsForm.addEventListener("submit", function (event) {
@@ -71,29 +85,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-/*  // Show the consent modal on Demographics button click
-  document.querySelector('#demographicsBtn').addEventListener('click', function() {
-    document.getElementById('consent-modal').style.display = 'flex';
-  });*/
+// Check if elements exist before adding event listeners
+//   const demographicsBtn = document.querySelector('#demographicsBtn');
+//   const consentModal = document.getElementById('consent-modal');
+//   const modalOkButton = document.getElementById('modal-ok-btn');
+//   const modalCancelButton = document.getElementById('modal-cancel-btn');
+
 
     const demographicsBtn = document.getElementById("demographicsBtn");
+
+  if (demographicsBtn) {
+    demographicsBtn.addEventListener('click', function() {
+      if (consentModal) {
+        consentModal.style.display = 'flex';
+      } else {
+        console.error("Consent modal not found");
+      }
+    });
+  } else {
+    console.error("Demographics button not found");
+  }
+
+  if (modalOkButton) {
+    modalOkButton.addEventListener('click', function() {
+      if (consentModal) {
+        consentModal.style.display = 'none';
+      }
+      window.location.href = "/pages/demographics.html";
+    });
+  } else {
+    console.error("Modal OK button not found");
+  }
+
+  if (modalCancelButton) {
+    modalCancelButton.addEventListener('click', function() {
+      if (consentModal) {
+        consentModal.style.display = 'none';
+      }
+      // Corrected window.location.href
+      window.location.href = "/pages/dashboard.html";
+    });
+  } else {
+    console.error("Modal Cancel button not found");
+  }
+
+
     if (demographicsBtn) {
         demographicsBtn.addEventListener("click", function () {
             // Show the consent modal
-            const consentModal = new bootstrap.Modal(document.getElementById("consent-modal"));
-            consentModal.show();
+            document.getElementById('consent-modal').style.display = 'flex';
 
-            // Show the demographics form only after the consent modal has been accepted or dismissed
-            const acceptConsentBtn = document.getElementById("accept-consent-btn");
-            acceptConsentBtn.addEventListener("click", function () {
-                consentModal.hide();
-                document.getElementById("demographics-form").style.display = "block";
-            });
+            //Show the demographics form only after the consent modal has been accepted or dismissed
 
-            // Also show the demographics form if the modal is dismissed
-            const consentModalElement = document.getElementById("consentModal");
-            consentModalElement.addEventListener("hidden.bs.modal", function () {
-                document.getElementById("demographics-form").style.display = "block";
+            document.getElementById('consent-modal').addEventListener('click', function (event) {
+                if (event.target === document.getElementById('consent-modal')) {
+                    document.getElementById('consent-modal').style.display = 'none';
+                    document.getElementById("demographics-form").style.display = "block";
+                }
             });
         });
     }
@@ -114,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // *** Updated Code for Severity Dropdown ***
-  const conditions = ["discharge", "inflammation", "squint", "otherAbnormality", "npc"]; // Added 'npc'
+  const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
 
   conditions.forEach((condition) => {
     const yesCheckbox = document.getElementById(`${condition}Yes`);
@@ -139,6 +187,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } else {
       console.warn(`Elements for condition ${condition} are missing in the HTML.`);
+    }
+  });
+
+  // Show/hide Snellen test results based on user response
+  document.addEventListener("change", function() {
+    let wearsGlasses = document.querySelector('input[name="wearsGlasses"]:checked').value;
+    if (wearsGlasses === "yes" || wearsGlasses === "no") {
+      document.getElementById("snellenTestResults").style.display = "block";
+    } else {
+      document.getElementById("snellenTestResults").style.display = "none";
     }
   });
 
@@ -245,6 +303,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 // document.getElementById('toggleDarkMode').addEventListener('click', function(){
 //   document.body.classList.toggle('dark-mode');
 // });
+
+

@@ -36,8 +36,14 @@ body {
   align-items: center;
 }
 .modal-content button {
-  margin: 10px;
-  padding: 10px 20px;
+  margin: 5px;
+  padding: 10px 10px;
+}
+#modal-ok-btn button{
+
+}
+#modal-cancel-btn button{
+
 }
 .image-alignment img{
   position:fixed;

@@ -130,21 +130,21 @@ document.addEventListener('DOMContentLoaded',() => {
   }
 
 
-    if (demographicsBtn) {
-        demographicsBtn.addEventListener("click", function () {
-            // Show the consent modal
-            document.getElementById('consent-modal').style.display = 'flex';
-
-            //Show the demographics form only after the consent modal has been accepted or dismissed
-
-            document.getElementById('consent-modal').addEventListener('click', function (event) {
-                if (event.target === document.getElementById('consent-modal')) {
-                    document.getElementById('consent-modal').style.display = 'none';
-                    document.getElementById("demographics-form").style.display = "block";
-                }
-            });
-        });
-    }
+    // if (demographicsBtn) {
+    //     demographicsBtn.addEventListener("click", function () {
+    //         // Show the consent modal
+    //         document.getElementById('consent-modal').style.display = 'flex';
+    //
+    //         //Show the demographics form only after the consent modal has been accepted or dismissed
+    //
+    //         document.getElementById('consent-modal').addEventListener('click', function (event) {
+    //             if (event.target === document.getElementById('consent-modal')) {
+    //                 document.getElementById('consent-modal').style.display = 'none';
+    //                 document.getElementById("demographics-form").style.display = "block";
+    //             }
+    //         });
+    //     });
+    // }
 
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");

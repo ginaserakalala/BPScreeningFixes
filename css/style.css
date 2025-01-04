@@ -39,11 +39,19 @@ body {
   margin: 5px;
   padding: 10px 10px;
 }
-#modal-ok-btn button{
-
+#consent-modal label {
+  display: block; /* makes label appear as a block element */
+  margin-bottom: 20px; /* adds space between label and paragraph */
 }
-#modal-cancel-btn button{
 
+#consent-modal p {
+  margin-bottom: 20px; /* adds space between paragraph and buttons */
+}
+#consent-modal button {
+  margin: 10px; /* adds space between buttons */
+  padding: 5px 10px; /* decreases button size */
+  font-size: 14px; /* decreases font size */
+  display: inline-block; /* makes buttons appear side by side */
 }
 .image-alignment img{
   position:fixed;

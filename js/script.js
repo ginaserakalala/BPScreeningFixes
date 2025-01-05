@@ -132,10 +132,13 @@ document.addEventListener('DOMContentLoaded',() => {
   const demographicsForm = document.getElementById("demographics-form");
   if (demographicsForm) {
     demographicsForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent page reload
+      event.preventDefault(); // Prevent page reload to handle submission
 
-      demographicsForm.style.display = "none"; // Hide form
-      document.getElementById("success-message").style.display = "block"; // Show success
+      // Display success message using alert
+      alert("Student details captured successfully. Click OK to finish.");
+
+      // Reload the page after the alert is dismissed
+      location.reload();
     });
   }
 

@@ -188,6 +188,66 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
+  // demographic submit button
+  document.addEventListener('DOMContentLoaded', () => {
+    const demographicsForm = document.getElementById('demographics-form');
+    if (demographicsForm) {
+      demographicsForm.addEventListener('submit', async (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        try {
+          // Get the form data
+          const screeningID = document.getElementById('screening-id').value;
+          const school = document.getElementById('school').value;
+          const firstName = document.getElementById('first-name').value;
+          const lastName = document.getElementById('last-name').value;
+          const dateOfBirth = document.getElementById('dob').value;
+          const age = document.getElementById('age').value;
+          const sex = document.getElementById('sex').value;
+          const grade = document.getElementById('grade').value;
+
+
+          // Create a JSON payload
+          const payload = {
+            screeningID: screeningID,
+            school: school,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            age: age,
+            sex: sex,
+            grade: grade
+
+          };
+
+          // Send a POST request to the demographics API endpoint
+          const response = await fetch('http://localhost:8081/api/demographics', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          // Check if the response was successful
+          if (!response.ok) {
+            console.log(`Error submitting demographics form: ${response.statusText}`);
+          }
+
+          // Display a success message
+          alert('Demographics Form submitted!');
+
+          // Navigate to the screening page
+          navigateToPage('screening-page');
+        } catch (error) {
+          // Log any errors
+          console.error(error);
+        }
+      });
+    }
+  });
+
   // Define all conditions with associated severity dropdown IDs
   const oralHealthConditions = [
     { name: "dentalcaries", severityId: "dentalcaries-severity" },
@@ -255,6 +315,86 @@ document.addEventListener('DOMContentLoaded',() => {
   // } else {
   //   console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
   // }
+
+// Oral-health submit button
+document.addEventListener('DOMContentLoaded', () => {
+  const oralHealthForm = document.getElementById('oral-health-form');
+  if (oralHealthForm) {
+    oralHealthForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+        const dentalcariesYes = document.getElementById('dentalcariesYes').checked ? 'yes' : '';
+        const dentalcariesNo = document.getElementById('dentalcariesNo').checked ? 'no' : '';
+        const dentalcariesSeverity = document.getElementById('dentalcariesSeverity')?.value || '';
+        const gumdiseaseYes = document.getElementById('gumdiseaseYes').checked ? 'yes' : '';
+        const gumdiseaseNo = document.getElementById('gumdiseaseNo').checked ? 'no' : '';
+        const gumdiseaseSeverity = document.getElementById('gumdiseaseSeverity')?.value || '';
+        const thrushYes = document.getElementById('thrushYes').checked ? 'yes' : '';
+        const thrushNo = document.getElementById('thrushNo').checked ? 'no' : '';
+        const thrushSeverity = document.getElementById('thrushSeverity')?.value || '';   
+        const otherAbnormalityYes = document.getElementById('otherAbnormalityYes').checked ? 'yes' : '';
+        const otherAbnormalityNo = document.getElementById('otherAbnormalityNo').checked ? 'no' : '';
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity')?.value || '';
+        const teethStainingYes = document.getElementById('teethStainingYes').checked ? 'yes' : '';
+        const teethStainingNo = document.getElementById('teethStainingNo').checked ? 'no' : '';
+        const teethStainingAbnormality = document.getElementById('teethStainingAbnormality')?.value || '';
+    
+        // Create a JSON payload
+        const payload = {
+            screeningID,
+            // Dental Conditions
+            dentalcariesYes,
+            dentalcariesNo,
+            dentalcariesSeverity,
+            // Gum Disease Conditions
+            gumdiseaseYes,
+            gumdiseaseNo,
+            gumdiseaseSeverity,
+            // Thrush Conditions
+            thrushYes,
+            thrushNo,
+            thrushSeverity,
+            // Other Abnormalities
+            otherAbnormalityYes,
+            otherAbnormalityNo,
+            otherAbnormalitySeverity,
+            // Teeth Staining
+            teethStainingYes,
+            teethStainingNo,
+            teethStainingAbnormality
+        };
+
+        // Send a POST request to the demographics API endpoint
+        const response = await fetch('http://localhost:8081/api/demographics', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting Oral-Health form: ${response.statusText}`);
+        }
+
+        // Display a success message
+        alert('Oral-health Form submitted!');
+
+        // Navigate to the screening page
+        navigateToPage('screening-page');
+      } catch (error) {
+        // Log any errors
+        console.error(error);
+      }
+    });
+  }
+});
+
 
   const eyesConditions = [
     { name: "discharge", severityId: "discharge-severity" },
@@ -353,6 +493,97 @@ document.addEventListener('DOMContentLoaded',() => {
   //     console.warn(`Elements for condition ${condition} are missing in the HTML.`);
   //   }
   // });
+
+// Eyes submit button
+document.addEventListener('DOMContentLoaded', () => {
+  const eyesForm  = document.getElementById('eyes-form');
+  if (eyesForm) {
+    eyesForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+        const dischargeYes = document.getElementById('dischargeYes').checked ? 'yes' : '';
+        const dischargeNo = document.getElementById('dischargeNo').checked ? 'no' : '';
+        const dischargeSeverity = document.getElementById('dischargeSeverity').value;
+        const inflammationYes = document.getElementById('inflammationYes').checked ? 'yes' : '';
+        const inflammationNo = document.getElementById('inflammationNo').checked ? 'no' : '';
+        const inflammationSeverity = document.getElementById('inflammationSeverity').value;
+        const squintYes = document.getElementById('squintYes').checked ? 'yes' : '';
+        const squintNo = document.getElementById('squintNo').checked ? 'no' : '';
+        const squintSeverity = document.getElementById('squintSeverity').value;
+        const otherAbnormalityYes = document.getElementById('otherAbnormalityYes').checked ? 'yes' : '';
+        const otherAbnormalityNo = document.getElementById('otherAbnormalityNo').checked ? 'no' : '';
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value;
+        const odSph = document.getElementById('od-sph').value;
+        const odCyl = document.getElementById('od-cyl').value;
+        const odAxis = document.getElementById('od-axis').value;
+        const osSph = document.getElementById('os-sph').value;
+        const osCyl = document.getElementById('os-cyl').value;
+        const osAxis = document.getElementById('os-axis').value;
+        const osPd = document.getElementById('os-pd').value;
+        const wearsGlassesYes = document.getElementById('wearsGlassesYes').checked ? 'yes' : '';
+        const wearsGlassesNo = document.getElementById('wearsGlassesNo').checked ? 'no' : '';
+        const rightEyeSnellen = document.getElementById('rightEyeSnellen').value;
+        const leftEyeSnellen = document.getElementById('leftEyeSnellen').value;
+        const screeningResult = document.getElementById('screeningresult').value;
+
+        // Create a JSON payload
+        const payload = {
+          screeningID,
+          dischargeYes,
+          dischargeNo,
+          dischargeSeverity,
+          inflammationYes,
+          inflammationNo,
+          inflammationSeverity,
+          squintYes,
+          squintNo,
+          squintSeverity,
+          otherAbnormalityYes,
+          otherAbnormalityNo,
+          otherAbnormalitySeverity,
+          odSph,
+          odCyl,
+          odAxis,
+          osSph,
+          osCyl,
+          osAxis,
+          osPd,
+          wearsGlassesYes,
+          wearsGlassesNo,
+          rightEyeSnellen,
+          leftEyeSnellen,
+          screeningResult,
+        };
+        // Send a POST request to the demographics API endpoint
+        const response = await fetch('http://localhost:8081/api/demographics', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting Eyes form: ${response.statusText}`);
+        }
+
+        // Display a success message
+        alert('Eyes Form submitted!');
+
+        // Navigate to the screening page
+        navigateToPage('screening-page');
+      } catch (error) {
+        // Log any errors
+        console.error(error);
+      }
+    });
+  }
+});
 
   // Define all conditions with left/right variations
   const conditions = [
@@ -491,4 +722,177 @@ document.addEventListener('DOMContentLoaded',() => {
 //   document.body.classList.toggle('dark-mode');
 // });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const earsForm = document.getElementById('ears-form');
+  if (earsForm) {
+      earsForm.addEventListener('submit', async (event) => {
+          // Prevent the default form submission behavior
+          event.preventDefault();
 
+          try {
+              // Get the screening ID
+              const screeningID = document.getElementById('screening-id').value;
+              // Discharge Left
+              const dischargeLeftYes = document.getElementById('dischargeLeftYes').checked ? 'yes' : '';
+              const dischargeLeftNo = document.getElementById('dischargeLeftNo').checked ? 'no' : '';
+              const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity')?.value || '';
+              // Discharge Right
+              const dischargeRightYes = document.getElementById('dischargeRightYes').checked ? 'yes' : '';
+              const dischargeRightNo = document.getElementById('dischargeRightNo').checked ? 'no' : '';
+              const dischargeRightSeverity = document.getElementById('dischargeRightSeverity')?.value || '';
+              // Wax Impaction Left
+              const waxImpactionLeftYes = document.getElementById('inflammationLeftYes').checked ? 'yes' : '';
+              const waxImpactionLeftNo = document.getElementById('inflammationLeftNo').checked ? 'no' : '';
+              const waxImpactionLeftSeverity = document.getElementById('inflammationLeftSeverity')?.value || '';
+              // Wax Impaction Right
+              const waxImpactionRightYes = document.getElementById('inflammationRightYes').checked ? 'yes' : '';
+              const waxImpactionRightNo = document.getElementById('inflammationRightNo').checked ? 'no' : '';
+              const waxImpactionRightSeverity = document.getElementById('inflammationRightSeverity')?.value || '';
+              // Inflamed Eardrum Left
+              const inflamedLeftYes = document.getElementById('inflamedLeftYes').checked ? 'yes' : '';
+              const inflamedLeftNo = document.getElementById('inflamedLeftNo').checked ? 'no' : '';
+              const inflamedLeftSeverity = document.getElementById('inflamedLeftSeverity')?.value || '';
+              // Inflamed Eardrum Right
+              const inflamedRightYes = document.getElementById('inflamedRightYes').checked ? 'yes' : '';
+              const inflamedRightNo = document.getElementById('inflamedRightNo').checked ? 'no' : '';
+              const inflamedRightSeverity = document.getElementById('inflamedRightSeverity')?.value || '';
+              // Other Abnormality Left
+              const otherAbnormalityLeftYes = document.getElementById('otherAbnormalityLeftYes').checked ? 'yes' : '';
+              const otherAbnormalityLeftNo = document.getElementById('otherAbnormalityLeftNo').checked ? 'no' : '';
+              const otherAbnormalityLeftSeverity = document.getElementById('otherAbnormalityLeftSeverity')?.value || '';
+              // Other Abnormality Right
+              const otherAbnormalityRightYes = document.getElementById('otherAbnormalityRightYes').checked ? 'yes' : '';
+              const otherAbnormalityRightNo = document.getElementById('otherAbnormalityRightNo').checked ? 'no' : '';
+              const otherAbnormalityRightSeverity = document.getElementById('otherAbnormalityRightSeverity')?.value || '';
+              // Wears Hearing Aid
+              const wearsHearingAidYes = document.getElementById('wearsHearingAidYes').checked ? 'yes' : '';
+              const wearsHearingAidNo = document.getElementById('wearsHearingAidNo').checked ? 'no' : '';
+              // Additional Comments
+              const additionalComments = document.getElementById('exampleFormControlTextarea1').value || '';
+
+              // Create JSON payload
+              const payload = {
+                  screeningID,
+                  discharge: {
+                      left: {
+                          yes: dischargeLeftYes,
+                          no: dischargeLeftNo,
+                          severity: dischargeLeftSeverity,
+                      },
+                      right: {
+                          yes: dischargeRightYes,
+                          no: dischargeRightNo,
+                          severity: dischargeRightSeverity,
+                      },
+                  },
+                  waxImpaction: {
+                      left: {
+                          yes: waxImpactionLeftYes,
+                          no: waxImpactionLeftNo,
+                          severity: waxImpactionLeftSeverity,
+                      },
+                      right: {
+                          yes: waxImpactionRightYes,
+                          no: waxImpactionRightNo,
+                          severity: waxImpactionRightSeverity,
+                      },
+                  },
+                  inflamedEardrum: {
+                      left: {
+                          yes: inflamedLeftYes,
+                          no: inflamedLeftNo,
+                          severity: inflamedLeftSeverity,
+                      },
+                      right: {
+                          yes: inflamedRightYes,
+                          no: inflamedRightNo,
+                          severity: inflamedRightSeverity,
+                      },
+                  },
+                  otherAbnormality: {
+                      left: {
+                          yes: otherAbnormalityLeftYes,
+                          no: otherAbnormalityLeftNo,
+                          severity: otherAbnormalityLeftSeverity,
+                      },
+                      right: {
+                          yes: otherAbnormalityRightYes,
+                          no: otherAbnormalityRightNo,
+                          severity: otherAbnormalityRightSeverity,
+                      },
+                  },
+                  wearsHearingAid: {
+                      yes: wearsHearingAidYes,
+                      no: wearsHearingAidNo,
+                  },
+                  additionalComments,
+              };
+
+              // Send POST request
+              const response = await fetch('http://localhost:8081/api/ears-screening', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(payload),
+              });
+
+              // Handle response
+              if (!response.ok) {
+                  console.error(`Error submitting ears screening form: ${response.statusText}`);
+                  alert('Failed to submit the form. Please try again.');
+                  return;
+              }
+
+              alert('Ears Screening Form submitted successfully!');
+          } catch (error) {
+              console.error('Error:', error);
+              alert('An error occurred while submitting the form. Please try again.');
+          }
+      });
+  }
+});
+
+// Referral submit button
+document.addEventListener('DOMContentLoaded', () => {
+  const ReferralForm = document.getElementById('Referral-form');
+  if (ReferralForm) {
+    ReferralForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+
+        // Create a JSON payload
+        const payload = {
+          screeningID: screeningID
+        };
+
+        // Send a POST request to the demographics API endpoint
+        const response = await fetch('http://localhost:8081/api/demographics', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting Referral form: ${response.statusText}`);
+        }
+
+        // Display a success message
+        alert('Referral Form submitted!');
+
+        // Navigate to the screening page
+        navigateToPage('screening-page');
+      } catch (error) {
+        // Log any errors
+        console.error(error);
+      }
+    });
+  }
+});

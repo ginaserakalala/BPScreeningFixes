@@ -54,59 +54,79 @@ document.addEventListener('DOMContentLoaded',() => {
   const modalOkButton = document.getElementById('modal-ok-btn');
   const modalCancelButton = document.getElementById('modal-cancel-btn');
   const consentModal = document.getElementById('consent-modal');
+  const consentCheckbox = document.getElementById('consent-confirmation');
   const demographicsBtn = document.getElementById('demographicsBtn');
 
   // Ensure the demographics button opens the consent modal
   if (demographicsBtn) {
     demographicsBtn.addEventListener('click', function () {
       if (consentModal) {
-        consentModal.style.display = 'flex'; // Show modal
+        consentModal.style.display = 'flex'; // Display the modal
       } else {
-        console.error("Consent modal not found");
+        console.error("Consent modal not found!");
       }
     });
-  } else {
-    console.error("Demographics button not found");
   }
 
-  // When "OK" button is clicked in the modal
+  // Disable the "OK" button initially until the checkbox is checked
+  if (modalOkButton) {
+    modalOkButton.disabled = true; // Disable OK button initially
+    modalOkButton.classList.add('disabled'); // Apply CSS class to show disabled state
+
+    // Add an event listener to the checkbox to enable the "OK" button
+    if (consentCheckbox) {
+      consentCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+          modalOkButton.disabled = false; // Enable OK button
+          modalOkButton.classList.remove('disabled'); // Remove disabled class
+        } else {
+          modalOkButton.disabled = true; // Disable OK button again
+          modalOkButton.classList.add('disabled'); // Add disabled class back
+        }
+      });
+    } else {
+      console.error("Consent checkbox not found!");
+    }
+  } else {
+    console.error("Modal OK button not found!");
+  }
+
+  // Handle "OK" button click in the modal
   if (modalOkButton) {
     modalOkButton.addEventListener('click', function () {
-      const consentCheckbox = document.getElementById('consent-confirmation');
-
       // Check if the user confirmed consent
       if (consentCheckbox && consentCheckbox.checked) {
-        addSinkingEffect(modalOkButton); // Apply visual feedback
+        // Add sinking effect for better feedback
+        addSinkingEffect(modalOkButton);
 
         setTimeout(() => {
-          // Ensure modal is hidden
+          // Hide modal after action
           if (consentModal) {
             consentModal.style.display = 'none';
           }
           // Redirect to demographics page after a brief delay
           window.location.href = '/pages/demographics.html';
-        }, 300); // Delay gives time for the UI to settle
+        }, 300); // Delay for the sinking effect
       } else {
-        alert("Please confirm the consent form before proceeding."); // Inform the user
+        alert("Please confirm the consent form before proceeding.");
       }
     });
-  } else {
-    console.error("Modal OK button not found");
   }
 
-  // When "Cancel" button is clicked in the modal
+  // Handle "Cancel" button click in the modal
   if (modalCancelButton) {
     modalCancelButton.addEventListener('click', function () {
-      addSinkingEffect(modalCancelButton); // Apply visual feedback
+      addSinkingEffect(modalCancelButton); // Apply sinking effect for consistency
+
       setTimeout(() => {
         if (consentModal) {
-          consentModal.style.display = 'none'; // Hide modal
+          consentModal.style.display = 'none'; // Hide the modal
         }
         console.log("User canceled the consent process.");
-      }, 300); // Add delay for visual consistency
+      }, 300); // Delay for the sinking effect
     });
   } else {
-    console.error("Modal Cancel button not found");
+    console.error("Modal Cancel button not found!");
   }
 
 
@@ -424,29 +444,7 @@ document.addEventListener('DOMContentLoaded',() => {
       document.getElementById("report-preview").style.display = "none";
     });
   }
-
-  // *** Form Submission Success Message ***
-  const specialSubmitBtn = document.getElementById("specialSubmit");
-  if (specialSubmitBtn) {
-    specialSubmitBtn.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent the form from submitting
-
-      // Show the message
-      const messageDiv = document.getElementById("message");
-      messageDiv.textContent = "Form Submitted";
-      messageDiv.style.display = "block";
-
-      // Hide the message after 3000ms (3 seconds)
-      setTimeout(function () {
-        messageDiv.style.display = "none";
-      }, 3000);
-    });
-  }
-
-
-
 });
-
 // document.getElementById('toggleDarkMode').addEventListener('click', function(){
 //   document.body.classList.toggle('dark-mode');
 // });

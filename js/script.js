@@ -142,6 +142,45 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
+
+  const earsForm = document.getElementById("ears-form");
+  if (earsForm) {
+    earsForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent page reload to handle submission
+
+      // Display success message using alert
+      alert("Student details captured successfully. Click OK to finish.");
+
+      // Reload the page after the alert is dismissed
+      location.reload();
+    });
+  }
+
+  const eyesForm = document.getElementById("eyes-form");
+  if (eyesForm) {
+    eyesForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent page reload to handle submission
+
+      // Display success message using alert
+      alert("Student details captured successfully. Click OK to finish.");
+
+      // Reload the page after the alert is dismissed
+      location.reload();
+    });
+  }
+  const oralhealth = document.getElementById("oral-health-form");
+  if (oralhealth) {
+    oralhealth.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent page reload to handle submission
+
+      // Display success message using alert
+      alert("Student details captured successfully. Click OK to finish.");
+
+      // Reload the page after the alert is dismissed
+      location.reload();
+    });
+  }
+
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
   if (homeBtn) {

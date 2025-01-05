@@ -93,8 +93,9 @@ document.addEventListener('DOMContentLoaded',() => {
 
   // Handle "OK" button click in the modal
   if (modalOkButton) {
-    modalOkButton.addEventListener('click', function () {
+    modalOkButton.addEventListener('click', function (event) {
       // Check if the user confirmed consent
+      event.preventDefault();
       if (consentCheckbox && consentCheckbox.checked) {
         // Add sinking effect for better feedback
         addSinkingEffect(modalOkButton);
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
   };
 
-
+  formIds.forEach(setupFormSubmission);
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
   if (homeBtn) {
@@ -178,6 +179,7 @@ document.addEventListener('DOMContentLoaded',() => {
       window.location.href = "/pages/dashboard.html";
     });
   }
+
 
   const successHomeBtn = document.querySelector(".home-btn-success");
   if (successHomeBtn) {

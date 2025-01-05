@@ -7,6 +7,28 @@ function addSinkingEffect(element) {
     }, 300); // Wait for the sinking transition to complete before adding 'sunk'
 }
 
+// Function for mutually exclusive Yes/No checkboxes
+const setupMutuallyExclusiveCheckboxes = (yesCheckboxId, noCheckboxId) => {
+  const yesCheckbox = document.getElementById(yesCheckboxId);
+  const noCheckbox = document.getElementById(noCheckboxId);
+
+  if (yesCheckbox && noCheckbox) {
+    yesCheckbox.addEventListener("change", () => {
+      if (yesCheckbox.checked) {
+        noCheckbox.checked = false; // Uncheck "No"
+      }
+    });
+
+    noCheckbox.addEventListener("change", () => {
+      if (noCheckbox.checked) {
+        yesCheckbox.checked = false; // Uncheck "Yes"
+      }
+    });
+  } else {
+    console.error(`Missing elements for IDs: ${yesCheckboxId} or ${noCheckboxId}`);
+  }
+};
+
 document.addEventListener('DOMContentLoaded',() => {
 
 // *** Login handler ***
@@ -317,6 +339,57 @@ document.addEventListener('DOMContentLoaded',() => {
         messageDiv.style.display = "none";
       }, 3000);
     });
+  }
+
+
+
+
+
+  // Function to toggle severity dropdown visibility
+  const setupSeverityToggle = (yesCheckboxId, severityDropdownId) => {
+    const yesCheckbox = document.getElementById(yesCheckboxId);
+    const severityDropdown = document.getElementById(severityDropdownId);
+
+    if (yesCheckbox && severityDropdown) {
+      // Ensure severity dropdown is hidden by default
+      severityDropdown.style.display = "none";
+
+      // Add change listener to the "Yes" checkbox
+      yesCheckbox.addEventListener("change", () => {
+        if (yesCheckbox.checked) {
+          severityDropdown.style.display = "block"; // Show dropdown
+        } else {
+          severityDropdown.style.display = "none"; // Hide dropdown
+        }
+      });
+    } else {
+      console.error(`Missing elements for IDs: ${yesCheckboxId} or ${severityDropdownId}`);
+    }
+  };
+
+
+  // Apply for Discharge Left
+  setupMutuallyExclusiveCheckboxes("dischargeLeftYes", "dischargeLeftNo");
+  setupSeverityToggle("dischargeLeftYes", "dischargeLeftSeverity");
+
+  // Apply for Discharge Right
+  setupMutuallyExclusiveCheckboxes("dischargeRightYes", "dischargeRightNo");
+  setupSeverityToggle("dischargeRightYes", "dischargeRightSeverity");
+
+  // Apply for Wax Impaction Left
+  setupMutuallyExclusiveCheckboxes("waxLeftYes", "waxLeftNo");
+  setupSeverityToggle("waxLeftYes", "waxLeftSeverity");
+
+  // Example: Add similar code for other sections like Wax Impaction Right, Inflamed Eardrum Left/Right
+
+  // Functionality for navigating to the Home button
+  const homeButton = document.getElementById("home-btn");
+  if (homeButton) {
+    homeButton.addEventListener("click", () => {
+      window.location.href = "../index.html"; // Replace with actual home URL
+    });
+  } else {
+    console.error("Home button (ID: 'home-btn') is missing.");
   }
 });
 

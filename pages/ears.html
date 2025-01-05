@@ -7,191 +7,98 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="eyes-page">
-  <div class="container my-5 ">
-    <div class="card p-4 shadow-lg border-0 rounded-4 custom-container">
-      <h2 class="text-center mb-4 eyetext">Ears Screening Form</h2>
-      <form id="ears-form" >
+<body class="ears-page">
+<div class="container my-5">
+  <div class="card p-4 shadow-lg border-0 rounded-4 custom-container">
+    <h2 class="text-center mb-4 eyetext">Ears Screening Form</h2>
+    <form id="ears-form">
 
-        <div class="mb-3">
-          <label for="screening-id" class="form-label" ></label>
-          <input type="text" class="form-control " id="screening-id" placeholder="Screening ID" required pattern="[0-9]*" title="Screening ID must contain only numbers.">
-        </div>
+      <!-- Screening ID -->
+      <div class="mb-3">
+        <label for="screening-id" class="form-label">Screening ID</label>
+        <input type="text" class="form-control" id="screening-id" placeholder="Screening ID" required pattern="[0-9]*" title="Screening ID must contain only numbers.">
+      </div>
 
-       
-        <label class="form-check-label" for="discharge">Discharge Left</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeYes" value="yes">
-          <label class="form-check-label" for="dischargeYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
-          <label class="form-check-label" for="dischargeNo">No</label>
-        </div>
+      <!-- Discharge Left -->
+      <label for="discharge-left" class="form-label">Discharge Left</label>
+      <div id="discharge-left">
+        <input class="form-check-input" type="checkbox" name="dischargeLeft" id="dischargeLeftYes" value="yes">
+        <label class="form-check-label" for="dischargeLeftYes">Yes</label>
+        <input class="form-check-input" type="checkbox" name="dischargeLeft" id="dischargeLeftNo" value="no">
+        <label class="form-check-label" for="dischargeLeftNo">No</label>
+      </div>
+      <div id="dischargeLeftSeverity" class="mt-2" style="display: none;">
+        <label for="dischargeLeftSeverityDropdown">Severity:</label>
+        <select class="form-select" id="dischargeLeftSeverityDropdown" name="dischargeLeftSeverity">
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
+        </select>
+      </div>
+      <br>
 
-        
-       
-        <div id="discharge-severity" class="mt-2" style="display: none;">
-          <label for="dischargeSeverity">Severity:</label>
-          <select class="form-select" id="dischargeSeverity" name="dischargeSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
+      <!-- Discharge Right -->
+      <label for="discharge-right" class="form-label">Discharge Right</label>
+      <div id="discharge-right">
+        <input class="form-check-input" type="checkbox" name="dischargeRight" id="dischargeRightYes" value="yes">
+        <label class="form-check-label" for="dischargeRightYes">Yes</label>
+        <input class="form-check-input" type="checkbox" name="dischargeRight" id="dischargeRightNo" value="no">
+        <label class="form-check-label" for="dischargeRightNo">No</label>
+      </div>
+      <div id="dischargeRightSeverity" class="mt-2" style="display: none;">
+        <label for="dischargeRightSeverityDropdown">Severity:</label>
+        <select class="form-select" id="dischargeRightSeverityDropdown" name="dischargeRightSeverity">
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
+        </select>
+      </div>
+      <br>
 
-        <label class="form-check-label" for="discharge">Discharge Right</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeYes" value="yes">
-          <label class="form-check-label" for="dischargeYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
-          <label class="form-check-label" for="dischargeNo">No</label>
-        </div>
+      <!-- Wax Impaction Left -->
+      <label for="wax-impaction-left" class="form-label">Wax Impaction Left</label>
+      <div id="wax-impaction-left">
+        <input class="form-check-input" type="checkbox" name="waxLeft" id="waxLeftYes" value="yes">
+        <label class="form-check-label" for="waxLeftYes">Yes</label>
+        <input class="form-check-input" type="checkbox" name="waxLeft" id="waxLeftNo" value="no">
+        <label class="form-check-label" for="waxLeftNo">No</label>
+      </div>
+      <div id="waxLeftSeverity" class="mt-2" style="display: none;">
+        <label for="waxLeftSeverityDropdown">Severity:</label>
+        <select class="form-select" id="waxLeftSeverityDropdown" name="waxLeftSeverity">
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
+        </select>
+      </div>
+      <br>
 
-        
-       
-        <div id="discharge-severity" class="mt-2" style="display: none;">
-          <label for="dischargeSeverity">Severity:</label>
-          <select class="form-select" id="dischargeSeverity" name="dischargeSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
+      <!-- Add other sections (e.g., Wax Impaction Right, Inflamed Eardrum Left) similar to this pattern -->
 
-       
-        <label class="form-check-label" for="inflammation">Wax Impaction Left</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationYes" value="yes">
-          <label class="form-check-label" for="inflammationYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationNo" value="no">
-          <label class="form-check-label" for="inflammationNo">No</label>
-        </div>
-       
-        <div id="inflammation-severity" class="mt-2" style="display: none;">
-          <label for="inflammationSeverity">Severity:</label>
-          <select class="form-select" id="inflammationSeverity" name="inflammationSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
+      <!-- Wears Hearing Aid -->
+      <label for="hearing-aid" class="form-label">Wears Hearing Aid</label>
+      <div id="hearing-aid">
+        <input class="form-check-input" type="checkbox" name="hearingAid" id="hearingAidYes" value="yes">
+        <label class="form-check-label" for="hearingAidYes">Yes</label>
+        <input class="form-check-input" type="checkbox" name="hearingAid" id="hearingAidNo" value="no">
+        <label class="form-check-label" for="hearingAidNo">No</label>
+      </div>
 
-        <label class="form-check-label" for="inflammation">Wax Impaction Right</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationYes" value="yes">
-          <label class="form-check-label" for="inflammationYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationNo" value="no">
-          <label class="form-check-label" for="inflammationNo">No</label>
-        </div>
-       
-        <div id="inflammation-severity" class="mt-2" style="display: none;">
-          <label for="inflammationSeverity">Severity:</label>
-          <select class="form-select" id="inflammationSeverity" name="inflammationSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
+      <!-- Additional Comments -->
+      <div class="mb-3">
+        <label for="additional-comments" class="form-label">Additional Comments:</label>
+        <textarea class="form-control" id="additional-comments" rows="3"></textarea>
+      </div>
 
-      
-        <label class="form-check-label" for="squint">Inflamed Eardrum Left</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="squint" id="squintYes" value="yes">
-          <label class="form-check-label" for="squintYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="squint" id="squintNo" value="no">
-          <label class="form-check-label" for="squintNo">No</label>
-        </div>
-       
-        <div id="squint-severity" class="mt-2" style="display: none;">
-          <label for="squintSeverity">Severity:</label>
-          <select class="form-select" id="squintSeverity" name="squintSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
+      <!-- Submit and Home Buttons -->
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" id="home-btn">Home</button>
+      </div>
 
-        <label class="form-check-label" for="squint">Inflamed Eardrum Right</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="squint" id="squintYes" value="yes">
-          <label class="form-check-label" for="squintYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="squint" id="squintNo" value="no">
-          <label class="form-check-label" for="squintNo">No</label>
-        </div>
-       
-        <div id="squint-severity" class="mt-2" style="display: none;">
-          <label for="squintSeverity">Severity:</label>
-          <select class="form-select" id="squintSeverity" name="squintSeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
-       
-        <label class="form-check-label" for="otherAbnormality">Other Abnormality Left</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
-          <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
-          <label class="form-check-label" for="otherAbnormalityNo">No</label>
-        </div>
-        
-        <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
-          <label for="otherAbnormalitySeverity">Severity:</label>
-          <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
-
-        <label class="form-check-label" for="otherAbnormality">Other Abnormality Right</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
-          <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
-          <label class="form-check-label" for="otherAbnormalityNo">No</label>
-        </div>
-        
-        <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
-          <label for="otherAbnormalitySeverity">Severity:</label>
-          <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
-         <label class="form-check-label" for="discharge">Wears Hearing Aid</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeYes" value="yes">
-          <label class="form-check-label" for="dischargeYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
-          <label class="form-check-label" for="dischargeNo">No</label>
-        </div>
-       
-          <br>
-          <br>
-           
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-       
-        <div class="d-flex justify-content-between">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="button" class="btn btn-primary" id="home-btn">Home</button>
-        </div>
-      </form>
-    </div>
+    </form>
   </div>
-  <script src="../js/script.js"></script>
+</div>
+<script src="../js/script.js"></script>
 </body>
 </html>

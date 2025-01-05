@@ -381,16 +381,6 @@ document.addEventListener('DOMContentLoaded',() => {
   setupSeverityToggle("waxLeftYes", "waxLeftSeverity");
 
   // Example: Add similar code for other sections like Wax Impaction Right, Inflamed Eardrum Left/Right
-
-  // Functionality for navigating to the Home button
-  const homeButton = document.getElementById("home-btn");
-  if (homeButton) {
-    homeButton.addEventListener("click", () => {
-      window.location.href = "../index.html"; // Replace with actual home URL
-    });
-  } else {
-    console.error("Home button (ID: 'home-btn') is missing.");
-  }
 });
 
 // document.getElementById('toggleDarkMode').addEventListener('click', function(){

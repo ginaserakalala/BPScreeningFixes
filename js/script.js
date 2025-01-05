@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded',() => {
             consentModal.style.display = 'none';
           }
           // Redirect to demographics page after a brief delay
-          window.location.href = '/pages/demographics.html';
+         // window.location.href = '/pages/demographics.html';
         }, 300); // Delay for the sinking effect
       } else {
         alert("Please confirm the consent form before proceeding.");

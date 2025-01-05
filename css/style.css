@@ -364,4 +364,19 @@ button:hover {
     background: linear-gradient(#e1b169, #279cca);
   }
 }
+*/
 
+@media (max-width: 576px) {
+  .page-heading h1 {
+    font-size: 1.5rem;
+text-shadow: 1px 1px 2px darkslategrey; /* Reduce shadow intensity */
+font-weight: 700; /* Slightly lighter font weight */
+}
+
+.image-alignment img {
+  width: 100px; /* Reduce width */
+  height: auto; /* Maintain aspect ratio */
+  top: 5px; /* Adjust position */
+  right: 5px;
+}
+}

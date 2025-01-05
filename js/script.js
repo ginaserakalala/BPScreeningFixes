@@ -6,7 +6,9 @@ function addSinkingEffect(element) {
         element.classList.add('sunk');
     }, 300); // Wait for the sinking transition to complete before adding 'sunk'
 }
-
+function showSuccessAlert(){
+  alert("Data captured successfully. Click OK to finish.");
+}
 // Function for mutually exclusive Yes/No checkboxes
 const setupMutuallyExclusiveCheckboxes = (yesCheckboxId, noCheckboxId) => {
   const yesCheckbox = document.getElementById(yesCheckboxId);
@@ -125,61 +127,29 @@ document.addEventListener('DOMContentLoaded',() => {
       document.getElementById("age").value = age;
     });
   }
+// List of form IDs
+  const formIds = [
+    "demographics-form",
+    "ears-form",
+    "eyes-form",
+    "oral-health-form"
+  ];
 
 
-  // Demographics form submission
+  // Generic form handler using `showSuccessAlert`
+  const setupFormSubmission = (formId) => {
+    const form = document.getElementById(formId);
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+        showSuccessAlert(); // Call reusable success alert function
+        location.reload(); // Reload the page
+      });
+    } else {
+      console.warn(`Form with ID "${formId}" not found!`);
+    }
+  };
 
-  const demographicsForm = document.getElementById("demographics-form");
-  if (demographicsForm) {
-    demographicsForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent page reload to handle submission
-
-      // Display success message using alert
-      alert("Student details captured successfully. Click OK to finish.");
-
-      // Reload the page after the alert is dismissed
-      location.reload();
-    });
-  }
-
-
-  const earsForm = document.getElementById("ears-form");
-  if (earsForm) {
-    earsForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent page reload to handle submission
-
-      // Display success message using alert
-      alert("Student details captured successfully. Click OK to finish.");
-
-      // Reload the page after the alert is dismissed
-      location.reload();
-    });
-  }
-
-  const eyesForm = document.getElementById("eyes-form");
-  if (eyesForm) {
-    eyesForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent page reload to handle submission
-
-      // Display success message using alert
-      alert("Student details captured successfully. Click OK to finish.");
-
-      // Reload the page after the alert is dismissed
-      location.reload();
-    });
-  }
-  const oralhealth = document.getElementById("oral-health-form");
-  if (oralhealth) {
-    oralhealth.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent page reload to handle submission
-
-      // Display success message using alert
-      alert("Student details captured successfully. Click OK to finish.");
-
-      // Reload the page after the alert is dismissed
-      location.reload();
-    });
-  }
 
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
@@ -196,31 +166,73 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
+  // Define all conditions with associated severity dropdown IDs
+  const oralHealthConditions = [
+    { name: "dentalcaries", severityId: "dentalcaries-severity" },
+    { name: "gumdisease", severityId: "gumdisease-severity" },
+    { name: "thrush", severityId: "thrush-severity" },
+    { name: "otherAbnormality", severityId: "otherAbnormality-severity" },
+    { name: "teethStaining", severityId: "teeth-staining" }
+  ];
+
+// Loop through each condition and attach event listeners for checkboxes
+  oralHealthConditions.forEach(({ name, severityId }) => {
+    // Get the checkboxes and severity dropdown (if applicable)
+    const yesCheckbox = document.getElementById(`${name}Yes`);
+    const noCheckbox = document.getElementById(`${name}No`);
+    const severityDropdown = severityId ? document.getElementById(severityId) : null;
+
+    // Ensure elements exist on the page
+    if (yesCheckbox && noCheckbox) {
+      // Add event listener for "Yes" checkbox
+      yesCheckbox.addEventListener("change", () => {
+        if (yesCheckbox.checked) {
+          if (severityDropdown) {
+            severityDropdown.style.display = "block"; // Show severity dropdown
+          }
+          noCheckbox.checked = false; // Uncheck "No" checkbox
+        }
+      });
+
+      // Add event listener for "No" checkbox
+      noCheckbox.addEventListener("change", () => {
+        if (noCheckbox.checked) {
+          if (severityDropdown) {
+            severityDropdown.style.display = "none"; // Hide severity dropdown
+          }
+          yesCheckbox.checked = false; // Uncheck "Yes" checkbox
+        }
+      });
+    } else {
+      console.error(`Could not find checkboxes for condition: ${name}`);
+    }
+  });
+
   // Get the checkboxes and the severity dropdown container
-  const teethStainingYes = document.getElementById('teethStainingYes');
-  const teethStainingNo = document.getElementById('teethStainingNo');
-  const teethStainingAbnormalityContainer = document.getElementById('teeth-staining');
-
-  // Check if elements exist before adding event listeners
-  if (teethStainingYes && teethStainingNo && teethStainingAbnormalityContainer) {
-    // Add event listener for "Yes" checkbox
-    teethStainingYes.addEventListener('change', () => {
-      if (teethStainingYes.checked) {
-        teethStainingAbnormalityContainer.style.display = 'block'; // Show severity dropdown
-        teethStainingNo.checked = false; // Uncheck "No" checkbox
-      }
-    });
-
-    // Add event listener for "No" checkbox
-    teethStainingNo.addEventListener('change', () => {
-      if (teethStainingNo.checked) {
-        teethStainingAbnormalityContainer.style.display = 'none'; // Hide severity dropdown
-        teethStainingYes.checked = false; // Uncheck "Yes" checkbox
-      }
-    });
-  } else {
-    console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
-  }
+  // const teethStainingYes = document.getElementById('teethStainingYes');
+  // const teethStainingNo = document.getElementById('teethStainingNo');
+  // const teethStainingAbnormalityContainer = document.getElementById('teeth-staining');
+  //
+  // // Check if elements exist before adding event listeners
+  // if (teethStainingYes && teethStainingNo && teethStainingAbnormalityContainer) {
+  //   // Add event listener for "Yes" checkbox
+  //   teethStainingYes.addEventListener('change', () => {
+  //     if (teethStainingYes.checked) {
+  //       teethStainingAbnormalityContainer.style.display = 'block'; // Show severity dropdown
+  //       teethStainingNo.checked = false; // Uncheck "No" checkbox
+  //     }
+  //   });
+  //
+  //   // Add event listener for "No" checkbox
+  //   teethStainingNo.addEventListener('change', () => {
+  //     if (teethStainingNo.checked) {
+  //       teethStainingAbnormalityContainer.style.display = 'none'; // Hide severity dropdown
+  //       teethStainingYes.checked = false; // Uncheck "Yes" checkbox
+  //     }
+  //   });
+  // } else {
+  //   console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
+  // }
 
   // Get references to DOM elements
   const wearsGlassesYes = document.getElementById("wearsGlassesYes");
@@ -294,29 +306,35 @@ document.addEventListener('DOMContentLoaded',() => {
   ];
 
 // Loop through each condition and attach event listeners
+  // Loop through each condition and attach event listeners
   conditions.forEach(({ name, severityId }) => {
     const yesCheckbox = document.getElementById(`${name}Yes`);
     const noCheckbox = document.getElementById(`${name}No`);
-    const severityDropdown = document.getElementById(severityId);
+    const severityDropdown = severityId ? document.getElementById(severityId) : null;
 
-    if (yesCheckbox && noCheckbox && severityDropdown) {
-      // When 'Yes' is checked, show severity dropdown and uncheck 'No'
+    // Ensure the "Yes" and "No" checkboxes exist
+    if (yesCheckbox && noCheckbox) {
+      // When 'Yes' checkbox is selected
       yesCheckbox.addEventListener("change", () => {
         if (yesCheckbox.checked) {
-          severityDropdown.style.display = "block"; // Show dropdown
-          noCheckbox.checked = false; // Uncheck 'No'
+          if (severityDropdown) {
+            severityDropdown.style.display = "block"; // Show dropdown (if applicable)
+          }
+          noCheckbox.checked = false; // Uncheck "No"
         }
       });
 
-      // When 'No' is checked, hide severity dropdown and uncheck 'Yes'
+      // When 'No' checkbox is selected
       noCheckbox.addEventListener("change", () => {
         if (noCheckbox.checked) {
-          severityDropdown.style.display = "none"; // Hide dropdown
-          yesCheckbox.checked = false; // Uncheck 'Yes'
+          if (severityDropdown) {
+            severityDropdown.style.display = "none"; // Hide dropdown (if applicable)
+          }
+          yesCheckbox.checked = false; // Uncheck "Yes"
         }
       });
     } else {
-      console.warn(`Elements for ${name} are missing in the HTML.`);
+      console.warn(`CheckBoxes for condition "${name}" are missing in the HTML.`);
     }
   });
 

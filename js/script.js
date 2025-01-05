@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded',() => {
     wearsGlassesNo.addEventListener("change", () => {
       if (wearsGlassesNo.checked) {
         wearsGlassesYes.checked = false; // Deselect "Yes"
-        snellenTestResults.style.display = "none"; // Hide Snellen Test Results
+        snellenTestResults.style.display = "block"; // Hide Snellen Test Results
       }
     });
   } else {

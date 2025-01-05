@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded',() => {
   // }
 
   const eyesConditions = [
-    { name: "discharge", severityId: "dentalcaries-severity" },
+    { name: "discharge", severityId: "discha-severity" },
     { name: "squint", severityId: "gumdisease-severity" },
     { name: "inflammation", severityId: "thrush-severity" },
     { name: "otherAbnormality", severityId: "otherAbnormality-severity" }

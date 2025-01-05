@@ -17,10 +17,12 @@ body {
   align-items: center;
 }
 .modal-content {
-  display: flex; /* Use Flexbox for horizontal alignment */
-  flex-direction: column; /* Default layout is vertical initially, adjust later */
-  align-items: center; /* Center all the child items horizontally */
-  background-color: white;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
 }
 .modal-content h2{
  color:black;

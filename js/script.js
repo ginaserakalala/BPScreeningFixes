@@ -157,6 +157,36 @@ document.addEventListener('DOMContentLoaded',() => {
   } else {
     console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
   }
+
+  // Get references to DOM elements
+  const wearsGlassesYes = document.getElementById("wearsGlassesYes");
+  const wearsGlassesNo = document.getElementById("wearsGlassesNo");
+  const snellenTestResults = document.getElementById("snellenTestResults");
+
+  // Check if all necessary elements exist
+  if (wearsGlassesYes && wearsGlassesNo && snellenTestResults) {
+    // Hide Snellen Test Results by default
+    snellenTestResults.style.display = "none";
+
+    // Add event listeners for "Yes" and "No" checkboxes
+    wearsGlassesYes.addEventListener("change", () => {
+      if (wearsGlassesYes.checked) {
+        wearsGlassesNo.checked = false; // Deselect "No"
+        snellenTestResults.style.display = "block"; // Show Snellen Test Results
+      }
+    });
+
+    wearsGlassesNo.addEventListener("change", () => {
+      if (wearsGlassesNo.checked) {
+        wearsGlassesYes.checked = false; // Deselect "Yes"
+        snellenTestResults.style.display = "none"; // Hide Snellen Test Results
+      }
+    });
+  } else {
+    // Log an error message if any elements are missing
+    console.error("Error: Missing required DOM elements for 'Wears Glasses' or 'Snellen Test' functionality.");
+  }
+
   // *** Updated Code for Severity Dropdown ***
   const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
 
@@ -183,16 +213,6 @@ document.addEventListener('DOMContentLoaded',() => {
       });
     } else {
       console.warn(`Elements for condition ${condition} are missing in the HTML.`);
-    }
-  });
-
-  // Show/hide Snellen test results based on user response
-  document.addEventListener("change", function() {
-    let wearsGlasses = document.querySelector('input[name="wearsGlasses"]:checked').value;
-    if (wearsGlasses === "yes" || wearsGlasses === "no") {
-      document.getElementById("snellenTestResults").style.display = "block";
-    } else {
-      document.getElementById("snellenTestResults").style.display = "none";
     }
   });
 

@@ -251,34 +251,76 @@ document.addEventListener('DOMContentLoaded',() => {
     console.error("Error: Missing required DOM elements for 'Wears Glasses' or 'Snellen Test' functionality.");
   }
 
-  // *** Updated Code for Severity Dropdown ***
-  const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
+  // // *** Updated Code for Severity Dropdown ***
+  // const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
+  //
+  // conditions.forEach((condition) => {
+  //   const yesCheckbox = document.getElementById(`${condition}Yes`);
+  //   const noCheckbox = document.getElementById(`${condition}No`);
+  //   const severityDropdown = document.getElementById(`${condition}-severity`);
+  //
+  //   if (yesCheckbox && noCheckbox && severityDropdown) {
+  //     // When 'Yes' is checked, show the severity dropdown and uncheck 'No'
+  //     yesCheckbox.addEventListener("change", () => {
+  //       if (yesCheckbox.checked) {
+  //         severityDropdown.style.display = "block";
+  //         noCheckbox.checked = false; // Uncheck 'No' when 'Yes' is selected
+  //       }
+  //     });
+  //
+  //     // When 'No' is checked, hide the severity dropdown and uncheck 'Yes'
+  //     noCheckbox.addEventListener("change", () => {
+  //       if (noCheckbox.checked) {
+  //         severityDropdown.style.display = "none";
+  //         yesCheckbox.checked = false; // Uncheck 'Yes' when 'No' is selected
+  //       }
+  //     });
+  //   } else {
+  //     console.warn(`Elements for condition ${condition} are missing in the HTML.`);
+  //   }
+  // });
 
-  conditions.forEach((condition) => {
-    const yesCheckbox = document.getElementById(`${condition}Yes`);
-    const noCheckbox = document.getElementById(`${condition}No`);
-    const severityDropdown = document.getElementById(`${condition}-severity`);
+  // Define all conditions with left/right variations
+  const conditions = [
+    { name: "dischargeLeft", severityId: "dischargeLeft-severity" },
+    { name: "dischargeRight", severityId: "dischargeRight-severity" },
+    { name: "inflammationLeft", severityId: "inflammationLeft-severity" },
+    { name: "inflammationRight", severityId: "inflammationRight-severity" },
+    { name: "inflamedLeft", severityId: "inflamedLeft-severity" },
+    { name: "inflamedRight", severityId: "inflamedRight-severity" },
+    { name: "otherAbnormalityLeft", severityId: "otherAbnormalityLeft-severity" },
+    { name: "otherAbnormalityRight", severityId: "otherAbnormalityRight-severity" },
+    {name: "wearsHearingAid"}
+  ];
+
+// Loop through each condition and attach event listeners
+  conditions.forEach(({ name, severityId }) => {
+    const yesCheckbox = document.getElementById(`${name}Yes`);
+    const noCheckbox = document.getElementById(`${name}No`);
+    const severityDropdown = document.getElementById(severityId);
 
     if (yesCheckbox && noCheckbox && severityDropdown) {
-      // When 'Yes' is checked, show the severity dropdown and uncheck 'No'
+      // When 'Yes' is checked, show severity dropdown and uncheck 'No'
       yesCheckbox.addEventListener("change", () => {
         if (yesCheckbox.checked) {
-          severityDropdown.style.display = "block";
-          noCheckbox.checked = false; // Uncheck 'No' when 'Yes' is selected
+          severityDropdown.style.display = "block"; // Show dropdown
+          noCheckbox.checked = false; // Uncheck 'No'
         }
       });
 
-      // When 'No' is checked, hide the severity dropdown and uncheck 'Yes'
+      // When 'No' is checked, hide severity dropdown and uncheck 'Yes'
       noCheckbox.addEventListener("change", () => {
         if (noCheckbox.checked) {
-          severityDropdown.style.display = "none";
-          yesCheckbox.checked = false; // Uncheck 'Yes' when 'No' is selected
+          severityDropdown.style.display = "none"; // Hide dropdown
+          yesCheckbox.checked = false; // Uncheck 'Yes'
         }
       });
     } else {
-      console.warn(`Elements for condition ${condition} are missing in the HTML.`);
+      console.warn(`Elements for ${name} are missing in the HTML.`);
     }
   });
+
+
 
   // *** Generate Report Button Logic ***
   const generateReportBtn = document.getElementById("generate-report-btn");
@@ -385,44 +427,6 @@ document.addEventListener('DOMContentLoaded',() => {
 
 
 
-
-
-  // Function to toggle severity dropdown visibility
-  const setupSeverityToggle = (yesCheckboxId, severityDropdownId) => {
-    const yesCheckbox = document.getElementById(yesCheckboxId);
-    const severityDropdown = document.getElementById(severityDropdownId);
-
-    if (yesCheckbox && severityDropdown) {
-      // Ensure severity dropdown is hidden by default
-      severityDropdown.style.display = "none";
-
-      // Add change listener to the "Yes" checkbox
-      yesCheckbox.addEventListener("change", () => {
-        if (yesCheckbox.checked) {
-          severityDropdown.style.display = "block"; // Show dropdown
-        } else {
-          severityDropdown.style.display = "none"; // Hide dropdown
-        }
-      });
-    } else {
-      console.error(`Missing elements for IDs: ${yesCheckboxId} or ${severityDropdownId}`);
-    }
-  };
-
-
-  // Apply for Discharge Left
-  setupMutuallyExclusiveCheckboxes("dischargeLeftYes", "dischargeLeftNo");
-  setupSeverityToggle("dischargeLeftYes", "dischargeLeftSeverity");
-
-  // Apply for Discharge Right
-  setupMutuallyExclusiveCheckboxes("dischargeRightYes", "dischargeRightNo");
-  setupSeverityToggle("dischargeRightYes", "dischargeRightSeverity");
-
-  // Apply for Wax Impaction Left
-  setupMutuallyExclusiveCheckboxes("waxLeftYes", "waxLeftNo");
-  setupSeverityToggle("waxLeftYes", "waxLeftSeverity");
-
-  // Example: Add similar code for other sections like Wax Impaction Right, Inflamed Eardrum Left/Right
 });
 
 // document.getElementById('toggleDarkMode').addEventListener('click', function(){

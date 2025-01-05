@@ -256,6 +256,46 @@ document.addEventListener('DOMContentLoaded',() => {
   //   console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
   // }
 
+  const eyesConditions = [
+    { name: "discharge", severityId: "dentalcaries-severity" },
+    { name: "squint", severityId: "gumdisease-severity" },
+    { name: "inflammation", severityId: "thrush-severity" },
+    { name: "otherAbnormality", severityId: "otherAbnormality-severity" }
+  ];
+
+  // Loop through each condition and attach event listeners for checkboxes
+  eyesConditions.forEach(({ name, severityId }) => {
+    // Get the checkboxes and severity dropdown (if applicable)
+    const yesCheckbox = document.getElementById(`${name}Yes`);
+    const noCheckbox = document.getElementById(`${name}No`);
+    const severityDropdown = severityId ? document.getElementById(severityId) : null;
+
+    // Ensure elements exist on the page
+    if (yesCheckbox && noCheckbox) {
+      // Add event listener for "Yes" checkbox
+      yesCheckbox.addEventListener("change", () => {
+        if (yesCheckbox.checked) {
+          if (severityDropdown) {
+            severityDropdown.style.display = "block"; // Show severity dropdown
+          }
+          noCheckbox.checked = false; // Uncheck "No" checkbox
+        }
+      });
+
+      // Add event listener for "No" checkbox
+      noCheckbox.addEventListener("change", () => {
+        if (noCheckbox.checked) {
+          if (severityDropdown) {
+            severityDropdown.style.display = "none"; // Hide severity dropdown
+          }
+          yesCheckbox.checked = false; // Uncheck "Yes" checkbox
+        }
+      });
+    } else {
+      console.error(`Could not find checkboxes for condition: ${name}`);
+    }
+  });
+
   // Get references to DOM elements
   const wearsGlassesYes = document.getElementById("wearsGlassesYes");
   const wearsGlassesNo = document.getElementById("wearsGlassesNo");

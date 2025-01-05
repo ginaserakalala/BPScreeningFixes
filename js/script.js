@@ -30,30 +30,62 @@ document.addEventListener('DOMContentLoaded',() => {
   const modalOkButton = document.getElementById('modal-ok-btn');
   const modalCancelButton = document.getElementById('modal-cancel-btn');
   const consentModal = document.getElementById('consent-modal');
+  const demographicsBtn = document.getElementById('demographicsBtn');
 
-  if (modalOkButton) {
-    modalOkButton.addEventListener('click', function() {
-      addSinkingEffect(modalOkButton); // Trigger sinking effect on OK button click
+  // Ensure the demographics button opens the consent modal
+  if (demographicsBtn) {
+    demographicsBtn.addEventListener('click', function () {
       if (consentModal) {
-        consentModal.style.display = 'none';
+        consentModal.style.display = 'flex'; // Show modal
+      } else {
+        console.error("Consent modal not found");
       }
-      window.location.href = "/pages/demographics.html";
+    });
+  } else {
+    console.error("Demographics button not found");
+  }
+
+  // When "OK" button is clicked in the modal
+  if (modalOkButton) {
+    modalOkButton.addEventListener('click', function () {
+      const consentCheckbox = document.getElementById('consent-confirmation');
+
+      // Check if the user confirmed consent
+      if (consentCheckbox && consentCheckbox.checked) {
+        addSinkingEffect(modalOkButton); // Apply visual feedback
+
+        setTimeout(() => {
+          // Ensure modal is hidden
+          if (consentModal) {
+            consentModal.style.display = 'none';
+          }
+          // Redirect to demographics page after a brief delay
+          window.location.href = '/pages/demographics.html';
+        }, 300); // Delay gives time for the UI to settle
+      } else {
+        alert("Please confirm the consent form before proceeding."); // Inform the user
+      }
     });
   } else {
     console.error("Modal OK button not found");
   }
 
+  // When "Cancel" button is clicked in the modal
   if (modalCancelButton) {
-    modalCancelButton.addEventListener('click', function() {
-      addSinkingEffect(modalCancelButton); // Trigger sinking effect on Cancel button click
-      if (consentModal) {
-        consentModal.style.display = 'none';
-      }
-      window.location.href = "/pages/dashboard.html";
+    modalCancelButton.addEventListener('click', function () {
+      addSinkingEffect(modalCancelButton); // Apply visual feedback
+      setTimeout(() => {
+        if (consentModal) {
+          consentModal.style.display = 'none'; // Hide modal
+        }
+        console.log("User canceled the consent process.");
+      }, 300); // Add delay for visual consistency
     });
   } else {
     console.error("Modal Cancel button not found");
   }
+
+
 
   // *** Age calculation ***
   const dobInput = document.getElementById("dob");
@@ -85,67 +117,6 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
-// Check if elements exist before adding event listeners
-//   const demographicsBtn = document.querySelector('#demographicsBtn');
-//   const consentModal = document.getElementById('consent-modal');
-//   const modalOkButton = document.getElementById('modal-ok-btn');
-//   const modalCancelButton = document.getElementById('modal-cancel-btn');
-
-
-    const demographicsBtn = document.getElementById("demographicsBtn");
-
-  if (demographicsBtn) {
-    demographicsBtn.addEventListener('click', function() {
-      if (consentModal) {
-        consentModal.style.display = 'flex';
-      } else {
-        console.error("Consent modal not found");
-      }
-    });
-  } else {
-    console.error("Demographics button not found");
-  }
-
-  if (modalOkButton) {
-    modalOkButton.addEventListener('click', function() {
-      if (consentModal) {
-        consentModal.style.display = 'none';
-      }
-      window.location.href = "/pages/demographics.html";
-    });
-  } else {
-    console.error("Modal OK button not found");
-  }
-
-  if (modalCancelButton) {
-    modalCancelButton.addEventListener('click', function() {
-      if (consentModal) {
-        consentModal.style.display = 'none';
-      }
-      // Corrected window.location.href
-      window.location.href = "/pages/dashboard.html";
-    });
-  } else {
-    console.error("Modal Cancel button not found");
-  }
-
-
-    // if (demographicsBtn) {
-    //     demographicsBtn.addEventListener("click", function () {
-    //         // Show the consent modal
-    //         document.getElementById('consent-modal').style.display = 'flex';
-    //
-    //         //Show the demographics form only after the consent modal has been accepted or dismissed
-    //
-    //         document.getElementById('consent-modal').addEventListener('click', function (event) {
-    //             if (event.target === document.getElementById('consent-modal')) {
-    //                 document.getElementById('consent-modal').style.display = 'none';
-    //                 document.getElementById("demographics-form").style.display = "block";
-    //             }
-    //         });
-    //     });
-    // }
-
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
   if (homeBtn) {
@@ -166,20 +137,26 @@ document.addEventListener('DOMContentLoaded',() => {
   const teethStainingNo = document.getElementById('teethStainingNo');
   const teethStainingAbnormalityContainer = document.getElementById('teeth-staining');
 
-// Add event listeners to the checkboxes
-  teethStainingYes.addEventListener('change', () => {
-    if (teethStainingYes.checked) {
-      teethStainingAbnormalityContainer.style.display = 'block';
-      teethStainingNo.checked = false; // Uncheck 'No' when 'Yes' is selected
-    }
-  });
+  // Check if elements exist before adding event listeners
+  if (teethStainingYes && teethStainingNo && teethStainingAbnormalityContainer) {
+    // Add event listener for "Yes" checkbox
+    teethStainingYes.addEventListener('change', () => {
+      if (teethStainingYes.checked) {
+        teethStainingAbnormalityContainer.style.display = 'block'; // Show severity dropdown
+        teethStainingNo.checked = false; // Uncheck "No" checkbox
+      }
+    });
 
-  teethStainingNo.addEventListener('change', () => {
-    if (teethStainingNo.checked) {
-      teethStainingAbnormalityContainer.style.display = 'none';
-      teethStainingYes.checked = false; // Uncheck 'Yes' when 'No' is selected
-    }
-  });
+    // Add event listener for "No" checkbox
+    teethStainingNo.addEventListener('change', () => {
+      if (teethStainingNo.checked) {
+        teethStainingAbnormalityContainer.style.display = 'none'; // Hide severity dropdown
+        teethStainingYes.checked = false; // Uncheck "Yes" checkbox
+      }
+    });
+  } else {
+    console.error("Could not find one or more elements: 'teethStainingYes', 'teethStainingNo', or 'teeth-staining'. Please check the HTML structure.");
+  }
   // *** Updated Code for Severity Dropdown ***
   const conditions = ["discharge", "inflammation", "squint", "otherAbnormality"]; // Added 'npc'
 

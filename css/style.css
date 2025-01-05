@@ -17,12 +17,13 @@ body {
   align-items: center;
 }
 .modal-content {
+  display: flex; /* Use Flexbox for horizontal alignment */
+  flex-direction: column; /* Default layout is vertical initially, adjust later */
+  align-items: center; /* Center all the child items horizontally */
   background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
+}
+.modal-content h2{
+ color:black;
 }
 .modal {
   display: none; /* Hidden by default */
@@ -35,9 +36,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+
 .modal-content button {
-  margin: 5px;
-  padding: 10px 10px;
+  margin: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  display: inline-block;
+  background-color: #003366;
+  color: white;
+  border-radius: 14px;
 }
 #consent-modal label {
   display: block; /* makes label appear as a block element */
@@ -46,12 +54,6 @@ body {
 
 #consent-modal p {
   margin-bottom: 20px; /* adds space between paragraph and buttons */
-}
-#consent-modal button {
-  margin: 10px; /* adds space between buttons */
-  padding: 5px 10px; /* decreases button size */
-  font-size: 14px; /* decreases font size */
-  display: inline-block; /* makes buttons appear side by side */
 }
 .image-alignment img{
   position:fixed;

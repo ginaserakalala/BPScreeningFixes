@@ -420,6 +420,110 @@ document.addEventListener('DOMContentLoaded',() => {
       const reportContent = `
       <h4>Screening Report</h4>
       <p><strong>Screening ID:</strong> ${screeningId}</p>
+      <p>Demographics form
+
+Screening ID : 00001 
+
+Select School : Maelebe Primary School 
+
+First Name : Thato 
+Last Name : Ledwaba 
+
+Date of Birth : 2015/06/06 
+
+Age : 10
+
+Sex : Male 
+
+Grade : 4 
+
+———————-
+
+EYES FORM 
+
+Screening ID : 00001 
+
+Discharge: Yes 
+Severity : Mild 
+
+Inflammation: No 
+
+Squint : Yes 
+Severity : Mild 
+
+Other abnormality : No 
+
+Right Eye OD
+
+SPH : 1.25 
+
+CYL : 0.0 
+
+AXIS : 0 
+
+LEFT EYE 
+
+SPH : 2.0 
+
+CYL : 0.0 
+
+AXIS : 0 
+
+PD : 65 
+
+Wears Glasses : YES 
+
+Right Eye Snellen : 5/6 
+
+Left Eye Snellen : 4/6 
+
+Screening results : Refer 
+___
+
+EARS FORM 
+
+Screening ID : 00001 
+
+Discharge Left : No 
+Discharge Right : No 
+
+Wax impaction Left : Yes 
+Severity : Severe 
+
+Wax Impaction right : No 
+
+Inflamed Eardrum left : No  
+
+Inflamed Eardrum right : No 
+
+Other abnormality left : No 
+
+Other abnormality right : No 
+
+Wears hearing aid : YES 
+
+Additional comments : NULL 
+
+___
+
+
+ORAL HEALTH : 
+
+Screening ID : 00001 
+
+Dental Caries : No 
+
+Gum disease : No 
+
+Thrush sores : Yes 
+Severity : Moderate 
+
+Other Abnormality : No 
+
+Teeth Staining : Yes 
+Severity : Moderate 
+
+Additional Comments : NULL</p>
     `;
 
       // Show the Report Preview

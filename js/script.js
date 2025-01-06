@@ -420,110 +420,158 @@ document.addEventListener('DOMContentLoaded',() => {
       const reportContent = `
       <h4>Screening Report</h4>
       <p><strong>Screening ID:</strong> ${screeningId}</p>
-      <p>Demographics form
+      <h1>Demographics and Screening Report</h1>
+<h2>Demographics</h2>
+<table>
+<tr>
+<th>Screening ID:</th>
+<td>00001</td>
+</tr>
+<tr>
+<th>Select School:</th>
+<td>Maelebe Primary School</td>
+</tr>
+<tr>
+<th>First Name:</th>
+<td>Thato</td>
+</tr>
+<tr>
+<th>Last Name:</th>
+<td>Ledwaba</td>
+</tr>
+<tr>
+<th>Date of Birth:</th>
+<td>2015/06/06</td>
+</tr>
+<tr>
+<th>Age:</th>
+<td>10</td>
+</tr>
+<tr>
+<th>Sex:</th>
+<td>Male</td>
+</tr>
+<tr>
+<th>Grade:</th>
+<td>4</td>
+</tr>
+</table>
+<h2>Eyes Form</h2>
+<table>
+<tr>
+<th>Screening ID:</th>
+<td>00001</td>
+</tr>
+<tr>
+<th>Discharge:</th>
+<td>Yes (Mild)</td>
+</tr>
+<tr>
+<th>Squint:</th>
+<td>Yes (Mild)</td>
+</tr>
+<tr>
+<th>Inflammation:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Other abnormality:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Right Eye (OD):</th>
+<td>SPH: 1.25, CYL: 0.0, AXIS: 0</td>
+</tr>
+<tr>
+<th>Left Eye (OS):</th>
+<td>SPH: 2.0, CYL: 0.0, AXIS: 0</td>
+</tr>
+<tr>
+<th>PD:</th>
+<td>65</td>
+</tr>
+<tr>
+<th>Wears Glasses:</th>
+<td>Yes</td>
+</tr>
+<tr>
+<th>Right Eye Snellen:</th>
+<td>5/6</td>
+</tr>
+<tr>
+<th>Left Eye Snellen:</th>
+<td>4/6</td>
+</tr>
+<tr>
+<th>Screening results:</th>
+<td>Refer</td>
+</tr>
+</table>
+<h2>Ears Form</h2>
+<table>
+<tr>
+<th>Screening ID:</th>
+<td>00001</td>
+</tr>
+<tr>
+<th>Discharge Left:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Discharge Right:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Wax impaction Left:</th>
+<td>Yes (Severe)</td>
+</tr>
+<tr>
+<th>Wax Impaction Right:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Inflamed Eardrum Left:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Inflamed Eardrum Right:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Other abnormality Left:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Other abnormality Right:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Wears hearing aid:</th>
+<td>Yes</td>
+</tr>
+<tr>
+<th>Additional comments:</th>
+<td>NULL</td>
+</tr>
+</table>
+<h2>Oral Health</h2>
+<table>
+<tr>
+<th>Screening ID:</th>
+<td>00001</td>
+</tr>
+<tr>
+<th>Dental Caries:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Gum disease:</th>
+<td>No</td>
+</tr>
+<tr>
+<th>Thrush sores:</th>
+<td
 
-Screening ID : 00001 
-
-Select School : Maelebe Primary School 
-
-First Name : Thato 
-Last Name : Ledwaba 
-
-Date of Birth : 2015/06/06 
-
-Age : 10
-
-Sex : Male 
-
-Grade : 4 
-
-———————-
-
-EYES FORM 
-
-Screening ID : 00001 
-
-Discharge: Yes 
-Severity : Mild 
-
-Inflammation: No 
-
-Squint : Yes 
-Severity : Mild 
-
-Other abnormality : No 
-
-Right Eye OD
-
-SPH : 1.25 
-
-CYL : 0.0 
-
-AXIS : 0 
-
-LEFT EYE 
-
-SPH : 2.0 
-
-CYL : 0.0 
-
-AXIS : 0 
-
-PD : 65 
-
-Wears Glasses : YES 
-
-Right Eye Snellen : 5/6 
-
-Left Eye Snellen : 4/6 
-
-Screening results : Refer 
-___
-
-EARS FORM 
-
-Screening ID : 00001 
-
-Discharge Left : No 
-Discharge Right : No 
-
-Wax impaction Left : Yes 
-Severity : Severe 
-
-Wax Impaction right : No 
-
-Inflamed Eardrum left : No  
-
-Inflamed Eardrum right : No 
-
-Other abnormality left : No 
-
-Other abnormality right : No 
-
-Wears hearing aid : YES 
-
-Additional comments : NULL 
-
-___
-
-
-ORAL HEALTH : 
-
-Screening ID : 00001 
-
-Dental Caries : No 
-
-Gum disease : No 
-
-Thrush sores : Yes 
-Severity : Moderate 
-
-Other Abnormality : No 
-
-Teeth Staining : Yes 
-Severity : Moderate 
-
-Additional Comments : NULL</p>
     `;
 
       // Show the Report Preview

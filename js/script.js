@@ -318,54 +318,63 @@ document.addEventListener('DOMContentLoaded',() => {
       event.preventDefault();
 
       try {
-        // Get the form data
+        // Get form data
         const screeningID = document.getElementById('screening-id').value;
 
         // Discharge
-        const discharge = document.getElementById('dischargeYes').checked; // boolean
-        const dischargeSeverity = document.getElementById('dischargeSeverity').value;
+        const discharge = document.getElementById('dischargeYes').checked; // Yes = true, No = false
+        const dischargeSeverity = document.getElementById('dischargeSeverity').value || null;
 
         // Inflammation
-        const inflammation = document.getElementById('inflammationYes').checked; // boolean
-        const inflammationSeverity = document.getElementById('inflammationSeverity').value;
+        const inflammation = document.getElementById('inflammationYes').checked;
+        const inflammationSeverity = document.getElementById('inflammationSeverity').value || null;
 
         // Squint
-        const squint = document.getElementById('squintYes').checked; // boolean
-        const squintSeverity = document.getElementById('squintSeverity').value;
+        const squint = document.getElementById('squintYes').checked;
+        const squintSeverity = document.getElementById('squintSeverity').value || null;
 
         // Other Abnormality
-        const otherAbnormality = document.getElementById('otherAbnormalityYes').checked; // boolean
-        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value;
+        const otherAbnormality = document.getElementById('otherAbnormalityYes').checked;
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value || null;
 
         // Right Eye Details (OD = Right Eye)
-        const rightEyeODSPH = document.getElementById('od-sph').value;
-        const rightEyeODCYL = document.getElementById('od-cyl').value;
-        const rightEyeODAXIS = document.getElementById('od-axis').value;
+        const rightEyeODSPH = document.getElementById('od-sph').value || null;
+        const rightEyeODCYL = document.getElementById('od-cyl').value || null;
+        const rightEyeODAXIS = document.getElementById('od-axis').value || null;
 
         // Left Eye Details (OS = Left Eye)
-        const leftEyeOSSPH = document.getElementById('os-sph').value;
-        const leftEyeOSCYL = document.getElementById('os-cyl').value;
-        const leftEyeOSAXIS = document.getElementById('os-axis').value;
+        const leftEyeOSSPH = document.getElementById('os-sph').value || null;
+        const leftEyeOSCYL = document.getElementById('os-cyl').value || null;
+        const leftEyeOSAXIS = document.getElementById('os-axis').value || null;
 
         // Both Eyes PD
-        const bothEyesPD = document.getElementById('os-pd').value;
+        const bothEyesPD = document.getElementById('os-pd').value || null;
 
         // Wears Glasses
-        const wearsGlasses = document.getElementById('wearsGlassesYes').checked; // boolean
-        const wearsGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value;
-        const wearsGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value;
+        const wearsGlasses = document.getElementById('wearsGlassesYes').checked; // Boolean
+        let wearsGlassesRightSnellenTest = null;
+        let wearsGlassesLeftSnellenTest = null;
 
-        // Wears No Glasses Snellen Tests
-        const wearsNoGlassesRightSnellenTest = document.getElementById('rightEyeNoGlassesSnellen').value || ''; // Handle optional case
-        const wearsNoGlassesLeftSnellenTest = document.getElementById('leftEyeNoGlassesSnellen').value || ''; // Handle optional case
+        let wearsNoGlassesRightSnellenTest = null;
+        let wearsNoGlassesLeftSnellenTest = null;
+
+        if (wearsGlasses) {
+          // If wears glasses, set right/left Snellen tests for glasses
+          wearsGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
+          wearsGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
+        } else {
+          // If does not wear glasses, set right/left Snellen tests for no glasses
+          wearsNoGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
+          wearsNoGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
+        }
 
         // Screening Results
-        const screeningResults = document.getElementById('screeningresult')?.value || '';
+        const screeningResults = document.getElementById('screeningresult')?.value || null;
 
         // Additional Comments
-        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || '';
+        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
 
-        // Create a JSON payload matching `EyesDto`
+        // Create the payload for the `EyesDto` structure
         const payload = {
           screeningID,                      // String
           discharge,                        // Boolean
@@ -383,37 +392,40 @@ document.addEventListener('DOMContentLoaded',() => {
           leftEyeOSCYL,                     // String
           leftEyeOSAXIS,                    // String
           bothEyesPD,                       // String
-          screeningResults,                 // String
           wearsGlasses,                     // Boolean
           wearsGlassesRightSnellenTest,     // String (Right Eye with Glasses)
           wearsGlassesLeftSnellenTest,      // String (Left Eye with Glasses)
           wearsNoGlassesRightSnellenTest,   // String (Right Eye without Glasses)
           wearsNoGlassesLeftSnellenTest,    // String (Left Eye without Glasses)
+          screeningResults,                 // String
           additionalComments                // String
         };
 
-        // Send a POST request to the Eyes API endpoint
+        // Send the POST request to the backend API
         const response = await fetch('http://localhost:8081/api/eyes', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(payload), // Send the JSON payload
+          body: JSON.stringify(payload), // Convert payload into a properly formatted JSON string
         });
 
-        // Check if the response was successful
+        // Handle server response
         if (!response.ok) {
-          console.log(`Error submitting Eyes form: ${response.statusText}`);
+          console.error(`Error submitting Eyes form: ${response.statusText}`);
+          alert('An error occurred while submitting the form. Please try again.');
+          return;
         }
 
-        // Display a success message
-        alert('Eyes Form submitted successfully!');
+        // Display success message
+        alert('Eyes Form submitted successfully! Please click OK to continue');
 
-        // Navigate to the screening page
-        navigateToPage('screening-page');
+        // Optionally, reset the form or navigate to another page
+        location.reload();
       } catch (error) {
-        // Log any errors
+        // Log any client-side errors
         console.error('Error occurred:', error);
+        alert('An unexpected error occurred. Please try again.');
       }
     });
   }

@@ -149,29 +149,84 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 // List of form IDs
-  const formIds = [
-    "demographics-form",
-    "ears-form",
-    "eyes-form",
-    "oral-health-form"
-  ];
+//   const formIds = [
+//     "demographics-form",
+//     "ears-form",
+//     "eyes-form",
+//     "oral-health-form"
+//   ];
+//
+//   // Generic form handler using `showSuccessAlert`
+//   const setupFormSubmission = (formId) => {
+//     const form = document.getElementById(formId);
+//     if (form) {
+//       form.addEventListener("submit", function (event) {
+//         event.preventDefault(); // Prevent default form submission
+//         showSuccessAlert(); // Call reusable success alert function
+//         location.reload(); // Reload the page
+//       });
+//     } else {
+//       console.warn(`Form with ID "${formId}" not found!`);
+//     }
+//   };
+//
+//   formIds.forEach(setupFormSubmission);
 
+  const demographicsForm = document.getElementById('demographics-form');
 
-  // Generic form handler using `showSuccessAlert`
-  const setupFormSubmission = (formId) => {
-    const form = document.getElementById(formId);
-    if (form) {
-      form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
-        showSuccessAlert(); // Call reusable success alert function
-        location.reload(); // Reload the page
-      });
-    } else {
-      console.warn(`Form with ID "${formId}" not found!`);
-    }
-  };
+  if (demographicsForm) {
+    demographicsForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
 
-  formIds.forEach(setupFormSubmission);
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const dateOfBirth = document.getElementById('dob').value;
+        const grade = document.getElementById('grade').value;
+        const sex = document.getElementById('sex').value;
+        const age = document.getElementById('age').value;
+        const schoolName = document.getElementById('school-name').value;
+
+        // Create a JSON payload
+        const payload = {
+          screeningID: screeningID,
+          firstName: firstName,
+          lastName: lastName,
+          grade: grade,
+          age: age,
+          dateOfBirth: dateOfBirth,
+          sex: sex,
+          schoolName: schoolName
+        };
+
+        // Send a POST request to the demographics API endpoint
+        const response = await fetch('http://localhost:8081/api/demographics', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting demographics form: ${response.statusText}`);
+        }
+
+        // Display a success message
+        alert('Demographics Form submitted! Please click OK to continue');
+
+        location.reload();
+      } catch (error) {
+        // Log any errors
+        console.error(error);
+      }
+    });
+  }
+
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");
   if (homeBtn) {

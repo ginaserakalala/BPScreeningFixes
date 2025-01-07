@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded',() => {
   }
 
 
-
   // *** Age calculation ***
   const dobInput = document.getElementById("dob");
   if (dobInput) {
@@ -305,7 +304,7 @@ document.addEventListener('DOMContentLoaded',() => {
         // Log any errors
         console.error('Error occurred while submitting Oral Health form:', error);
         alert('An error occurred. Please try again.');
-  
+
       }
     });
   }
@@ -429,8 +428,7 @@ document.addEventListener('DOMContentLoaded',() => {
       }
     });
   }
-  
-  
+
 
   const earsForm = document.getElementById('ears-form');
   if (earsForm) {
@@ -535,15 +533,15 @@ document.addEventListener('DOMContentLoaded',() => {
 
   // Define all conditions with associated severity dropdown IDs
   const oralHealthConditions = [
-    { name: "dentalcaries", severityId: "dentalcaries-severity" },
-    { name: "gumdisease", severityId: "gumdisease-severity" },
-    { name: "thrush", severityId: "thrush-severity" },
-    { name: "otherAbnormality", severityId: "otherAbnormality-severity" },
-    { name: "teethStaining", severityId: "teeth-staining" }
+    {name: "dentalcaries", severityId: "dentalcaries-severity"},
+    {name: "gumdisease", severityId: "gumdisease-severity"},
+    {name: "thrush", severityId: "thrush-severity"},
+    {name: "otherAbnormality", severityId: "otherAbnormality-severity"},
+    {name: "teethStaining", severityId: "teeth-staining"}
   ];
 
 // Loop through each condition and attach event listeners for checkboxes
-  oralHealthConditions.forEach(({ name, severityId }) => {
+  oralHealthConditions.forEach(({name, severityId}) => {
     // Get the checkboxes and severity dropdown (if applicable)
     const yesCheckbox = document.getElementById(`${name}Yes`);
     const noCheckbox = document.getElementById(`${name}No`);
@@ -602,14 +600,14 @@ document.addEventListener('DOMContentLoaded',() => {
   // }
 
   const eyesConditions = [
-    { name: "discharge", severityId: "discharge-severity" },
-    { name: "squint", severityId: "squint-severity" },
-    { name: "inflammation", severityId: "inflammation-severity" },
-    { name: "otherAbnormality", severityId: "otherAbnormality-severity" }
+    {name: "discharge", severityId: "discharge-severity"},
+    {name: "squint", severityId: "squint-severity"},
+    {name: "inflammation", severityId: "inflammation-severity"},
+    {name: "otherAbnormality", severityId: "otherAbnormality-severity"}
   ];
 
   // Loop through each condition and attach event listeners for checkboxes
-  eyesConditions.forEach(({ name, severityId }) => {
+  eyesConditions.forEach(({name, severityId}) => {
     // Get the checkboxes and severity dropdown (if applicable)
     const yesCheckbox = document.getElementById(`${name}Yes`);
     const noCheckbox = document.getElementById(`${name}No`);
@@ -701,20 +699,20 @@ document.addEventListener('DOMContentLoaded',() => {
 
   // Define all conditions with left/right variations
   const conditions = [
-    { name: "dischargeLeft", severityId: "dischargeLeft-severity" },
-    { name: "dischargeRight", severityId: "dischargeRight-severity" },
-    { name: "inflammationLeft", severityId: "inflammationLeft-severity" },
-    { name: "inflammationRight", severityId: "inflammationRight-severity" },
-    { name: "inflamedLeft", severityId: "inflamedLeft-severity" },
-    { name: "inflamedRight", severityId: "inflamedRight-severity" },
-    { name: "otherAbnormalityLeft", severityId: "otherAbnormalityLeft-severity" },
-    { name: "otherAbnormalityRight", severityId: "otherAbnormalityRight-severity" },
+    {name: "dischargeLeft", severityId: "dischargeLeft-severity"},
+    {name: "dischargeRight", severityId: "dischargeRight-severity"},
+    {name: "inflammationLeft", severityId: "inflammationLeft-severity"},
+    {name: "inflammationRight", severityId: "inflammationRight-severity"},
+    {name: "inflamedLeft", severityId: "inflamedLeft-severity"},
+    {name: "inflamedRight", severityId: "inflamedRight-severity"},
+    {name: "otherAbnormalityLeft", severityId: "otherAbnormalityLeft-severity"},
+    {name: "otherAbnormalityRight", severityId: "otherAbnormalityRight-severity"},
     {name: "wearsHearingAid"}
   ];
 
 // Loop through each condition and attach event listeners
   // Loop through each condition and attach event listeners
-  conditions.forEach(({ name, severityId }) => {
+  conditions.forEach(({name, severityId}) => {
     const yesCheckbox = document.getElementById(`${name}Yes`);
     const noCheckbox = document.getElementById(`${name}No`);
     const severityDropdown = severityId ? document.getElementById(severityId) : null;
@@ -746,246 +744,332 @@ document.addEventListener('DOMContentLoaded',() => {
   });
 
 
+//   // *** Generate Report Button Logic ***
+//   const generateReportBtn = document.getElementById("generate-report-btn");
+//
+//   if (generateReportBtn) {
+//     generateReportBtn.addEventListener("click", function () {
+//       // Get value of the Screening ID from the form
+//       const screeningId = document.getElementById("screening-id").value;
+//
+//       // Validate if the Screening ID is filled
+//       if (!screeningId) {
+//         alert("Please provide the Screening ID.");
+//         return;
+//       }
+//
+//       // Create the report content dynamically
+//       const reportContent = `
+//       <h4>Screening Report</h4>
+//       <p><strong>Screening ID:</strong> ${screeningId}</p>
+//       <h1>Demographics and Screening Report</h1>
+// <h2>Demographics</h2>
+// <table>
+// <tr>
+// <th>Screening ID:</th>
+// <td>00001</td>
+// </tr>
+// <tr>
+// <th>Select School:</th>
+// <td>Maelebe Primary School</td>
+// </tr>
+// <tr>
+// <th>First Name:</th>
+// <td>Thato</td>
+// </tr>
+// <tr>
+// <th>Last Name:</th>
+// <td>Ledwaba</td>
+// </tr>
+// <tr>
+// <th>Date of Birth:</th>
+// <td>2015/06/06</td>
+// </tr>
+// <tr>
+// <th>Age:</th>
+// <td>10</td>
+// </tr>
+// <tr>
+// <th>Sex:</th>
+// <td>Male</td>
+// </tr>
+// <tr>
+// <th>Grade:</th>
+// <td>4</td>
+// </tr>
+// </table>
+// <h2>Eyes Form</h2>
+// <table>
+// <tr>
+// <th>Screening ID:</th>
+// <td>00001</td>
+// </tr>
+// <tr>
+// <th>Discharge:</th>
+// <td>Yes (Mild)</td>
+// </tr>
+// <tr>
+// <th>Squint:</th>
+// <td>Yes (Mild)</td>
+// </tr>
+// <tr>
+// <th>Inflammation:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Other abnormality:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Right Eye (OD):</th>
+// <td>SPH: 1.25, CYL: 0.0, AXIS: 0</td>
+// </tr>
+// <tr>
+// <th>Left Eye (OS):</th>
+// <td>SPH: 2.0, CYL: 0.0, AXIS: 0</td>
+// </tr>
+// <tr>
+// <th>PD:</th>
+// <td>65</td>
+// </tr>
+// <tr>
+// <th>Wears Glasses:</th>
+// <td>Yes</td>
+// </tr>
+// <tr>
+// <th>Right Eye Snellen:</th>
+// <td>5/6</td>
+// </tr>
+// <tr>
+// <th>Left Eye Snellen:</th>
+// <td>4/6</td>
+// </tr>
+// <tr>
+// <th>Screening results:</th>
+// <td>Refer</td>
+// </tr>
+// </table>
+// <h2>Ears Form</h2>
+// <table>
+// <tr>
+// <th>Screening ID:</th>
+// <td>00001</td>
+// </tr>
+// <tr>
+// <th>Discharge Left:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Discharge Right:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Wax impaction Left:</th>
+// <td>Yes (Severe)</td>
+// </tr>
+// <tr>
+// <th>Wax Impaction Right:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Inflamed Eardrum Left:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Inflamed Eardrum Right:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Other abnormality Left:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Other abnormality Right:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Wears hearing aid:</th>
+// <td>Yes</td>
+// </tr>
+// <tr>
+// <th>Additional comments:</th>
+// <td>NULL</td>
+// </tr>
+// </table>
+// <h2>Oral Health</h2>
+// <table>
+// <tr>
+// <th>Screening ID:</th>
+// <td>00001</td>
+// </tr>
+// <tr>
+// <th>Dental Caries:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Gum disease:</th>
+// <td>No</td>
+// </tr>
+// <tr>
+// <th>Thrush sores:</th>
+// <td
+//
+//     `;
+//
+//       // Show the Report Preview
+//       const reportPreview = document.getElementById("report-preview");
+//       if (reportPreview) {
+//         // Set the generated content inside the preview section
+//         document.getElementById("report-content").innerHTML = reportContent;
+//
+//         // Make the preview section visible
+//         reportPreview.style.display = "block";
+//       } else {
+//         console.error("Report preview section not found!");
+//       }
+//     });
+//   }
+//
+//   // *** Print Button Logic ***
+//   const printBtn = document.getElementById("print-report-btn");
+//   if (printBtn) {
+//     printBtn.addEventListener("click", function () {
+//       const reportContent = document.getElementById("report-content").innerHTML;
+//
+//       // Check if content is available
+//       if (!reportContent) {
+//         alert("No content to print.");
+//         return;
+//       }
+//
+//       const printWindow = window.open("", "_blank", "width=800,height=600");
+//
+//       printWindow.document.write(`
+//       <html>
+//         <head>
+//           <title>Print Report</title>
+//           <style>
+//             body { font-family: Arial, sans-serif; }
+//             h4 { color: #333; }
+//             p { color: #555; }
+//           </style>
+//         </head>
+//         <body>
+//           ${reportContent}
+//         </body>
+//       </html>
+//     `);
+//
+//       printWindow.document.close();
+//       printWindow.focus();
+//       printWindow.print();
+//     });
+//   }
+//
+//   // *** Send Button Logic (basic simulation) ***
+//   const sendBtn = document.getElementById("send-btn");
+//   if (sendBtn) {
+//     sendBtn.addEventListener("click", function () {
+//       const reportContent = document.getElementById("report-content").innerHTML;
+//
+//       // Simple simulation of sending the report (e.g., via email)
+//       // You can replace this with actual server-side logic
+//       alert(`Report content sent:\n\n${reportContent}`);
+//
+//       // Reset preview after sending
+//       document.getElementById("report-preview").style.display = "none";
+//     });
+//   }
+// });
+// // document.getElementById('toggleDarkMode').addEventListener('click', function(){
+// //   document.body.classList.toggle('dark-mode');
+// // });
+//
+//
 
-  // *** Generate Report Button Logic ***
+
+// *** Generate Report Button Logic ***
   const generateReportBtn = document.getElementById("generate-report-btn");
 
   if (generateReportBtn) {
-    generateReportBtn.addEventListener("click", function () {
-      // Get value of the Screening ID from the form
+    generateReportBtn.addEventListener("click", async function () {
+      // Get the Screening ID from the form
       const screeningId = document.getElementById("screening-id").value;
 
-      // Validate if the Screening ID is filled
+      // Validate if the Screening ID is provided
       if (!screeningId) {
         alert("Please provide the Screening ID.");
         return;
       }
 
-      // Create the report content dynamically
-      const reportContent = `
-      <h4>Screening Report</h4>
-      <p><strong>Screening ID:</strong> ${screeningId}</p>
-      <h1>Demographics and Screening Report</h1>
-<h2>Demographics</h2>
-<table>
-<tr>
-<th>Screening ID:</th>
-<td>00001</td>
-</tr>
-<tr>
-<th>Select School:</th>
-<td>Maelebe Primary School</td>
-</tr>
-<tr>
-<th>First Name:</th>
-<td>Thato</td>
-</tr>
-<tr>
-<th>Last Name:</th>
-<td>Ledwaba</td>
-</tr>
-<tr>
-<th>Date of Birth:</th>
-<td>2015/06/06</td>
-</tr>
-<tr>
-<th>Age:</th>
-<td>10</td>
-</tr>
-<tr>
-<th>Sex:</th>
-<td>Male</td>
-</tr>
-<tr>
-<th>Grade:</th>
-<td>4</td>
-</tr>
-</table>
-<h2>Eyes Form</h2>
-<table>
-<tr>
-<th>Screening ID:</th>
-<td>00001</td>
-</tr>
-<tr>
-<th>Discharge:</th>
-<td>Yes (Mild)</td>
-</tr>
-<tr>
-<th>Squint:</th>
-<td>Yes (Mild)</td>
-</tr>
-<tr>
-<th>Inflammation:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Other abnormality:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Right Eye (OD):</th>
-<td>SPH: 1.25, CYL: 0.0, AXIS: 0</td>
-</tr>
-<tr>
-<th>Left Eye (OS):</th>
-<td>SPH: 2.0, CYL: 0.0, AXIS: 0</td>
-</tr>
-<tr>
-<th>PD:</th>
-<td>65</td>
-</tr>
-<tr>
-<th>Wears Glasses:</th>
-<td>Yes</td>
-</tr>
-<tr>
-<th>Right Eye Snellen:</th>
-<td>5/6</td>
-</tr>
-<tr>
-<th>Left Eye Snellen:</th>
-<td>4/6</td>
-</tr>
-<tr>
-<th>Screening results:</th>
-<td>Refer</td>
-</tr>
-</table>
-<h2>Ears Form</h2>
-<table>
-<tr>
-<th>Screening ID:</th>
-<td>00001</td>
-</tr>
-<tr>
-<th>Discharge Left:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Discharge Right:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Wax impaction Left:</th>
-<td>Yes (Severe)</td>
-</tr>
-<tr>
-<th>Wax Impaction Right:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Inflamed Eardrum Left:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Inflamed Eardrum Right:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Other abnormality Left:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Other abnormality Right:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Wears hearing aid:</th>
-<td>Yes</td>
-</tr>
-<tr>
-<th>Additional comments:</th>
-<td>NULL</td>
-</tr>
-</table>
-<h2>Oral Health</h2>
-<table>
-<tr>
-<th>Screening ID:</th>
-<td>00001</td>
-</tr>
-<tr>
-<th>Dental Caries:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Gum disease:</th>
-<td>No</td>
-</tr>
-<tr>
-<th>Thrush sores:</th>
-<td
+      try {
+        // Fetch the data from the backend API using the screening ID
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningId}`);
 
-    `;
+        // Check if the response is valid
+        if (!response.ok) {
+          throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
+        }
 
-      // Show the Report Preview
-      const reportPreview = document.getElementById("report-preview");
-      if (reportPreview) {
-        // Set the generated content inside the preview section
-        document.getElementById("report-content").innerHTML = reportContent;
+        // Parse the JSON data
+        const reportData = await response.json();
 
-        // Make the preview section visible
-        reportPreview.style.display = "block";
-      } else {
-        console.error("Report preview section not found!");
+        // Dynamically generate the report content
+        const reportContent = `
+        <h4>Screening Report</h4>
+        <p><strong>Screening ID:</strong> ${reportData.ScreeningID}</p>
+        <h1>Demographics and Screening Report</h1>
+        
+        <h2>Demographics</h2>
+        <table>
+          <tr><th>First Name:</th><td>${reportData.demographics[0]?.firstName || "N/A"}</td></tr>
+          <tr><th>Last Name:</th><td>${reportData.demographics[0]?.lastName || "N/A"}</td></tr>
+          <tr><th>Age:</th><td>${reportData.demographics[0]?.age || "N/A"}</td></tr>
+          <tr><th>Sex:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
+          <tr><th>Grade:</th><td>${reportData.demographics[0]?.grade || "N/A"}</td></tr>
+        </table>
+
+        <h2>Eyes Form</h2>
+        <table>
+          <tr><th>Discharge:</th><td>${reportData.eyes[0]?.discharge ? "Yes" : "No"} (${reportData.eyes[0]?.dischargeSeverity || "N/A"})</td></tr>
+          <tr><th>Squint:</th><td>${reportData.eyes[0]?.squint ? "Yes" : "No"} (${reportData.eyes[0]?.squintSeverity || "N/A"})</td></tr>
+          <tr><th>Inflammation:</th><td>${reportData.eyes[0]?.inflammation ? "Yes" : "No"}</td></tr>
+          <tr><th>Right Eye (OD):</th><td>SPH: ${reportData.eyes[0]?.rightEyeODSPH || "N/A"}, CYL: ${reportData.eyes[0]?.rightEyeODCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.rightEyeODAXIS || "N/A"}</td></tr>
+          <tr><th>Left Eye (OS):</th><td>SPH: ${reportData.eyes[0]?.leftEyeOSSPH || "N/A"}, CYL: ${reportData.eyes[0]?.leftEyeOSCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.leftEyeOSAXIS || "N/A"}</td></tr>
+        </table>
+
+        <h2>Ears Form</h2>
+        <table>
+          <tr><th>Discharge Left:</th><td>${reportData.ears[0]?.dischargeLeft ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
+          <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
+        </table>
+
+        <h2>Oral Health</h2>
+        <table>
+          <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
+          <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
+          <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
+        </table>
+      `;
+
+        // Show the Report Preview
+        const reportPreview = document.getElementById("report-preview");
+        if (reportPreview) {
+          // Set the dynamically generated content inside the preview section
+          document.getElementById("report-content").innerHTML = reportContent;
+
+          // Make the preview section visible
+          reportPreview.style.display = "block";
+        } else {
+          console.error("Report preview section not found!");
+        }
+      } catch (error) {
+        // Handle errors (e.g., network issues, invalid screening ID)
+        console.error(error.message);
+        alert("Error generating report: " + error.message);
       }
-    });
-  }
-
-  // *** Print Button Logic ***
-  const printBtn = document.getElementById("print-report-btn");
-  if (printBtn) {
-    printBtn.addEventListener("click", function () {
-      const reportContent = document.getElementById("report-content").innerHTML;
-
-      // Check if content is available
-      if (!reportContent) {
-        alert("No content to print.");
-        return;
-      }
-
-      const printWindow = window.open("", "_blank", "width=800,height=600");
-
-      printWindow.document.write(`
-      <html>
-        <head>
-          <title>Print Report</title>
-          <style>
-            body { font-family: Arial, sans-serif; }
-            h4 { color: #333; }
-            p { color: #555; }
-          </style>
-        </head>
-        <body>
-          ${reportContent}
-        </body>
-      </html>
-    `);
-
-      printWindow.document.close();
-      printWindow.focus();
-      printWindow.print();
-    });
-  }
-
-  // *** Send Button Logic (basic simulation) ***
-  const sendBtn = document.getElementById("send-btn");
-  if (sendBtn) {
-    sendBtn.addEventListener("click", function () {
-      const reportContent = document.getElementById("report-content").innerHTML;
-
-      // Simple simulation of sending the report (e.g., via email)
-      // You can replace this with actual server-side logic
-      alert(`Report content sent:\n\n${reportContent}`);
-
-      // Reset preview after sending
-      document.getElementById("report-preview").style.display = "none";
     });
   }
 });
-// document.getElementById('toggleDarkMode').addEventListener('click', function(){
-//   document.body.classList.toggle('dark-mode');
-// });
-
-

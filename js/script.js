@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded',() => {
         }
 
         // Display a success message
-        alert('Oral Health Form submitted successfully!');
+        alert('Oral Health Form submitted successfully! Please click OK to continue');
 
         location.reload();
       } catch (error) {

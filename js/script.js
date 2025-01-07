@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded',() => {
         };
 
         // Send a POST request to the demographics API endpoint
-        const response = await fetch('http://localhost:8081/api/demographics', {
+        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded',() => {
         };
 
         // Send a POST request to the Oral Health API endpoint
-        const response = await fetch('http://localhost:8081/api/oralhealth', {
+        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/oralhealth', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded',() => {
         };
 
         // Send the POST request to the backend API
-        const response = await fetch('http://localhost:8081/api/eyes', {
+        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded',() => {
         };
 
         // Send POST request
-        const response = await fetch('http://localhost:8081/api/ears', {
+        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

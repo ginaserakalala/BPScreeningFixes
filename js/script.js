@@ -226,6 +226,174 @@ document.addEventListener('DOMContentLoaded',() => {
       }
     });
   }
+  const oralHealthForm = document.getElementById('oral-health-form');
+  if (oralHealthForm) {
+    oralHealthForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+
+        // Dental Caries
+        const dentalCaries = document.getElementById('dentalcariesYes').checked; // Boolean (Yes/No)
+        const dentalCariesSeverity = document.getElementById('dentalcariesSeverity')?.value || ''; // String
+        const dentalCariesReferral = document.getElementById('dentalcariesReferral')?.value || ''; // String
+
+        // Gum Disease
+        const gumDisease = document.getElementById('gumdiseaseYes').checked; // Boolean (Yes/No)
+        const gumDiseaseSeverity = document.getElementById('gumdiseaseSeverity')?.value || ''; // String
+        const gumDiseaseReferral = document.getElementById('gumdiseaseReferral')?.value || ''; // String
+
+        // Thrush or Sores
+        const thrushSores = document.getElementById('thrushYes').checked; // Boolean (Yes/No)
+        const thrushSoresSeverity = document.getElementById('thrushSeverity')?.value || ''; // String
+        const thrushSoresReferral = document.getElementById('thrushReferral')?.value || ''; // String
+
+        // Other Abnormalities
+        const otherAbnormality = document.getElementById('otherAbnormalityYes').checked; // Boolean (Yes/No)
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity')?.value || ''; // String
+
+        // Teeth Staining
+        const teethStaining = document.getElementById('teethStainingYes').checked; // Boolean (Yes/No)
+        const teethStainingSeverity = document.getElementById('teethStainingSeverity')?.value || ''; // String
+
+        // Additional Comments
+        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || ''; // String
+
+        // Create a JSON payload matching `OralHealthDto`
+        const payload = {
+          screeningID,                     // String
+          dentalCaries,                   // Boolean
+          dentalCariesSeverity,           // String
+          dentalCariesReferral,           // String
+          gumDisease,                     // Boolean
+          gumDiseaseSeverity,             // String
+          gumDiseaseReferral,             // String
+          thrushSores,                    // Boolean
+          thrushSoresSeverity,            // String
+          thrushSoresReferral,            // String
+          otherAbnormality,               // Boolean
+          otherAbnormalitySeverity,       // String
+          teethStaining,                  // Boolean
+          teethStainingSeverity,          // String
+          additionalComments              // String
+        };
+
+        // Send a POST request to the Oral Health API endpoint
+        const response = await fetch('http://localhost:8081/api/oralhealth', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload), // Send the JSON payload
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting Oral Health form: ${response.statusText}`);
+          alert('Failed to submit the Oral Health form. Please try again.');
+          return;
+        }
+
+        // Display a success message
+        alert('Oral Health Form submitted successfully!');
+
+        location.reload();
+      } catch (error) {
+        // Log any errors
+        console.error('Error occurred while submitting Oral Health form:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  }
+
+
+  const earsForm = document.getElementById('ears-form');
+  if (earsForm) {
+    earsForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the screening ID
+        const screeningID = document.getElementById('screening-id').value;
+
+        // Discharge Left
+        const dischargeLeft = document.getElementById('dischargeLeftYes').checked;
+        // Discharge Right
+        const dischargeRight = document.getElementById('dischargeRightYes').checked;
+
+        // Discharge Severity
+        const dischargeSeverity = document.getElementById('dischargeLeftSeverity')?.value ||
+            document.getElementById('dischargeRightSeverity')?.value || "";
+
+        // Wax Impaction Left
+        const waxImpactionLeft = document.getElementById('inflammationLeftYes').checked;
+        // Wax Impaction Right
+        const waxImpactionRight = document.getElementById('inflammationRightYes').checked;
+
+        // Wax Impaction Severity
+        const waxImpactionSeverity = document.getElementById('inflammationLeftSeverity')?.value ||
+            document.getElementById('inflammationRightSeverity')?.value || "";
+
+        // Inflamed Eardrum Left
+        const inflamedEarDrumLeft = document.getElementById('inflamedLeftYes').checked;
+        // Inflamed Eardrum Right
+        const inflamedEarDrumRight = document.getElementById('inflamedRightYes').checked;
+
+        // Inflamed Eardrum Severity
+        const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
+            document.getElementById('inflamedRightSeverity')?.value || "";
+
+        // Wears Hearing Aid
+        const wearsHearingAid = document.getElementById('wearsHearingAidYes').checked;
+
+        // Additional Comments
+        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || "";
+
+        // Create a JSON payload matching the EarsDto structure
+        const payload = {
+          screeningID,
+          dischargeLeft,             // Boolean: true if "Yes" is selected, otherwise false
+          dischargeRight,            // Boolean: true if "Yes" is selected, otherwise false
+          dischargeSeverity,         // String: combined severity for discharge
+          waxImpactionLeft,          // Boolean: true if "Yes" is selected
+          waxImpactionRight,         // Boolean: true if "Yes" is selected
+          waxImpactionSeverity,      // String: combined severity for wax impaction
+          inflamedEarDrumLeft,       // Boolean: true if "Yes" is selected
+          inflamedEarDrumRight,      // Boolean: true if "Yes" is selected
+          inflamedEarDrumSeverity,   // String: combined severity for inflamed eardrum
+          wearsHearingAid,           // Boolean: true if "Yes" is selected
+          additionalComments         // String: text input for additional comments
+        };
+
+        // Send POST request
+        const response = await fetch('http://localhost:8081/api/ears', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload), // Stringify the JSON payload
+        });
+
+        // Handle response
+        if (!response.ok) {
+          console.error(`Error submitting ears screening form: ${response.statusText}`);
+          alert('Failed to submit the form. Please try again.');
+          return;
+        }
+
+        // Success alert and reload
+        alert('Ears Screening Form submitted successfully! Please press OK to continue.');
+        location.reload();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting the form. Please try again.');
+      }
+    });
+  }
 
   // *** Home button click handler ***
   const homeBtn = document.getElementById("home-btn");

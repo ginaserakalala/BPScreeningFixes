@@ -73,25 +73,6 @@
           </select>
         </div>
         <br>
-
-        
-        <label class="form-check-label" for="otherAbnormality">Other Abnormality</label>
-        <div>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
-          <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
-          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
-          <label class="form-check-label" for="otherAbnormalityNo">No</label>
-        </div>
-        
-        <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
-          <label for="otherAbnormalitySeverity">Severity:</label>
-          <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
-            <option value="mild">Mild</option>
-            <option value="moderate">Moderate</option>
-            <option value="severe">Severe</option>
-          </select>
-        </div>
-        <br>
         <label class="form-check-label" for="teethStaining">Teeth Staining</label>
         <div>
           <input class="form-check-input" type="checkbox" name="teethStaining" id="teethStainingYes" value="yes">
@@ -110,6 +91,25 @@
           </select>
         </div>
         <br>
+        
+        <label class="form-check-label" for="otherAbnormality">Other Abnormality</label>
+        <div>
+          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
+          <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
+          <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
+          <label class="form-check-label" for="otherAbnormalityNo">No</label>
+        </div>
+        
+        <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
+          <label for="otherAbnormalitySeverity">Severity:</label>
+          <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
+            <option value="mild">Mild</option>
+            <option value="moderate">Moderate</option>
+            <option value="severe">Severe</option>
+          </select>
+        </div>
+        
+        <br>
         <br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
@@ -124,6 +124,100 @@
       </form>
     </div>
   </div>
-  <script src="../js/script.js"></script>
+<script>
+  document.getElementById('oral-health-form').addEventListener('submit', function(event) {
+  const checkboxGroups = [
+    'dentalcaries',
+    'gumdisease',
+    'thrush',
+    'otherAbnormality',
+    'teethStaining'
+  ];
+
+  let allChecked = true;
+
+  // Loop through each group and check if a checkbox is selected
+  checkboxGroups.forEach(group => {
+    const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+    const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+    
+    // Show error if no checkbox is selected in a group
+    if (!isChecked) {
+      allChecked = false;
+      showError(group);  // Show error message for the group
+    } else {
+      hideError(group);  // Hide error message if a checkbox is selected
+    }
+  });
+
+  // Prevent form submission if any group is not checked
+  if (!allChecked) {
+    event.preventDefault();
+    alert('Please select Yes or No for each group.');
+  } else {
+    // Show success alert
+    event.preventDefault(); // Prevent form submission for demo purposes
+    showSuccessAlert();
+  }
+});
+
+/// Function to show error message for a checkbox group
+function showError(group) {
+  let errorElement = document.getElementById(`${group}-error`);
+  if (!errorElement) {
+    errorElement = document.createElement('span');
+    errorElement.id = `${group}-error`;
+    errorElement.className = 'text-danger';
+    errorElement.textContent = 'Please select an option.';
+    
+    // Find the checkbox container and append the error next to the checkboxes
+    const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+    checkboxes[0].parentNode.appendChild(errorElement);  // Append error next to the first checkbox in the group
+  }
+}
+
+
+// Function to hide error message for a checkbox group
+function hideError(group) {
+  const errorElement = document.getElementById(`${group}-error`);
+  if (errorElement) {
+    errorElement.remove();  // Remove error message if checkbox is selected
+  }
+}
+
+// Function to show success alert
+function showSuccessAlert() {
+  alert("Data captured successfully. Click OK to finish.");
+}
+
+// Add event listeners to show/hide severity based on selections
+const checkboxGroupsWithSeverity = {
+  dentalcaries: 'dentalcaries-severity',
+  gumdisease: 'gumdisease-severity',
+  thrush: 'thrush-severity',
+  otherAbnormality: 'otherAbnormality-severity',
+  teethStaining: 'teeth-staining'
+};
+
+Object.keys(checkboxGroupsWithSeverity).forEach(group => {
+  const yesCheckbox = document.getElementById(`${group}Yes`);
+  const noCheckbox = document.getElementById(`${group}No`);
+  const severityElement = document.getElementById(checkboxGroupsWithSeverity[group]);
+
+  // Show severity dropdown if "Yes" is selected
+  yesCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      severityElement.style.display = 'block';
+    }
+  });
+
+  // Hide severity dropdown if "No" is selected
+  noCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      severityElement.style.display = 'none';
+    }
+  });
+});
+</script>
 </body>
 </html>

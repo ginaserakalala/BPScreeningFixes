@@ -16,7 +16,7 @@
             <!-- Screening ID -->
             <div class="mb-3">
                 <label for="screening-id" class="form-label"></label>
-                <input type="text" class="form-control" id="screening-id" placeholder="Screening ID" required
+                <input type="text" class="form-control" id="screening-id" placeholder="Screening ID" 
                        pattern="[0-9]*" title="Screening ID must contain only numbers.">
             </div>
 
@@ -97,17 +97,17 @@
             <div class="mb-3">
                 <label for="od-sph" class="form-label">SPH:</label>
                 <input type="text" class="form-control" id="od-sph" name="odVisualAcuity"
-                       placeholder="e.g., 0.5" required>
+                       placeholder="e.g., 0.5" >
             </div>
             <div class="mb-3">
                 <label for="od-cyl" class="form-label">CYL:</label>
                 <input type="text" class="form-control" id="od-cyl" name="odVisualAcuity"
-                       placeholder="e.g., 1.25" required>
+                       placeholder="e.g., 1.25" >
             </div>
             <div class="mb-3">
                 <label for="od-axis" class="form-label">AXIS:</label>
                 <input type="number" class="form-control" id="od-axis" name="odDiopters"
-                       placeholder="e.g., 0" step="0.01" required>
+                       placeholder="e.g., 0" step="0.01" >
             </div>
 
             <!-- Left Eye (OS) -->
@@ -115,23 +115,23 @@
             <div class="mb-3">
                 <label for="os-sph" class="form-label">SPH:</label>
                 <input type="text" class="form-control" id="os-sph" name="osVisualAcuity"
-                       placeholder="e.g., 1.25" required>
+                       placeholder="e.g., 1.25" >
             </div>
             <div class="mb-3">
                 <label for="os-cyl" class="form-label">CYL:</label>
                 <input type="number" class="form-control" id="os-cyl" name="osDiopters"
-                       placeholder="e.g., 0.25" step="0.01" required>
+                       placeholder="e.g., 0.25" step="0.01" >
             </div>
             <div class="mb-3">
                 <label for="os-axis" class="form-label">AXIS:</label>
                 <input type="number" class="form-control" id="os-axis" name="osDiopters"
-                       placeholder="e.g., 0" step="0.01" required>
+                       placeholder="e.g., 0" step="0.01" >
             </div>
 
             <div class="mb-3">
                 <label for="os-pd" class="form-label">PD:</label>
                 <input type="number" class="form-control" id="os-pd" name="osDiopters"
-                       placeholder="e.g., 65" step="0.01" required>
+                       placeholder="e.g., 65" step="0.01" >
             </div>
 
             <!-- Wears glasses -->
@@ -170,7 +170,7 @@
             <!-- Screening Results -->
             <div class="mb-3 mt-4">
                 <label for="screeningresult" class="form-label"></label>
-                <select id="screeningresult" class="form-select" required>
+                <select id="screeningresult" class="form-select" >
                     <option value="" disabled selected>Screening Results</option>
                     <option value="1">Refer</option>
                     <option value="2">Pass</option>
@@ -185,6 +185,173 @@
         </form>
     </div>
 </div>
-<script src="../js/script.js"></script>
+<script>
+    document.getElementById('eyes-form').addEventListener('submit', function(event) {
+      const checkboxGroups = [
+        'discharge',
+        'inflammation',
+        'squint',
+        'otherAbnormality',
+        'wearsGlasses'
+      ];
+  
+      let allChecked = true;
+      let allValid = true;
+  
+      // Validate if each checkbox group has a selection
+      checkboxGroups.forEach(group => {
+        const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  
+        // Show error message if no option is selected
+        if (!isChecked) {
+          allChecked = false;
+          showError(group);
+        } else {
+          hideError(group);
+        }
+      });
+  
+      // Validate textboxes
+      const textboxes = [
+        { id: 'screening-id', pattern: /^[0-9]+$/, errorMessage: 'Screening ID must contain only numbers.' },
+        { id: 'od-sph', pattern: /^[+-]?(\d+(\.\d*)?|\.\d+)$/, errorMessage: 'SPH must be a valid number.' },
+        { id: 'od-cyl', pattern: /^[+-]?(\d+(\.\d*)?|\.\d+)$/, errorMessage: 'CYL must be a valid number.' },
+        { id: 'od-axis', pattern: /^[0-9]+$/, errorMessage: 'AXIS must be a valid number.' },
+        { id: 'os-sph', pattern: /^[+-]?(\d+(\.\d*)?|\.\d+)$/, errorMessage: 'SPH must be a valid number.' },
+        { id: 'os-cyl', pattern: /^[+-]?(\d+(\.\d*)?|\.\d+)$/, errorMessage: 'CYL must be a valid number.' },
+        { id: 'os-axis', pattern: /^[0-9]+$/, errorMessage: 'AXIS must be a valid number.' },
+        { id: 'os-pd', pattern: /^[0-9]+$/, errorMessage: 'PD must be a valid number.' }
+      ];
+  
+      textboxes.forEach(textbox => {
+        const input = document.getElementById(textbox.id);
+        const isValid = textbox.pattern.test(input.value.trim());
+  
+        if (!isValid) {
+          allValid = false;
+          showTextboxError(textbox.id, textbox.errorMessage);
+        } else {
+          hideTextboxError(textbox.id);
+        }
+      });
+  
+      // Validate dropdowns
+      const dropdowns = [
+        { id: 'rightEyeSnellen', errorMessage: 'Please select a Snellen Test result for the right eye.' },
+        { id: 'leftEyeSnellen', errorMessage: 'Please select a Snellen Test result for the left eye.' },
+        { id: 'screeningresult', errorMessage: 'Please select a screening result.' }
+      ];
+  
+      dropdowns.forEach(dropdown => {
+        const selectElement = document.getElementById(dropdown.id);
+        if (selectElement.value === '' || selectElement.value === null) {
+          allValid = false;
+          showDropdownError(dropdown.id, dropdown.errorMessage);
+        } else {
+          hideDropdownError(dropdown.id);
+        }
+      });
+  
+      // Prevent form submission if any validation fails
+      if (!allChecked || !allValid) {
+        event.preventDefault();
+        alert('Please correct the highlighted errors and try again.');
+      } else {
+        alert('Data captured successfully. Click OK to finish.');
+      }
+    });
+  
+    // Function to show checkbox group error message
+    function showError(group) {
+      let errorElement = document.getElementById(`${group}-error`);
+      if (!errorElement) {
+        errorElement = document.createElement('span');
+        errorElement.id = `${group}-error`;
+        errorElement.className = 'text-danger';
+        errorElement.textContent = 'Please select an option.';
+        const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+        checkboxes[0].parentNode.appendChild(errorElement);
+      }
+    }
+  
+    // Function to hide checkbox group error message
+    function hideError(group) {
+      const errorElement = document.getElementById(`${group}-error`);
+      if (errorElement) {
+        errorElement.remove();
+      }
+    }
+  
+    // Function to show textbox error message
+    function showTextboxError(id, message) {
+      let errorElement = document.getElementById(`${id}-error`);
+      if (!errorElement) {
+        errorElement = document.createElement('span');
+        errorElement.id = `${id}-error`;
+        errorElement.className = 'text-danger';
+        errorElement.textContent = message;
+        const textbox = document.getElementById(id);
+        textbox.parentNode.appendChild(errorElement);
+      }
+    }
+  
+    // Function to hide textbox error message
+    function hideTextboxError(id) {
+      const errorElement = document.getElementById(`${id}-error`);
+      if (errorElement) {
+        errorElement.remove();
+      }
+    }
+  
+    // Function to show dropdown error message
+    function showDropdownError(id, message) {
+      let errorElement = document.getElementById(`${id}-error`);
+      if (!errorElement) {
+        errorElement = document.createElement('span');
+        errorElement.id = `${id}-error`;
+        errorElement.className = 'text-danger';
+        errorElement.textContent = message;
+        const dropdown = document.getElementById(id);
+        dropdown.parentNode.appendChild(errorElement);
+      }
+    }
+  
+    // Function to hide dropdown error message
+    function hideDropdownError(id) {
+      const errorElement = document.getElementById(`${id}-error`);
+      if (errorElement) {
+        errorElement.remove();
+      }
+    }
+  
+    // Manage visibility of severity dropdowns
+    const checkboxGroupsWithSeverity = {
+      discharge: 'discharge-severity',
+      inflammation: 'inflammation-severity',
+      squint: 'squint-severity',
+      otherAbnormality: 'otherAbnormality-severity'
+    };
+  
+    Object.keys(checkboxGroupsWithSeverity).forEach(group => {
+      const yesCheckbox = document.getElementById(`${group}Yes`);
+      const noCheckbox = document.getElementById(`${group}No`);
+      const severityElement = document.getElementById(checkboxGroupsWithSeverity[group]);
+  
+      // Show severity dropdown if "Yes" is selected
+      yesCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          severityElement.style.display = 'block';
+        }
+      });
+  
+      // Hide severity dropdown if "No" is selected
+      noCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          severityElement.style.display = 'none';
+        }
+      });
+    });
+  </script>  
 </body>
 </html>

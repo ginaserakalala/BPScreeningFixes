@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Send a POST request to the demographics API endpoint
-        const response = await fetch('http://localhost:8081/api/demographics', {
+        const response = await fetch('http://localhost:8081/api/oralhealth', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
           screeningResult,
         };
         // Send a POST request to the demographics API endpoint
-        const response = await fetch('http://localhost:8081/api/demographics', {
+        const response = await fetch('http://localhost:8081/api/eyes', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -829,7 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
               };
 
               // Send POST request
-              const response = await fetch('http://localhost:8081/api/ears-screening', {
+              const response = await fetch('http://localhost:8081/api/ears', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
@@ -871,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Send a POST request to the demographics API endpoint
-        const response = await fetch('http://localhost:8081/api/demographics', {
+        const response = await fetch('http://localhost:8081/api/referral', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

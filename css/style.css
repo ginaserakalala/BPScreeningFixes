@@ -380,3 +380,10 @@ font-weight: 700; /* Slightly lighter font weight */
   right: 5px;
 }
 }
+.text-danger {
+  color: red;
+  font-size: 14px;
+  margin-left: 10px; /* Space between checkbox and error message */
+  display: inline-block; /* Make sure the error message is inline with the checkbox */
+  font-weight: bold; /* Make the error message bold */
+}

@@ -191,6 +191,95 @@
       </form>
     </div>
   </div>
-  <script src="../js/script.js"></script>
+  <script>document.getElementById('ears-form').addEventListener('submit', function (event) {
+    const checkboxGroups = [
+      'dischargeLeft',
+      'dischargeRight',
+      'inflammationLeft',
+      'inflammationRight',
+      'inflamedLeft',
+      'inflamedRight',
+      'otherAbnormalityLeft',
+      'otherAbnormalityRight',
+      'wearsHearingAid',
+    ];
+  
+    let allChecked = true;
+  
+    // Loop through each group and validate
+    checkboxGroups.forEach(group => {
+      const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+      const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  
+      if (!isChecked) {
+        allChecked = false;
+        showError(group);
+      } else {
+        hideError(group);
+      }
+    });
+  
+    // Prevent form submission if any group is invalid
+    if (!allChecked) {
+      event.preventDefault();
+      alert('Please select Yes or No for each group.');
+    } else {
+      alert('Form submitted successfully.');
+    }
+  });
+  
+  // Function to show error message for a checkbox group
+  function showError(group) {
+    let errorElement = document.getElementById(`${group}-error`);
+    if (!errorElement) {
+      errorElement = document.createElement('span');
+      errorElement.id = `${group}-error`;
+      errorElement.className = 'text-danger';
+      errorElement.textContent = 'Please select an option.';
+      const checkboxes = document.querySelectorAll(`input[name="${group}"]`);
+      checkboxes[0].parentNode.appendChild(errorElement);
+    }
+  }
+  
+  // Function to hide error message for a checkbox group
+  function hideError(group) {
+    const errorElement = document.getElementById(`${group}-error`);
+    if (errorElement) {
+      errorElement.remove();
+    }
+  }
+  
+  // Dynamically toggle severity dropdowns
+  const checkboxGroupsWithSeverity = {
+    dischargeLeft: 'dischargeLeft-severity',
+    dischargeRight: 'dischargeRight-severity',
+    inflammationLeft: 'inflammationLeft-severity',
+    inflammationRight: 'inflammationRight-severity',
+    inflamedLeft: 'inflamedLeft-severity',
+    inflamedRight: 'inflamedRight-severity',
+    otherAbnormalityLeft: 'otherAbnormalityLeft-severity',
+    otherAbnormalityRight: 'otherAbnormalityRight-severity',
+  };
+  
+  Object.keys(checkboxGroupsWithSeverity).forEach(group => {
+    const yesCheckbox = document.getElementById(`${group}Yes`);
+    const noCheckbox = document.getElementById(`${group}No`);
+    const severityElement = document.getElementById(checkboxGroupsWithSeverity[group]);
+  
+    // Show severity dropdown if "Yes" is selected
+    yesCheckbox.addEventListener('change', function () {
+      if (this.checked) {
+        severityElement.style.display = 'block';
+      }
+    });
+  
+    // Hide severity dropdown if "No" is selected
+    noCheckbox.addEventListener('change', function () {
+      if (this.checked) {
+        severityElement.style.display = 'none';
+      }
+    });
+  });
+  </script>
 </body>
 </html>

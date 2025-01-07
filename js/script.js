@@ -305,10 +305,120 @@ document.addEventListener('DOMContentLoaded',() => {
         // Log any errors
         console.error('Error occurred while submitting Oral Health form:', error);
         alert('An error occurred. Please try again.');
+  
       }
     });
   }
 
+
+  const eyesForm = document.getElementById('eyes-form');
+  if (eyesForm) {
+    eyesForm.addEventListener('submit', async (event) => {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      try {
+        // Get the form data
+        const screeningID = document.getElementById('screening-id').value;
+
+        // Discharge
+        const discharge = document.getElementById('dischargeYes').checked; // boolean
+        const dischargeSeverity = document.getElementById('dischargeSeverity').value;
+
+        // Inflammation
+        const inflammation = document.getElementById('inflammationYes').checked; // boolean
+        const inflammationSeverity = document.getElementById('inflammationSeverity').value;
+
+        // Squint
+        const squint = document.getElementById('squintYes').checked; // boolean
+        const squintSeverity = document.getElementById('squintSeverity').value;
+
+        // Other Abnormality
+        const otherAbnormality = document.getElementById('otherAbnormalityYes').checked; // boolean
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value;
+
+        // Right Eye Details (OD = Right Eye)
+        const rightEyeODSPH = document.getElementById('od-sph').value;
+        const rightEyeODCYL = document.getElementById('od-cyl').value;
+        const rightEyeODAXIS = document.getElementById('od-axis').value;
+
+        // Left Eye Details (OS = Left Eye)
+        const leftEyeOSSPH = document.getElementById('os-sph').value;
+        const leftEyeOSCYL = document.getElementById('os-cyl').value;
+        const leftEyeOSAXIS = document.getElementById('os-axis').value;
+
+        // Both Eyes PD
+        const bothEyesPD = document.getElementById('os-pd').value;
+
+        // Wears Glasses
+        const wearsGlasses = document.getElementById('wearsGlassesYes').checked; // boolean
+        const wearsGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value;
+        const wearsGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value;
+
+        // Wears No Glasses Snellen Tests
+        const wearsNoGlassesRightSnellenTest = document.getElementById('rightEyeNoGlassesSnellen').value || ''; // Handle optional case
+        const wearsNoGlassesLeftSnellenTest = document.getElementById('leftEyeNoGlassesSnellen').value || ''; // Handle optional case
+
+        // Screening Results
+        const screeningResults = document.getElementById('screeningresult')?.value || '';
+
+        // Additional Comments
+        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || '';
+
+        // Create a JSON payload matching `EyesDto`
+        const payload = {
+          screeningID,                      // String
+          discharge,                        // Boolean
+          dischargeSeverity,                // String
+          inflammation,                     // Boolean
+          inflammationSeverity,             // String
+          squint,                           // Boolean
+          squintSeverity,                   // String
+          otherAbnormality,                 // Boolean
+          otherAbnormalitySeverity,         // String
+          rightEyeODSPH,                    // String
+          rightEyeODCYL,                    // String
+          rightEyeODAXIS,                   // String
+          leftEyeOSSPH,                     // String
+          leftEyeOSCYL,                     // String
+          leftEyeOSAXIS,                    // String
+          bothEyesPD,                       // String
+          screeningResults,                 // String
+          wearsGlasses,                     // Boolean
+          wearsGlassesRightSnellenTest,     // String (Right Eye with Glasses)
+          wearsGlassesLeftSnellenTest,      // String (Left Eye with Glasses)
+          wearsNoGlassesRightSnellenTest,   // String (Right Eye without Glasses)
+          wearsNoGlassesLeftSnellenTest,    // String (Left Eye without Glasses)
+          additionalComments                // String
+        };
+
+        // Send a POST request to the Eyes API endpoint
+        const response = await fetch('http://localhost:8081/api/eyes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload), // Send the JSON payload
+        });
+
+        // Check if the response was successful
+        if (!response.ok) {
+          console.log(`Error submitting Eyes form: ${response.statusText}`);
+        }
+
+        // Display a success message
+        alert('Eyes Form submitted successfully!');
+
+        // Navigate to the screening page
+        navigateToPage('screening-page');
+      } catch (error) {
+        // Log any errors
+        console.error('Error occurred:', error);
+      }
+    });
+  }
+  
+  
 
   const earsForm = document.getElementById('ears-form');
   if (earsForm) {

@@ -175,12 +175,16 @@
             <div class="mb-3 mt-4">
                 <label for="screeningresult" class="form-label"></label>
                 <select id="screeningresult" class="form-select" required>
-                    <option value="" disabled selected>Screening Results</option>
-                    <option value="Refer">Refer</option>
-                    <option value="Pass">Pass</option>
+                    <option value="None">None</option>
+                    <option value="Specialist">Specialist</option>
+                    <option value="Primary Health Centre (PHC)">Primary Health Centre (PHC)</option>
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="50"></textarea>
+              </div>
             <!-- Submit and Home Buttons -->
             <div class="d-flex justify-content-between mt-4">
                 <button type="submit" class="btn btn-primary">Submit</button>

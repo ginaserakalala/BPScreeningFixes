@@ -257,6 +257,9 @@ document.addEventListener('DOMContentLoaded',() => {
         const teethStaining = document.getElementById('teethStainingYes').checked; // Boolean (Yes/No)
         const teethStainingSeverity = document.getElementById('teethStainingSeverity')?.value || 'N/A'; // String
 
+        // Screening Results
+        const screeningResults = document.getElementById('screeningresult')?.value || null;
+
         // Additional Comments
         const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || ''; // String
 
@@ -276,6 +279,7 @@ document.addEventListener('DOMContentLoaded',() => {
           otherAbnormalitySeverity,       // String
           teethStaining,                  // Boolean
           teethStainingSeverity,          // String
+          screeningResults,
           additionalComments              // String
         };
 
@@ -469,6 +473,9 @@ document.addEventListener('DOMContentLoaded',() => {
         // Wears Hearing Aid
         const wearsHearingAid = document.getElementById('wearsHearingAidYes').checked;
 
+        // Screening Results
+        const screeningResults = document.getElementById('screeningresult')?.value || null;
+
         // Additional Comments
         const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || "";
 
@@ -485,7 +492,8 @@ document.addEventListener('DOMContentLoaded',() => {
           inflamedEarDrumRight,      // Boolean: true if "Yes" is selected
           inflamedEarDrumSeverity,   // String: combined severity for inflamed eardrum
           wearsHearingAid,           // Boolean: true if "Yes" is selected
-          additionalComments         // String: text input for additional comments
+          additionalComments,        // String: text input for additional comments
+          screeningResults
         };
 
         // Send POST request
@@ -1038,7 +1046,9 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Squint:</th><td>${reportData.eyes[0]?.squint ? "Yes" : "No"} (${reportData.eyes[0]?.squintSeverity || "N/A"})</td></tr>
           <tr><th>Inflammation:</th><td>${reportData.eyes[0]?.inflammation ? "Yes" : "No"}</td></tr>
           <tr><th>Right Eye (OD):</th><td>SPH: ${reportData.eyes[0]?.rightEyeODSPH || "N/A"}, CYL: ${reportData.eyes[0]?.rightEyeODCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.rightEyeODAXIS || "N/A"}</td></tr>
-          <tr><th>Left Eye (OS):</th><td>SPH: ${reportData.eyes[0]?.leftEyeOSSPH || "N/A"}, CYL: ${reportData.eyes[0]?.leftEyeOSCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.leftEyeOSAXIS || "N/A"}</td></tr>
+          
+          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
         </table>
 
         <h2 style="color: black;">Ears Form</h2>
@@ -1047,6 +1057,8 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
           <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
+          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"} ${reportData.eyes[0]?.screeningResults}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
         </table>
 
         <h2 style="color: black;">Oral Health</h2>
@@ -1054,6 +1066,8 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
+          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
         </table>
       `;
 

@@ -1035,9 +1035,9 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>School Name:</th><td>${reportData.demographics[0]?.schoolName || "N/A"}</td></tr>
          
           <tr><th>Age:</th><td>${reportData.demographics[0]?.age || "N/A"}</td></tr>
-          <tr><th>Date of birth:</th><td>${reportData.demographics[0]?.dateOfBirth || "N/A"}</td></tr>
+          <tr><th>Sex:</th><td>${reportData.demographics[0]?.dateOfBirth || "N/A"}</td></tr>
           <tr><th>Grade:</th><td>${reportData.demographics[0]?.grade || "N/A"}</td></tr>
-          <tr><th>Sex:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
+          <tr><th>Date of birth:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
         </table>
 
         <h2 style="color: black;">Eyes Form</h2>
@@ -1057,8 +1057,8 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
           <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
-          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"} ${reportData.eyes[0]?.screeningResults}</td></tr>
-          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
+          <tr><th>Referral Results:</th><td> ${reportData.ears[0]?.screeningResults || "N/A"} </td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.ears[0]?.additionalComments || "N/A"}</td></tr>
         </table>
 
         <h2 style="color: black;">Oral Health</h2>
@@ -1066,8 +1066,8 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
-          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"}</td></tr>
-          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
+          <tr><th>Referral Results:</th><td> ${reportData.oralHealth[0]?.screeningResults || "N/A"}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.oralHealth[0]?.additionalComments || "N/A"}</td></tr>
         </table>
       `;
 

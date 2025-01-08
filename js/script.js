@@ -1072,4 +1072,20 @@ document.addEventListener('DOMContentLoaded',() => {
       }
     });
   }
+
+    // *** Send Button Logic (basic simulation) ***
+  const sendBtn = document.getElementById("send-btn");
+  if (sendBtn) {
+    sendBtn.addEventListener("click", function () {
+      const reportContent = document.getElementById("report-content").innerHTML;
+
+      // Simple simulation of sending the report (e.g., via email)
+      // You can replace this with actual server-side logic
+      alert(`Report content sent:\n\n${reportContent}`);
+
+      // Reset preview after sending
+      document.getElementById("report-preview").style.display = "none";
+    });
+  }
+
 });

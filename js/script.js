@@ -1016,11 +1016,11 @@ document.addEventListener('DOMContentLoaded',() => {
 
         // Dynamically generate the report content
         const reportContent = `
-        <h4>Screening Report</h4>
+        <h4 style="color: black;>Screening Report</h4>
         <p><strong>Screening ID:</strong> ${reportData.ScreeningID}</p>
-        <h1>Demographics and Screening Report</h1>
+        <h2 style="color: black;>Demographics and Screening Report</h2>
         
-        <h2>Demographics</h2>
+        <h2 style="color: black;>Demographics</h2>
         <table>
           <tr><th>First Name:</th><td>${reportData.demographics[0]?.firstName || "N/A"}</td></tr>
           <tr><th>Last Name:</th><td>${reportData.demographics[0]?.lastName || "N/A"}</td></tr>
@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Grade:</th><td>${reportData.demographics[0]?.grade || "N/A"}</td></tr>
         </table>
 
-        <h2>Eyes Form</h2>
+        <h2 style="color: black;>Eyes Form</h2>
         <table>
           <tr><th>Discharge:</th><td>${reportData.eyes[0]?.discharge ? "Yes" : "No"} (${reportData.eyes[0]?.dischargeSeverity || "N/A"})</td></tr>
           <tr><th>Squint:</th><td>${reportData.eyes[0]?.squint ? "Yes" : "No"} (${reportData.eyes[0]?.squintSeverity || "N/A"})</td></tr>
@@ -1038,7 +1038,7 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Left Eye (OS):</th><td>SPH: ${reportData.eyes[0]?.leftEyeOSSPH || "N/A"}, CYL: ${reportData.eyes[0]?.leftEyeOSCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.leftEyeOSAXIS || "N/A"}</td></tr>
         </table>
 
-        <h2>Ears Form</h2>
+        <h2 style="color: black;>Ears Form</h2>
         <table>
           <tr><th>Discharge Left:</th><td>${reportData.ears[0]?.dischargeLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
@@ -1046,7 +1046,7 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
         </table>
 
-        <h2>Oral Health</h2>
+        <h2 style="color: black;>Oral Health</h2>
         <table>
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>

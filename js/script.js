@@ -1025,7 +1025,7 @@ document.addEventListener('DOMContentLoaded',() => {
           <tr><th>First Name:</th><td>${reportData.demographics[0]?.firstName || "N/A"}</td></tr>
           <tr><th>Last Name:</th><td>${reportData.demographics[0]?.lastName || "N/A"}</td></tr>
           <tr><th>Age:</th><td>${reportData.demographics[0]?.age || "N/A"}</td></tr>
-          <tr><th>Date of birth:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
+          <tr><th>Sex:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
           <tr><th>Grade:</th><td>${reportData.demographics[0]?.grade || "N/A"}</td></tr>
         </table>
 

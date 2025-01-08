@@ -321,19 +321,19 @@ document.addEventListener('DOMContentLoaded',() => {
 
         // Discharge
         const discharge = document.getElementById('dischargeYes').checked; // Yes = true, No = false
-        const dischargeSeverity = document.getElementById('dischargeSeverity').value || null;
+        const dischargeSeverity = document.getElementById('dischargeSeverity').value || 'null';
 
         // Inflammation
         const inflammation = document.getElementById('inflammationYes').checked;
-        const inflammationSeverity = document.getElementById('inflammationSeverity').value || null;
+        const inflammationSeverity = document.getElementById('inflammationSeverity').value || 'null';
 
         // Squint
         const squint = document.getElementById('squintYes').checked;
-        const squintSeverity = document.getElementById('squintSeverity').value || null;
+        const squintSeverity = document.getElementById('squintSeverity').value || 'null';
 
         // Other Abnormality
         const otherAbnormality = document.getElementById('otherAbnormalityYes').checked;
-        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value || null;
+        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value || 'null';
 
         // Right Eye Details (OD = Right Eye)
         const rightEyeODSPH = document.getElementById('od-sph').value || null;

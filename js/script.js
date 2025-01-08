@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
         // Teeth Staining
         const teethStaining = document.getElementById('teethStainingYes').checked; // Boolean (Yes/No)
-        const teethStainingSeverity = document.getElementById('teethStainingSeverity')?.value || ''; // String
+        const teethStainingSeverity = document.getElementById('teethStainingSeverity')?.value || 'N/A'; // String
 
         // Additional Comments
         const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || ''; // String

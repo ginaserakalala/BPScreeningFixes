@@ -196,12 +196,11 @@ document.addEventListener('DOMContentLoaded',() => {
           lastName: lastName,
           grade: grade,
           age: age,
-          dateOfBirth: dateOfBirth,
           sex: sex,
+          dateOfBirth: dateOfBirth,
           schoolName: schoolName
         };
-        console.log('Payload Being Sent to Backend:', payload);
-        // Send a POST request to the demographics API endpoint
+                // Send a POST request to the demographics API endpoint
         const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {
           method: 'POST',
           headers: {

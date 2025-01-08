@@ -1073,19 +1073,41 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
-    // *** Send Button Logic (basic simulation) ***
-  const sendBtn = document.getElementById("send-btn");
-  if (sendBtn) {
-    sendBtn.addEventListener("click", function () {
+  // *** Print Button Logic ***
+  const printBtn = document.getElementById("print-report-btn");
+  if (printBtn) {
+    printBtn.addEventListener("click", function () {
       const reportContent = document.getElementById("report-content").innerHTML;
 
-      // Simple simulation of sending the report (e.g., via email)
-      // You can replace this with actual server-side logic
-      alert(`Report content sent:\n\n${reportContent}`);
+      // Check if content is available
+      if (!reportContent) {
+        alert("No content to print.");
+        return;
+      }
 
-      // Reset preview after sending
-      document.getElementById("report-preview").style.display = "none";
+      const printWindow = window.open("", "_blank", "width=800,height=600");
+
+      printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            h4 { color: #333; }
+            p { color: #555; }
+          </style>
+        </head>
+        <body>
+          ${reportContent}
+        </body>
+      </html>
+    `);
+
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
     });
   }
+
 
 });

@@ -1013,7 +1013,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
         // Parse the JSON data
         const reportData = await response.json();
-        console.log(`Report data is -----> ${reportData}`);
+        console.log(`Report data is -----> ${JSON.stringify(reportData)}`);
 
         // Dynamically generate the report content
         const reportContent = `

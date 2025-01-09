@@ -380,3 +380,9 @@ font-weight: 700; /* Slightly lighter font weight */
   right: 5px;
 }
 }
+.discharge-warning{
+  color: red;
+  display: inline;
+  margin-left: 20px;
+  font-weight: bold;
+}

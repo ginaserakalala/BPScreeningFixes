@@ -448,18 +448,36 @@ document.addEventListener('DOMContentLoaded',() => {
         // Discharge Right
         const dischargeRight = document.getElementById('dischargeRightYes').checked;
 
-        // Discharge Severity
-        const dischargeSeverity = document.getElementById('dischargeLeftSeverity')?.value ||
-            document.getElementById('dischargeRightSeverity')?.value || "";
+        // // Discharge Severity
+        // const dischargeSeverity = document.getElementById('dischargeLeftSeverity')?.value ||
+        //     document.getElementById('dischargeRightSeverity')?.value || "";
+
+
+
+        const dischargeRightSeverity = document.getElementById('dischargeRightSeverity').value || 'null';
+        const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity').value || 'null';
+
+
+        // Other abnormality
+        const otherAbnormalityLeftYes = document.getElementById('otherAbnormalityLeftYes').checked;
+
+        // Other abnormality
+        const otherAbnormalityLeftNo = document.getElementById('otherAbnormalityLeftNo').checked;
+        // Other abnormality
+        const otherAbnormalityLeftSeverity = document.getElementById('otherAbnormalityLeftSeverity').value;
+        const otherAbnormalityRightSeverity = document.getElementById('otherAbnormalityRightSeverity').value;
 
         // Wax Impaction Left
         const waxImpactionLeft = document.getElementById('inflammationLeftYes').checked;
         // Wax Impaction Right
         const waxImpactionRight = document.getElementById('inflammationRightYes').checked;
 
+        const inflammationLeftSeverity = document.getElementById('inflammationLeftSeverity').value || 'null';
+        const inflammationRightSeverity = document.getElementById('inflammationRightSeverity').value || 'null';
+
         // Wax Impaction Severity
-        const waxImpactionSeverity = document.getElementById('inflammationLeftSeverity')?.value ||
-            document.getElementById('inflammationRightSeverity')?.value || "";
+        // const waxImpactionSeverity = document.getElementById('inflammationLeftSeverity')?.value ||
+        //     document.getElementById('inflammationRightSeverity')?.value || "";
 
         // Inflamed Eardrum Left
         const inflamedEarDrumLeft = document.getElementById('inflamedLeftYes').checked;
@@ -467,9 +485,11 @@ document.addEventListener('DOMContentLoaded',() => {
         const inflamedEarDrumRight = document.getElementById('inflamedRightYes').checked;
 
         // Inflamed Eardrum Severity
-        const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
-            document.getElementById('inflamedRightSeverity')?.value || "";
+        // const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
+        //     document.getElementById('inflamedRightSeverity')?.value || "";
 
+        const inflamedLeftSeverity = document.getElementById('inflamedLeftSeverity').value || 'null';
+        const inflamedRightSeverity = document.getElementById('inflamedRightSeverity').value || 'null';
         // Wears Hearing Aid
         const wearsHearingAid = document.getElementById('wearsHearingAidYes').checked;
 
@@ -484,13 +504,20 @@ document.addEventListener('DOMContentLoaded',() => {
           screeningID,
           dischargeLeft,             // Boolean: true if "Yes" is selected, otherwise false
           dischargeRight,            // Boolean: true if "Yes" is selected, otherwise false
-          dischargeSeverity,         // String: combined severity for discharge
+          dischargeLeftSeverity,         // String: combined severity for discharge
+          dischargeRightSeverity,         // String: combined severity for discharge
           waxImpactionLeft,          // Boolean: true if "Yes" is selected
           waxImpactionRight,         // Boolean: true if "Yes" is selected
-          waxImpactionSeverity,      // String: combined severity for wax impaction
+          inflammationLeftSeverity,      // String: combined severity for wax impaction
+          inflammationRightSeverity,      // String: combined severity for wax impaction
           inflamedEarDrumLeft,       // Boolean: true if "Yes" is selected
           inflamedEarDrumRight,      // Boolean: true if "Yes" is selected
-          inflamedEarDrumSeverity,   // String: combined severity for inflamed eardrum
+          inflamedLeftSeverity,   // String: combined severity for inflamed eardrum
+          inflamedRightSeverity,
+          otherAbnormalityLeftYes,
+          otherAbnormalityLeftNo,
+          otherAbnormalityRightSeverity,
+          otherAbnormalityLeftSeverity,// String: combined severity for inflamed eardrum
           wearsHearingAid,           // Boolean: true if "Yes" is selected
           additionalComments,        // String: text input for additional comments
           screeningResults

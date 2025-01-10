@@ -11,7 +11,7 @@ document.getElementById('screening-id').addEventListener('input', async function
 
   try {
     // Make the GET request to the backend
-    const response = await fetch(`/api/demographics/check-screening-id?screeningID=${screeningID}`);
+    const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/check-screening-id?screeningID=${screeningID}`);
 
     if (response.ok) {
       // Screening ID is available

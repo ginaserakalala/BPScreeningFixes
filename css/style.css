@@ -134,7 +134,10 @@ textarea {
 .btn-warning:hover {
   background-color: #ffc107;
 }
-
+#discharge-warning{
+    font-weight: 600; !important
+    margin-left: 150px; !important
+}
 .btn-success:hover {
   background-color: #4A90E2;
 }

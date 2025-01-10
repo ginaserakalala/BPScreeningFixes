@@ -313,127 +313,151 @@ document.addEventListener('DOMContentLoaded',() => {
   }
 
 
-  const eyesForm = document.getElementById('eyes-form');
-  if (eyesForm) {
-    eyesForm.addEventListener('submit', async (event) => {
-      // Prevent the default form submission behavior
-      event.preventDefault();
+    // Select the form
+    const eyesForm = document.getElementById('eyes-form');
 
-      try {
-        // Get form data
-        const screeningID = document.getElementById('screening-id').value;
+    if (eyesForm) {
+        // On form submit, perform validation
+        eyesForm.addEventListener('submit', async (event) => {
+            // Prevent the default form submission behavior
+            event.preventDefault();
 
-        // Discharge
-        const discharge = document.getElementById('dischargeYes').checked; // Yes = true, No = false
-        const dischargeSeverity = document.getElementById('dischargeSeverity').value || 'null';
+            // Track if there are errors
+            let hasErrors = false;
 
-        // Inflammation
-        const inflammation = document.getElementById('inflammationYes').checked;
-        const inflammationSeverity = document.getElementById('inflammationSeverity').value || 'null';
+            // Function to validate checkbox groups
+            function validateCheckboxGroup(groupName) {
+                const yesCheckbox = document.getElementById(`${groupName}Yes`);
+                const noCheckbox = document.getElementById(`${groupName}No`);
+                const warningText = document.getElementById(`discharge-warning`);
 
-        // Squint
-        const squint = document.getElementById('squintYes').checked;
-        const squintSeverity = document.getElementById('squintSeverity').value || 'null';
+                if (!yesCheckbox.checked && !noCheckbox.checked) {
+                    // If neither checkbox is checked, show the warning
+                    warningText.style.display = 'inline';
+                    hasErrors = true;
+                } else {
+                    // If one checkbox is selected, hide the warning
+                    warningText.style.display = 'none';
+                }
+            }
 
-        // Other Abnormality
-        const otherAbnormality = document.getElementById('otherAbnormalityYes').checked;
-        const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value || 'null';
+            // Validate each checkbox group
+            validateCheckboxGroup('discharge');
+            validateCheckboxGroup('inflammation');
+            validateCheckboxGroup('squint');
+            validateCheckboxGroup('otherAbnormality');
+            validateCheckboxGroup('wearsGlasses');
 
-        // Right Eye Details (OD = Right Eye)
-        const rightEyeODSPH = document.getElementById('od-sph').value || null;
-        const rightEyeODCYL = document.getElementById('od-cyl').value || null;
-        const rightEyeODAXIS = document.getElementById('od-axis').value || null;
+            // If there are errors, prevent form submission
+            if (hasErrors) {
+                alert('Please fix the issues before submitting the form.');
+                return;
+            }
 
-        // Left Eye Details (OS = Left Eye)
-        const leftEyeOSSPH = document.getElementById('os-sph').value || null;
-        const leftEyeOSCYL = document.getElementById('os-cyl').value || null;
-        const leftEyeOSAXIS = document.getElementById('os-axis').value || null;
+            // If no errors, proceed with form submission logic
+            try {
+                const screeningID = document.getElementById('screening-id').value;
 
-        // Both Eyes PD
-        const bothEyesPD = document.getElementById('os-pd').value || null;
+                const discharge = document.getElementById('dischargeYes').checked;
+                const dischargeSeverity = document.getElementById('dischargeSeverity').value || 'null';
 
-        // Wears Glasses
-        const wearsGlasses = document.getElementById('wearsGlassesYes').checked; // Boolean
-        let wearsGlassesRightSnellenTest = null;
-        let wearsGlassesLeftSnellenTest = null;
+                const inflammation = document.getElementById('inflammationYes').checked;
+                const inflammationSeverity = document.getElementById('inflammationSeverity').value || 'null';
 
-        let wearsNoGlassesRightSnellenTest = null;
-        let wearsNoGlassesLeftSnellenTest = null;
+                const squint = document.getElementById('squintYes').checked;
+                const squintSeverity = document.getElementById('squintSeverity').value || 'null';
 
-        if (wearsGlasses) {
-          // If wears glasses, set right/left Snellen tests for glasses
-          wearsGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
-          wearsGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
-        } else {
-          // If does not wear glasses, set right/left Snellen tests for no glasses
-          wearsNoGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
-          wearsNoGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
-        }
+                const otherAbnormality = document.getElementById('otherAbnormalityYes').checked;
+                const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value || 'null';
 
-        // Screening Results
-        const screeningResults = document.getElementById('screeningresult')?.value || null;
+                const rightEyeODSPH = document.getElementById('od-sph').value || null;
+                const rightEyeODCYL = document.getElementById('od-cyl').value || null;
+                const rightEyeODAXIS = document.getElementById('od-axis').value || null;
 
-        // Additional Comments
-        const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
+                const leftEyeOSSPH = document.getElementById('os-sph').value || null;
+                const leftEyeOSCYL = document.getElementById('os-cyl').value || null;
+                const leftEyeOSAXIS = document.getElementById('os-axis').value || null;
 
-        // Create the payload for the `EyesDto` structure
-        const payload = {
-          screeningID,                      // String
-          discharge,                        // Boolean
-          dischargeSeverity,                // String
-          inflammation,                     // Boolean
-          inflammationSeverity,             // String
-          squint,                           // Boolean
-          squintSeverity,                   // String
-          otherAbnormality,                 // Boolean
-          otherAbnormalitySeverity,         // String
-          rightEyeODSPH,                    // String
-          rightEyeODCYL,                    // String
-          rightEyeODAXIS,                   // String
-          leftEyeOSSPH,                     // String
-          leftEyeOSCYL,                     // String
-          leftEyeOSAXIS,                    // String
-          bothEyesPD,                       // String
-          wearsGlasses,                     // Boolean
-          wearsGlassesRightSnellenTest,     // String (Right Eye with Glasses)
-          wearsGlassesLeftSnellenTest,      // String (Left Eye with Glasses)
-          wearsNoGlassesRightSnellenTest,   // String (Right Eye without Glasses)
-          wearsNoGlassesLeftSnellenTest,    // String (Left Eye without Glasses)
-          screeningResults,                 // String
-          additionalComments                // String
-        };
+                const bothEyesPD = document.getElementById('os-pd').value || null;
 
-        // Send the POST request to the backend API
-        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload), // Convert payload into a properly formatted JSON string
+                const wearsGlasses = document.getElementById('wearsGlassesYes').checked;
+                let wearsGlassesRightSnellenTest = null;
+                let wearsGlassesLeftSnellenTest = null;
+
+                let wearsNoGlassesRightSnellenTest = null;
+                let wearsNoGlassesLeftSnellenTest = null;
+
+                if (wearsGlasses) {
+                    wearsGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
+                    wearsGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
+                } else {
+                    wearsNoGlassesRightSnellenTest = document.getElementById('rightEyeSnellen').value || null;
+                    wearsNoGlassesLeftSnellenTest = document.getElementById('leftEyeSnellen').value || null;
+                }
+
+                const screeningResults = document.getElementById('screeningresult')?.value || null;
+                const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
+
+                const payload = {
+                    screeningID,
+                    discharge,
+                    dischargeSeverity,
+                    inflammation,
+                    inflammationSeverity,
+                    squint,
+                    squintSeverity,
+                    otherAbnormality,
+                    otherAbnormalitySeverity,
+                    rightEyeODSPH,
+                    rightEyeODCYL,
+                    rightEyeODAXIS,
+                    leftEyeOSSPH,
+                    leftEyeOSCYL,
+                    leftEyeOSAXIS,
+                    bothEyesPD,
+                    wearsGlasses,
+                    wearsGlassesRightSnellenTest,
+                    wearsGlassesLeftSnellenTest,
+                    wearsNoGlassesRightSnellenTest,
+                    wearsNoGlassesLeftSnellenTest,
+                    screeningResults,
+                    additionalComments,
+                };
+
+                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                if (!response.ok) {
+                    console.error(`Error submitting form: ${response.statusText}`);
+                    alert('An error occurred. Please try again.');
+                    return;
+                }
+
+                alert('Form submitted successfully!');
+                location.reload();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred. Please try again.');
+            }
         });
 
-        // Handle server response
-        if (!response.ok) {
-          console.error(`Error submitting Eyes form: ${response.statusText}`);
-          alert('An error occurred while submitting the form. Please try again.');
-          return;
-        }
+        // Add event listeners to hide warnings dynamically as the user selects Yes/No
+        ['discharge', 'inflammation', 'squint', 'otherAbnormality', 'wearsGlasses'].forEach((groupName) => {
+            document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
+                document.getElementById('discharge-warning').style.display = 'none';
+            });
+            document.getElementById(`${groupName}No`).addEventListener('change', () => {
+                document.getElementById('discharge-warning').style.display = 'none';
+            });
+        });
+    }
 
-        // Display success message
-        alert('Eyes Form submitted successfully! Please click OK to continue');
-
-        // Optionally, reset the form or navigate to another page
-        location.reload();
-      } catch (error) {
-        // Log any client-side errors
-        console.error('Error occurred:', error);
-        alert('An unexpected error occurred. Please try again.');
-      }
-    });
-  }
-
-
-  const earsForm = document.getElementById('ears-form');
+    const earsForm = document.getElementById('ears-form');
   if (earsForm) {
     earsForm.addEventListener('submit', async (event) => {
       // Prevent the default form submission behavior

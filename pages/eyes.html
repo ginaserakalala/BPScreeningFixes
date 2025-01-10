@@ -28,6 +28,10 @@
                 <label class="form-check-label" for="dischargeYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
                 <label class="form-check-label" for="dischargeNo">No</label>
+
+                <small id="discharge-warning" style="margin-left:180px; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+
+
             </div>
 
             <div id="discharge-severity" class="mt-2" style="display: none;">
@@ -47,6 +51,7 @@
                 <label class="form-check-label" for="inflammationYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationNo" value="no">
                 <label class="form-check-label" for="inflammationNo">No</label>
+                <small id="inflammation-warning" style="margin-left:180px; font-weight:bold;" class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="inflammation-severity" class="mt-2" style="display: none;">
@@ -66,6 +71,7 @@
                 <label class="form-check-label" for="squintYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="squint" id="squintNo" value="no">
                 <label class="form-check-label" for="squintNo">No</label>
+                <small id="squint-warning" style="margin-left:180px; font-weight:bold;" class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="squint-severity" class="mt-2" style="display: none;">
@@ -85,6 +91,7 @@
                 <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
                 <label class="form-check-label" for="otherAbnormalityNo">No</label>
+                <small id="otherAbnormality-warning" style="margin-left:180px; font-weight:bold;" class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
@@ -146,7 +153,7 @@
                 <label class="form-check-label" for="wearsGlassesYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="wearsGlasses" id="wearsGlassesNo" value="no">
                 <label class="form-check-label" for="wearsGlassesNo">No</label>
-            </div>
+                <small id="wearsGlasses-warning" style="margin-left:180px; font-weight:bold;" class="text-danger">Please select Yes or No</small>            </div>
 
             <!-- Snellen Test -->
             <div id="snellenTestResults" class="mt-4">

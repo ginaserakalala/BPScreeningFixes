@@ -312,8 +312,50 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   }
 
+  const checkboxGroups = [
+    { yesId: 'dischargeYes', noId: 'dischargeNo', warningId: 'discharge-warning' },
+    { yesId: 'inflammationYes', noId: 'inflammationNo', warningId: 'inflammation-warning' },
+    { yesId: 'squintYes', noId: 'squintNo', warningId: 'squint-warning' },
+    { yesId: 'otherAbnormalityYes', noId: 'otherAbnormalityNo', warningId: 'otherAbnormality-warning' },
+    { yesId: 'wearsGlassesYes', noId: 'wearsGlassesNo', warningId: 'wearsGlasses-warning' }
+  ];
+
+  checkboxGroups.forEach(group => {
+    const yesCheckbox = document.getElementById(group.yesId);
+    const noCheckbox = document.getElementById(group.noId);
+    const warningElement = document.getElementById(group.warningId);
+
+    const toggleWarning = () => {
+      if (yesCheckbox.checked || noCheckbox.checked) {
+        warningElement.style.display = 'none';
+      } else {
+        warningElement.style.display = 'inline';
+      }
+    };
+
+    yesCheckbox.addEventListener('change', toggleWarning);
+    noCheckbox.addEventListener('change', toggleWarning);
+  });
 
   const eyesForm = document.getElementById('eyes-form');
+  let valid = true;
+
+    checkboxGroups.forEach(group => {
+      const yesCheckbox = document.getElementById(group.yesId);
+      const noCheckbox = document.getElementById(group.noId);
+      const warningElement = document.getElementById(group.warningId);
+
+      if (!yesCheckbox.checked && !noCheckbox.checked) {
+        warningElement.style.display = 'inline';
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      event.preventDefault();
+      alert('Please complete all required fields.');
+    }
+  
   if (eyesForm) {
     eyesForm.addEventListener('submit', async (event) => {
       // Prevent the default form submission behavior

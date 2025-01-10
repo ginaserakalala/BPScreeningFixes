@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded',() => {
             function validateCheckboxGroup(groupName) {
                 const yesCheckbox = document.getElementById(`${groupName}Yes`);
                 const noCheckbox = document.getElementById(`${groupName}No`);
-                const warningText = document.getElementById(`discharge-warning`);
+                const warningText = document.getElementById(`${groupName}-warning`);
 
                 if (!yesCheckbox.checked && !noCheckbox.checked) {
                     // If neither checkbox is checked, show the warning
@@ -449,10 +449,10 @@ document.addEventListener('DOMContentLoaded',() => {
         // Add event listeners to hide warnings dynamically as the user selects Yes/No
         ['discharge', 'inflammation', 'squint', 'otherAbnormality', 'wearsGlasses'].forEach((groupName) => {
             document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
-                document.getElementById('discharge-warning').style.display = 'none';
+                document.getElementById(`${groupName}-warning`).style.display = 'none';
             });
             document.getElementById(`${groupName}No`).addEventListener('change', () => {
-                document.getElementById('discharge-warning').style.display = 'none';
+                document.getElementById(`${groupName}-warning`).style.display = 'none';
             });
         });
     }

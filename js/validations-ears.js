@@ -39,3 +39,166 @@ document.getElementById('screening-id').addEventListener('input', async function
     if (submitButton) submitButton.disabled = true; // Disable submit button
   }
 });
+
+const earsForm = document.getElementById('ears-form');
+if (earsForm) {
+  earsForm.addEventListener('submit', async (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    let hasErrors = false;
+
+    // Function to validate checkbox groups
+    function validateCheckboxGroup(groupName) {
+      const yesCheckbox = document.getElementById(`${groupName}Yes`);
+      const noCheckbox = document.getElementById(`${groupName}No`);
+      const warningText = document.getElementById(`${groupName}-warning`);
+
+      if (!yesCheckbox.checked && !noCheckbox.checked) {
+        // If neither checkbox is checked, show the warning
+        warningText.style.display = 'inline';
+        hasErrors = true;
+      } else {
+        // If one checkbox is selected, hide the warning
+        warningText.style.display = 'none';
+      }
+    }
+
+    // Validate each checkbox group
+    validateCheckboxGroup('dischargeLeft');
+    validateCheckboxGroup('dischargeRight');
+    validateCheckboxGroup('inflammationLeft');
+    validateCheckboxGroup('inflammationRight');
+    validateCheckboxGroup('inflamedLeft');
+    validateCheckboxGroup('inflamedRight');
+    validateCheckboxGroup('otherAbnormalityLeft');
+    validateCheckboxGroup('otherAbnormalityRight');
+    validateCheckboxGroup('wearsHearingAid');
+
+
+    // If there are errors, prevent form submission
+    if (hasErrors) {
+      alert('Please fix the issues before submitting the form.');
+      warningText.style.display = 'inline';
+      return;
+    }
+
+
+    try {
+      // Get the screening ID
+      const screeningID = document.getElementById('screening-id').value;
+
+      // Discharge Left
+      const dischargeLeft = document.getElementById('dischargeLeftYes').checked;
+      // Discharge Right
+      const dischargeRight = document.getElementById('dischargeRightYes').checked;
+
+      // // Discharge Severity
+      // const dischargeSeverity = document.getElementById('dischargeLeftSeverity')?.value ||
+      //     document.getElementById('dischargeRightSeverity')?.value || "";
+
+
+      const dischargeRightSeverity = document.getElementById('dischargeRightSeverity').value || 'null';
+      const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity').value || 'null';
+
+
+      // Other abnormality
+      const otherAbnormalityLeftYes = document.getElementById('otherAbnormalityLeftYes').checked;
+
+      // Other abnormality
+      const otherAbnormalityLeftNo = document.getElementById('otherAbnormalityLeftNo').checked;
+      // Other abnormality
+      const otherAbnormalityLeftSeverity = document.getElementById('otherAbnormalityLeftSeverity').value;
+      const otherAbnormalityRightSeverity = document.getElementById('otherAbnormalityRightSeverity').value;
+
+      // Wax Impaction Left
+      const waxImpactionLeft = document.getElementById('inflammationLeftYes').checked;
+      // Wax Impaction Right
+      const waxImpactionRight = document.getElementById('inflammationRightYes').checked;
+
+      const inflammationLeftSeverity = document.getElementById('inflammationLeftSeverity').value || 'null';
+      const inflammationRightSeverity = document.getElementById('inflammationRightSeverity').value || 'null';
+
+      // Wax Impaction Severity
+      // const waxImpactionSeverity = document.getElementById('inflammationLeftSeverity')?.value ||
+      //     document.getElementById('inflammationRightSeverity')?.value || "";
+
+      // Inflamed Eardrum Left
+      const inflamedEarDrumLeft = document.getElementById('inflamedLeftYes').checked;
+      // Inflamed Eardrum Right
+      const inflamedEarDrumRight = document.getElementById('inflamedRightYes').checked;
+
+      // Inflamed Eardrum Severity
+      // const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
+      //     document.getElementById('inflamedRightSeverity')?.value || "";
+
+      const inflamedLeftSeverity = document.getElementById('inflamedLeftSeverity').value || 'null';
+      const inflamedRightSeverity = document.getElementById('inflamedRightSeverity').value || 'null';
+      // Wears Hearing Aid
+      const wearsHearingAid = document.getElementById('wearsHearingAidYes').checked;
+
+      // Screening Results
+      const screeningResults = document.getElementById('screeningresult')?.value || null;
+
+      // Additional Comments
+      const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || "";
+
+      // Create a JSON payload matching the EarsDto structure
+      const payload = {
+        screeningID,
+        dischargeLeft,             // Boolean: true if "Yes" is selected, otherwise false
+        dischargeRight,            // Boolean: true if "Yes" is selected, otherwise false
+        dischargeLeftSeverity,         // String: combined severity for discharge
+        dischargeRightSeverity,         // String: combined severity for discharge
+        waxImpactionLeft,          // Boolean: true if "Yes" is selected
+        waxImpactionRight,         // Boolean: true if "Yes" is selected
+        inflammationLeftSeverity,      // String: combined severity for wax impaction
+        inflammationRightSeverity,      // String: combined severity for wax impaction
+        inflamedEarDrumLeft,       // Boolean: true if "Yes" is selected
+        inflamedEarDrumRight,      // Boolean: true if "Yes" is selected
+        inflamedLeftSeverity,   // String: combined severity for inflamed eardrum
+        inflamedRightSeverity,
+        otherAbnormalityLeftYes,
+        otherAbnormalityLeftNo,
+        otherAbnormalityRightSeverity,
+        otherAbnormalityLeftSeverity,// String: combined severity for inflamed eardrum
+        wearsHearingAid,           // Boolean: true if "Yes" is selected
+        additionalComments,        // String: text input for additional comments
+        screeningResults
+      };
+
+      // Send POST request
+      const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload), // Stringify the JSON payload
+      });
+
+      // Handle response
+      if (!response.ok) {
+        console.error(`Error submitting ears screening form: ${response.statusText}`);
+        alert('Failed to submit the form. Please try again.');
+        return;
+      }
+
+      // Success alert and reload
+      alert('Ears Screening Form submitted successfully! Please press OK to continue.');
+      location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while submitting the form. Please try again.');
+    }
+  });
+  // Add event listeners to hide warnings dynamically as the user selects Yes/No
+  ['dischargeLeft', 'dischargeRight', 'inflammationLeft', 'inflammationRight', 'inflamedLeft',
+    'inflamedRight', 'otherAbnormalityLeft', 'otherAbnormalityRight',
+    'wearsHearingAid'].forEach((groupName) => {
+    document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
+      document.getElementById(`${groupName}-warning`).style.display = 'none';
+    });
+    document.getElementById(`${groupName}No`).addEventListener('change', () => {
+      document.getElementById(`${groupName}-warning`).style.display = 'none';
+    });
+  });
+}

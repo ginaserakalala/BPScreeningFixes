@@ -198,8 +198,16 @@ eyeResultSnellenYes.addEventListener('change', () => {
   if (eyeResultSnellenYes.checked) {
     eyeResultSnellenNo.checked = false;
     eyeTestFailedFields.style.display = 'block';
+
+    // Add required attribute to textboxes
+    const textboxes = eyeTestFailedFields.querySelectorAll('input[type="text"], input[type="number"]');
+    textboxes.forEach(textbox => textbox.required = true);
   } else {
     eyeTestFailedFields.style.display = 'none';
+
+    // Remove required attribute from textboxes
+    const textboxes = eyeTestFailedFields.querySelectorAll('input[type="text"], input[type="number"]');
+    textboxes.forEach(textbox => textbox.required = false);
   }
 });
 
@@ -207,8 +215,11 @@ eyeResultSnellenNo.addEventListener('change', () => {
   if (eyeResultSnellenNo.checked) {
     eyeResultSnellenYes.checked = false;
     eyeTestFailedFields.style.display = 'none';
+
+    // Remove required attribute from textboxes
+    const textboxes = eyeTestFailedFields.querySelectorAll('input[type="text"], input[type="number"]');
+    textboxes.forEach(textbox => textbox.required = false);
   } else {
     eyeTestFailedFields.style.display = 'none';
   }
 });
-

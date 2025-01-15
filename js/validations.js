@@ -171,7 +171,7 @@ if (eyesForm) {
         return;
       }
 
-      alert('Eyes Form submitted successfully. Please press OK to continue.!');
+      alert('Eyes Form submitted successfully. Please press OK to continue!');
       location.reload();
     } catch (error) {
       console.error('Error:', error);

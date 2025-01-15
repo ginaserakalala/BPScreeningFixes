@@ -92,9 +92,6 @@ if (eyesForm) {
       const discharge = document.getElementById('dischargeYes').checked;
       const dischargeSeverity = document.getElementById('dischargeSeverity').value || 'null';
 
-      const eyeResultSnellenYes= document.getElementById('eyeResultSnellenYes').checked;
-      const eyeResultSnellenNo = document.getElementById('eyeResultSnellenNo').checked;
-      const eyeTestFailedFields = document.getElementById('eye-test-failed-fields').style.display === 'block';
 
       const inflammation = document.getElementById('inflammationYes').checked;
       const inflammationSeverity = document.getElementById('inflammationSeverity').value || 'null';
@@ -132,13 +129,8 @@ if (eyesForm) {
 
       const screeningResults = document.getElementById('screeningresult')?.value || null;
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
-      eyeResultSnellenYes.addEventListener('change', () => {
-        eyeTestFailedFields.style.display = eyeResultSnellenYes.checked ? 'block' : 'none';
-      });
 
-      eyeResultSnellenNo.addEventListener('change', () => {
-        eyeTestFailedFields.style.display = eyeResultSnellenNo.checked ? 'none' : 'block';
-      });
+
       const payload = {
         screeningID,
         discharge,
@@ -197,4 +189,26 @@ if (eyesForm) {
     });
   });
 }
+
+const eyeResultSnellenYes = document.getElementById('eyeResultSnellenYes');
+const eyeResultSnellenNo = document.getElementById('eyeResultSnellenNo');
+const eyeTestFailedFields = document.getElementById('eye-test-failed-fields');
+
+eyeResultSnellenYes.addEventListener('change', () => {
+  if (eyeResultSnellenYes.checked) {
+    eyeResultSnellenNo.checked = false;
+    eyeTestFailedFields.style.display = 'block';
+  } else {
+    eyeTestFailedFields.style.display = 'none';
+  }
+});
+
+eyeResultSnellenNo.addEventListener('change', () => {
+  if (eyeResultSnellenNo.checked) {
+    eyeResultSnellenYes.checked = false;
+    eyeTestFailedFields.style.display = 'none';
+  } else {
+    eyeTestFailedFields.style.display = 'none';
+  }
+});
 

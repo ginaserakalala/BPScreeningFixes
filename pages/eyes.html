@@ -17,8 +17,8 @@
             <div class="mb-3">
                 <label for="screening-id" class="form-label"></label>
                 <input type="text" class="form-control" id="screening-id" placeholder="Screening ID" required
-                pattern="\d{5}" title="Screening ID must contain only numbers and be exactly 5 Digits.">
-                      <small id="screening-id-message" class="form-text"></small>
+                       pattern="\d{5}" title="Screening ID must contain only numbers and be exactly 5 Digits.">
+                <small id="screening-id-message" class="form-text"></small>
             </div>
 
             <!-- Discharge -->
@@ -29,7 +29,8 @@
                 <input class="form-check-input" type="checkbox" name="discharge" id="dischargeNo" value="no">
                 <label class="form-check-label" for="dischargeNo">No</label>
 
-                <small id="discharge-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+                <small id="discharge-warning" style="margin-left:180px;display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
 
 
             </div>
@@ -51,7 +52,8 @@
                 <label class="form-check-label" for="inflammationYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="inflammation" id="inflammationNo" value="no">
                 <label class="form-check-label" for="inflammationNo">No</label>
-                <small id="inflammation-warning" style="margin-left:180px; display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+                <small id="inflammation-warning" style="margin-left:180px; display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="inflammation-severity" class="mt-2" style="display: none;">
@@ -71,7 +73,8 @@
                 <label class="form-check-label" for="squintYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="squint" id="squintNo" value="no">
                 <label class="form-check-label" for="squintNo">No</label>
-                <small id="squint-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+                <small id="squint-warning" style="margin-left:180px;display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="squint-severity" class="mt-2" style="display: none;">
@@ -87,11 +90,14 @@
             <!-- Other Abnormalities -->
             <label class="form-check-label mt-4" for="otherAbnormality">Other Abnormality</label>
             <div>
-                <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes" value="yes">
+                <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityYes"
+                       value="yes">
                 <label class="form-check-label" for="otherAbnormalityYes">Yes</label>
-                <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo" value="no">
+                <input class="form-check-input" type="checkbox" name="otherAbnormality" id="otherAbnormalityNo"
+                       value="no">
                 <label class="form-check-label" for="otherAbnormalityNo">No</label>
-                <small id="otherAbnormality-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+                <small id="otherAbnormality-warning" style="margin-left:180px;display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
             </div>
 
             <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
@@ -104,48 +110,6 @@
                 </select>
             </div>
 
-            <!-- Right Eye (OD) -->
-            <h5 class="mt-4">Right Eye (OD)</h5>
-            <div class="mb-3">
-                <label for="od-sph" class="form-label">SPH:</label>
-                <input type="text" class="form-control" id="od-sph" name="odVisualAcuity"
-                       placeholder="e.g., 0.5" required>
-            </div>
-            <div class="mb-3">
-                <label for="od-cyl" class="form-label">CYL:</label>
-                <input type="text" class="form-control" id="od-cyl" name="odVisualAcuity"
-                       placeholder="e.g., 1.25" required>
-            </div>
-            <div class="mb-3">
-                <label for="od-axis" class="form-label">AXIS:</label>
-                <input type="number" class="form-control" id="od-axis" name="odDiopters"
-                       placeholder="e.g., 0" step="0.01" required>
-            </div>
-
-            <!-- Left Eye (OS) -->
-            <h5 class="mt-4">Left Eye (OS)</h5>
-            <div class="mb-3">
-                <label for="os-sph" class="form-label">SPH:</label>
-                <input type="text" class="form-control" id="os-sph" name="osVisualAcuity"
-                       placeholder="e.g., 1.25" required>
-            </div>
-            <div class="mb-3">
-                <label for="os-cyl" class="form-label">CYL:</label>
-                <input type="number" class="form-control" id="os-cyl" name="osDiopters"
-                       placeholder="e.g., 0.25" step="0.01" required>
-            </div>
-            <div class="mb-3">
-                <label for="os-axis" class="form-label">AXIS:</label>
-                <input type="number" class="form-control" id="os-axis" name="osDiopters"
-                       placeholder="e.g., 0" step="0.01" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="os-pd" class="form-label">PD:</label>
-                <input type="number" class="form-control" id="os-pd" name="osDiopters"
-                       placeholder="e.g., 65" step="0.01" required>
-            </div>
-
             <!-- Wears glasses -->
             <label class="form-check-label mt-4" for="wearsGlasses">Wears glasses?</label>
             <div>
@@ -153,7 +117,9 @@
                 <label class="form-check-label" for="wearsGlassesYes">Yes</label>
                 <input class="form-check-input" type="checkbox" name="wearsGlasses" id="wearsGlassesNo" value="no">
                 <label class="form-check-label" for="wearsGlassesNo">No</label>
-                <small id="wearsGlasses-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>            </div>
+                <small id="wearsGlasses-warning" style="margin-left:180px;display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
+            </div>
 
             <!-- Snellen Test -->
             <div id="snellenTestResults" class="mt-4">
@@ -179,6 +145,64 @@
                 </select>
             </div>
 
+            <label class="form-check-label mt-4" for="eyeResultSnellen">Did the eye test fail?</label>
+            <div>
+                <input class="form-check-input" type="checkbox" name="eyeResultSnellen" id="eyeResultSnellenYes"
+                       value="yes">
+                <label class="form-check-label" for="eyeResultSnellenYes">Yes</label>
+                <input class="form-check-input" type="checkbox" name="eyeResultSnellen" id="eyeResultSnellenNo"
+                       value="no">
+                <label class="form-check-label" for="eyeResultSnellenNo">No</label>
+                <small id="eyeResultSnellen-warning" style="margin-left:180px;display:none; font-weight:bold;"
+                       class="text-danger">Please select Yes or No</small>
+            </div>
+
+
+            <div id="eye-test-failed-fields" style="display: none;">
+                <!-- Right Eye (OD) -->
+                <h5 class="mt-4">Right Eye (OD)</h5>
+                <div class="mb-3">
+                    <label for="od-sph" class="form-label">SPH:</label>
+                    <input type="text" class="form-control" id="od-sph" name="odVisualAcuity"
+                           placeholder="e.g., 0.5" required>
+                </div>
+                <div class="mb-3">
+                    <label for="od-cyl" class="form-label">CYL:</label>
+                    <input type="text" class="form-control" id="od-cyl" name="odVisualAcuity"
+                           placeholder="e.g., 1.25" required>
+                </div>
+                <div class="mb-3">
+                    <label for="od-axis" class="form-label">AXIS:</label>
+                    <input type="number" class="form-control" id="od-axis" name="odDiopters"
+                           placeholder="e.g., 0" step="0.01" required>
+                </div>
+
+                <!-- Left Eye (OS) -->
+                <h5 class="mt-4">Left Eye (OS)</h5>
+                <div class="mb-3">
+                    <label for="os-sph" class="form-label">SPH:</label>
+                    <input type="text" class="form-control" id="os-sph" name="osVisualAcuity"
+                           placeholder="e.g., 1.25" required>
+                </div>
+                <div class="mb-3">
+                    <label for="os-cyl" class="form-label">CYL:</label>
+                    <input type="number" class="form-control" id="os-cyl" name="osDiopters"
+                           placeholder="e.g., 0.25" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="os-axis" class="form-label">AXIS:</label>
+                    <input type="number" class="form-control" id="os-axis" name="osDiopters"
+                           placeholder="e.g., 0" step="0.01" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="os-pd" class="form-label">PD:</label>
+                    <input type="number" class="form-control" id="os-pd" name="osDiopters"
+                           placeholder="e.g., 65" step="0.01" required>
+                </div>
+
+            </div>
+
             <!-- Screening Results -->
             <div class="mb-3 mt-4">
                 <label for="screeningresult" class="form-label">Referral Options</label>
@@ -192,7 +216,7 @@
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="50"></textarea>
-              </div>
+            </div>
             <!-- Submit and Home Buttons -->
             <div class="d-flex justify-content-between mt-4">
                 <button type="button" class="btn btn-primary" id="home-btn">Home</button>
@@ -203,6 +227,6 @@
 </div>
 <script src="../js/script.js"></script>
 <script src="../js/validations.js"></script>
-   
+
 </body>
 </html>

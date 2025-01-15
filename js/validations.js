@@ -76,6 +76,7 @@ if (eyesForm) {
     validateCheckboxGroup('squint');
     validateCheckboxGroup('otherAbnormality');
     validateCheckboxGroup('wearsGlasses');
+    validateCheckboxGroup('eyeResultSnellen');
 
     // If there are errors, prevent form submission
     if (hasErrors) {
@@ -90,6 +91,10 @@ if (eyesForm) {
 
       const discharge = document.getElementById('dischargeYes').checked;
       const dischargeSeverity = document.getElementById('dischargeSeverity').value || 'null';
+
+      const eyeResultSnellenYes= document.getElementById('eyeResultSnellenYes').checked;
+      const eyeResultSnellenNo = document.getElementById('eyeResultSnellenNo').checked;
+      const eyeTestFailedFields = document.getElementById('eye-test-failed-fields').style.display === 'block';
 
       const inflammation = document.getElementById('inflammationYes').checked;
       const inflammationSeverity = document.getElementById('inflammationSeverity').value || 'null';
@@ -127,7 +132,13 @@ if (eyesForm) {
 
       const screeningResults = document.getElementById('screeningresult')?.value || null;
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
+      eyeResultSnellenYes.addEventListener('change', () => {
+        eyeTestFailedFields.style.display = eyeResultSnellenYes.checked ? 'block' : 'none';
+      });
 
+      eyeResultSnellenNo.addEventListener('change', () => {
+        eyeTestFailedFields.style.display = eyeResultSnellenNo.checked ? 'none' : 'block';
+      });
       const payload = {
         screeningID,
         discharge,
@@ -151,7 +162,7 @@ if (eyesForm) {
         wearsNoGlassesRightSnellenTest,
         wearsNoGlassesLeftSnellenTest,
         screeningResults,
-        additionalComments,
+        additionalComments
       };
 
       const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes', {
@@ -177,7 +188,7 @@ if (eyesForm) {
   });
 
   // Add event listeners to hide warnings dynamically as the user selects Yes/No
-  ['discharge', 'inflammation', 'squint', 'otherAbnormality', 'wearsGlasses'].forEach((groupName) => {
+  ['discharge', 'inflammation', 'squint', 'otherAbnormality', 'wearsGlasses','eyeResultSnellen'].forEach((groupName) => {
     document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
       document.getElementById(`${groupName}-warning`).style.display = 'none';
     });

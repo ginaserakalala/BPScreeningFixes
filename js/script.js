@@ -320,7 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {name: "discharge", severityId: "discharge-severity"},
         {name: "squint", severityId: "squint-severity"},
         {name: "inflammation", severityId: "inflammation-severity"},
-        {name: "otherAbnormality", severityId: "otherAbnormality-severity"}
+        {name: "otherAbnormality", severityId: "otherAbnormality-severity"},
+        {name: "eyeResultSnellen"}
     ];
 
     // Loop through each condition and attach event listeners for checkboxes

@@ -184,6 +184,34 @@
           <label class="form-check-label" for="wearsHearingAidNo">No</label>
           <small id="wearsHearingAid-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
         </div>
+
+
+        <div class="mb-3 mt-4">
+          <label for="oaeresultright" class="form-label">OAE Right</label>
+          <select id="oaeresultright" class="form-select" required>
+            <option value="Pass">Pass</option>
+            <option value="Refer">Refer</option>
+
+          </select>
+          <div id="refer-textbox-right" style="display: none;">
+            <label for="refer-textbox-right-input" class="form-label">Refer Textbox Right</label>
+            <textarea id="refer-textbox-right-input" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="mb-3 mt-4">
+          <label for="oaeresultleft" class="form-label">OAE Left</label>
+          <select id="oaeresultleft" class="form-select" required>
+            <option value="Pass">Pass</option>
+            <option value="Refer">Refer</option>
+
+          </select>
+          <div id="refer-textbox-left" style="display: none;">
+            <label for="refer-textbox-left-input" class="form-label">Refer Textbox Left</label>
+            <textarea id="refer-textbox-left-input" class="form-control"></textarea>
+          </div>
+        </div>
+
+
           <!-- Screening Results -->
           <div class="mb-3 mt-4">
             <label for="screeningresult" class="form-label">Referral Options</label>

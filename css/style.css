@@ -38,8 +38,14 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-
+#exampleFormControlTextarea1{
+  border-color: black;
+  background: lightgray;
+}
+#home-btn
+{
+  background: black;
+}
 .modal-content button {
   margin: 10px;
   padding: 10px 20px;
@@ -159,6 +165,7 @@ textarea {
 .form-select {
   border-radius: 8px;
   padding: 12px;
+
 }
 
 button {
@@ -315,13 +322,13 @@ button:hover {
 }
 .form-control {
   background: transparent;
-  border: none;
+  border: 1px solid black;
   outline: none;
   font-size: 16px;
   color: #282222;
   font-weight: 600;
-  border-bottom: 2px solid #757579;
   padding-right: 25px;
+  box-shadow: none;
 }
 
 .input-container {

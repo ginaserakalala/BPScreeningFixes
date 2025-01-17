@@ -202,3 +202,19 @@ if (earsForm) {
     });
   });
 }
+
+document.getElementById('oaeresultright').addEventListener('change', function() {
+  if (this.value === 'Refer') {
+    document.getElementById('refer-textbox-right').style.display = 'block';
+  } else {
+    document.getElementById('refer-textbox-right').style.display = 'none';
+  }
+});
+
+document.getElementById('oaeresultleft').addEventListener('change', function() {
+  if (this.value === 'Refer') {
+    document.getElementById('refer-textbox-left').style.display = 'block';
+  } else {
+    document.getElementById('refer-textbox-left').style.display = 'none';
+  }
+});

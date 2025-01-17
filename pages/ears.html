@@ -49,7 +49,7 @@
           <label class="form-check-label" for="dischargeRightNo">No</label>
           <small id="dischargeRight-warning" style="margin-left:180px; display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
         </div>
-
+        <br>
 
 
         <div id="dischargeRight-severity" class="mt-2" style="display: none;">
@@ -193,10 +193,12 @@
             <option value="Refer">Refer</option>
 
           </select>
-          <div id="refer-textbox-right" style="display: none;">
-            <label for="refer-textbox-right-input" class="form-label">Refer Textbox Right</label>
-            <textarea id="refer-textbox-right-input" class="form-control"></textarea>
-          </div>
+
+
+        </div>
+        <div id="refer-textbox-right" style="display: none;">
+          <label for="refer-textbox-right-input" class="form-label">Refer Textbox Right</label>
+          <textarea id="refer-textbox-right-input" class="form-control" ></textarea>
         </div>
         <div class="mb-3 mt-4">
           <label for="oaeresultleft" class="form-label">OAE Left</label>
@@ -205,13 +207,42 @@
             <option value="Refer">Refer</option>
 
           </select>
-          <div id="refer-textbox-left" style="display: none;">
-            <label for="refer-textbox-left-input" class="form-label">Refer Textbox Left</label>
-            <textarea id="refer-textbox-left-input" class="form-control"></textarea>
-          </div>
+
+        </div>
+        <div id="refer-textbox-left" style="display: none;">
+          <label for="refer-textbox-left-input" class="form-label">Refer Textbox Left</label>
+          <textarea id="refer-textbox-left-input" class="form-control" ></textarea>
+        </div>
+        <br>
+
+        <label class="form-check-label" for="audiometer">Audiometer Check?</label>
+        <div>
+          <input class="form-check-input" type="checkbox" name="audiometerCheck" id="audiometerCheckYes" value="yes">
+          <label class="form-check-label" for="audiometerCheckYes">Yes</label>
+          <input class="form-check-input" type="checkbox" name="audiometerCheck" id="audiometerCheckNo" value="no">
+          <label class="form-check-label" for="audiometerCheckNo">No</label>
+          <small id="audiometerCheck-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
         </div>
 
+        <div id="audiometerLossCheckTypes" class="mt-2" style="display: none;">
+          <label for="audiometerCheckTypes">Types of loss:</label>
+          <select class="form-select" id="audiometerCheckTypes" name="audiometerCheckTypes">
+            <option value="Normal">Normal</option>
+            <option value="SNHL">SNHL</option>
+            <option value="CHL">CHL</option>
+            <option value="MHL">MHL</option>
+          </select>
+        </div>
+        <br>
 
+        <div class="mb-3 mt-4">
+          <label for="management" class="form-label">Management</label>
+          <select id="management" class="form-select" required>
+            <option value="Refer">Refer</option>
+            <option value="Follow-up">Follow-up</option>
+            <option value="Annual hearing test">Annual hearing test</option>
+          </select>
+        </div>
           <!-- Screening Results -->
           <div class="mb-3 mt-4">
             <label for="screeningresult" class="form-label">Referral Options</label>
@@ -227,7 +258,7 @@
 
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Additional Comments:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="50"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="50" ></textarea>
         </div>
 
 

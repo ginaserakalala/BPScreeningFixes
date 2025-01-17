@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const username = document.getElementById("username").value.trim();
+            const username = document.getElementById("identityNumber").value.trim();
             const password = document.getElementById("password").value.trim();
 
             // Check credentials for the single allowed user
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 document.getElementById("loginError").style.display = "block"; // Show error
             }
+
         });
     }
 
@@ -383,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else {
         // Log an error message if any elements are missing
-        console.error("Error: Missing required DOM elements for 'Wears Glasses' or 'Snellen Test' functionality.");
+        console.log("Error: Missing required DOM elements for 'Wears Glasses' or 'Snellen Test' functionality.");
     }
 
     // // *** Updated Code for Severity Dropdown ***

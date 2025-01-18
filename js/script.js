@@ -62,19 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
             if (response.ok) {
-                const contentType = response.headers.get('Content-Type');
-                if (contentType && contentType.includes('application/json')) {
-                    try {
-                        const data = await response.json();
-                        console.log(data.message); //Handle successful login
-                        window.location.href = "/pages/dashboard.html";
-                    } catch (error) {
-                        console.error('Error parsing response as JSON: ', error);
-                        document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
-                    }
-                } else {
-                    document.getElementById("loginError").style.display = "block"; // Show error
-                }
+                const responseData = await response.text();
+                console.log(responseData);
+                document.getElementById('loginError').textContent = responseData;
+                window.location.href="/pages/dashboard.html";
             } else {
                 if (response.status === 500) {
                     console.error('Internal Server Error');

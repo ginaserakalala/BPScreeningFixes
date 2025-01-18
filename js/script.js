@@ -836,6 +836,11 @@ document.addEventListener('DOMContentLoaded', () => {
             printWindow.print();
         });
     }
+    const modeSwitch = document.getElementById('modeSwitch');
 
+    modeSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        modeSwitch.textContent = document.body.classList.contains('dark-mode') ? 'Dark Mode' : 'Light Mode';
+    });
 
 });

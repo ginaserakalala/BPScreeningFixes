@@ -30,18 +30,19 @@ document.getElementById('loginForm').addEventListener('submit',
                 document.getElementById('loginError').textContent = responseData;
                 window.location.href="/pages/dashboard.html";
             } else {
-                if (response.status === 500) {
-                    console.error('Internal Server Error');
-                    document.getElementById('loginError').textContent = 'An internal server error occurred. Please try again later.';
-                } else {
-                    try {
-                        const errorData = await response.json();
-                        document.getElementById('loginError').textContent = errorData.message || 'Invalid credentials';
-                    } catch (error) {
-                        console.error('Error parsing error response as JSON: ', error);
-                        document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
-                    }
-                }
+                // if (response.status === 500) {
+                //     console.error('Internal Server Error');
+                //     document.getElementById('loginError').textContent = 'An internal server error occurred. Please try again later.';
+                // } else {
+                //     try {
+                //         const errorData = await response.json();
+                //         document.getElementById('loginError').textContent = errorData.message || 'Invalid credentials';
+                //     } catch (error) {
+                //         console.error('Error parsing error response as JSON: ', error);
+                //         document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+                //     }
+                // }
+                document.getElementById("loginError").style.display = "block";
             }
         } catch (error) {
             console.error('Error logging in: ', error);

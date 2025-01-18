@@ -73,6 +73,7 @@ if (earsForm) {
     validateCheckboxGroup('otherAbnormalityLeft');
     validateCheckboxGroup('otherAbnormalityRight');
     validateCheckboxGroup('wearsHearingAid');
+    validateCheckboxGroup('audiometerCheck');
 
 
     // If there are errors, prevent form submission
@@ -99,7 +100,14 @@ if (earsForm) {
 
       const dischargeRightSeverity = document.getElementById('dischargeRightSeverity').value || 'null';
       const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity').value || 'null';
+      const management = document.getElementById('management').value || 'null';
 
+      const audioMeterCheckType= document.getElementById('audiometerCheckTypes').value || 'null';
+
+      const oaeresultRight = document.getElementById('oaeresultright').value || 'null';
+      const oaeresultReferTextRight = document.getElementById('refer-textbox-right-input').value || 'null';
+      const oaeresultLeft= document.getElementById('oaeresultleft').value || 'null';
+      const oaeresultReferTextLeft = document.getElementById('refer-textbox-left-input').value || 'null';
 
       // Other abnormality
       const otherAbnormalityLeftYes = document.getElementById('otherAbnormalityLeftYes').checked;
@@ -127,6 +135,8 @@ if (earsForm) {
       // Inflamed Eardrum Right
       const inflamedEarDrumRight = document.getElementById('inflamedRightYes').checked;
 
+      const audioMeterCheckYes = document.getElementById('audiometerCheckYes').checked;
+      const audioMeterCheckNo= document.getElementById('audiometerCheckNo');
       // Inflamed Eardrum Severity
       // const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
       //     document.getElementById('inflamedRightSeverity')?.value || "";
@@ -163,7 +173,15 @@ if (earsForm) {
         otherAbnormalityLeftSeverity,// String: combined severity for inflamed eardrum
         wearsHearingAid,           // Boolean: true if "Yes" is selected
         additionalComments,        // String: text input for additional comments
-        screeningResults
+        screeningResults,
+        management,
+        audioMeterCheckYes,
+        audioMeterCheckNo,
+        audioMeterCheckType,
+        oaeresultRight,
+        oaeresultReferTextRight,
+        oaeresultLeft,
+        oaeresultReferTextLeft
       };
 
       // Send POST request
@@ -193,7 +211,7 @@ if (earsForm) {
   // Add event listeners to hide warnings dynamically as the user selects Yes/No
   ['dischargeLeft', 'dischargeRight', 'inflammationLeft', 'inflammationRight', 'inflamedLeft',
     'inflamedRight', 'otherAbnormalityLeft', 'otherAbnormalityRight',
-    'wearsHearingAid'].forEach((groupName) => {
+    'wearsHearingAid','audiometerCheck'].forEach((groupName) => {
     document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
       document.getElementById(`${groupName}-warning`).style.display = 'none';
     });

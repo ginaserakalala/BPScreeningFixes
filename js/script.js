@@ -426,7 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {name: "inflamedRight", severityId: "inflamedRight-severity"},
         {name: "otherAbnormalityLeft", severityId: "otherAbnormalityLeft-severity"},
         {name: "otherAbnormalityRight", severityId: "otherAbnormalityRight-severity"},
-        {name: "wearsHearingAid"}
+        {name: "wearsHearingAid"},
+        {name:"audiometerCheck"}
     ];
 
 // Loop through each condition and attach event listeners

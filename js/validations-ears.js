@@ -136,7 +136,7 @@ if (earsForm) {
       const inflamedEarDrumRight = document.getElementById('inflamedRightYes').checked;
 
       const audioMeterCheckYes = document.getElementById('audiometerCheckYes').checked;
-      const audioMeterCheckNo= document.getElementById('audiometerCheckNo');
+      const audioMeterCheckNo= document.getElementById('audiometerCheckNo').checked;
       // Inflamed Eardrum Severity
       // const inflamedEarDrumSeverity = document.getElementById('inflamedLeftSeverity')?.value ||
       //     document.getElementById('inflamedRightSeverity')?.value || "";

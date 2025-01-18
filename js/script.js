@@ -36,23 +36,57 @@ const setupMutuallyExclusiveCheckboxes = (yesCheckboxId, noCheckboxId) => {
 document.addEventListener('DOMContentLoaded', () => {
 
 // *** Login handler ***
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const username = document.getElementById("identityNumber").value.trim();
+  document.getElementById('loginForm').addEventListener('submit',
+    async function(event){
+            event.preventDefault();
+
+            const identityNumber = document.getElementById("identityNumber").value.trim();
             const password = document.getElementById("password").value.trim();
+            // http://localhost:8081/api/auth/signin
+            //https://bp-prod-app-a15e414be88d.herokuapp.com/api/auth/signin
 
             // Check credentials for the single allowed user
-            if (username === "HW001" && password === "HW1") {
-                window.location.href = "/pages/dashboard.html"; // Redirect to dashboard
+            // if (username === "HW001" && password === "HW1") {
+            //     window.location.href = "/pages/dashboard.html"; // Redirect to dashboard
+            // } else {
+            //     document.getElementById("loginError").style.display = "block"; // Show error
+            // }
+        try {
+            const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/auth/signin',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ identityNumber, password }),
+                }
+            );
+            if (response.ok) {
+                try {
+                    const data = await response.json();
+                    console.log(data.message); //Handle successful login
+                    window.location.href = "/pages/dashboard.html";
+                } catch (error) {
+                    console.error('Error parsing response as JSON: ', error);
+                    document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+                }
+            } else if (response.status === 500) {
+                console.error('Internal Server Error');
+                document.getElementById('loginError').textContent = 'An internal server error occurred. Please try again later.';
             } else {
-                document.getElementById("loginError").style.display = "block"; // Show error
+                try {
+                    const errorData = await response.json();
+                    document.getElementById('loginError').textContent = errorData.message || 'Invalid credentials';
+                } catch (error) {
+                    console.error('Error parsing error response as JSON: ', error);
+                    document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+                }
             }
-
+        } catch (error) {
+            console.error('Error logging in: ', error);
+            document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+        }
         });
-    }
-
     // Check if elements exist before adding event listeners
     const modalOkButton = document.getElementById('modal-ok-btn');
     const modalCancelButton = document.getElementById('modal-cancel-btn');
@@ -227,10 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-
-
-
 
 
     // *** Home button click handler ***
@@ -427,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {name: "otherAbnormalityLeft", severityId: "otherAbnormalityLeft-severity"},
         {name: "otherAbnormalityRight", severityId: "otherAbnormalityRight-severity"},
         {name: "wearsHearingAid"},
-        {name:"audiometerCheck"}
+        {name: "audiometerCheck"}
     ];
 
 // Loop through each condition and attach event listeners
@@ -769,9 +799,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr><th>Discharge Left:</th><td>${reportData.ears[0]?.dischargeLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
+          <tr><th>Wears Hearing Aid:</th><td>${reportData.ears[0]?.wearsHearingAid ? "Yes" : "No"}</td></tr>
+          
+          <tr><th>Audio Meter Check Yes Results:</th><td>${reportData.ears[0]?.audioMeterCheckYes ? "Yes" : "No"}</td></tr>
+          <tr><th>Audio Meter Check No Results:</th><td>${reportData.ears[0]?.audioMeterCheckNo ? "Yes" : "No"}</td></tr>
+          
           <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
           <tr><th>Referral Results:</th><td> ${reportData.ears[0]?.screeningResults || "N/A"} </td></tr>
           <tr><th>Additional Comments:</th><td> ${reportData.ears[0]?.additionalComments || "N/A"}</td></tr>
+          <tr><th>Management:</th><td> ${reportData.ears[0]?.management || "N/A"}</td></tr>
+          <tr><th>Audio Meter Check Type:</th><td> ${reportData.ears[0]?.audioMeterCheckType || "N/A"}</td></tr>
+          <tr><th>OAE Result Left:</th><td> ${reportData.ears[0]?.oaeresultLeft || "N/A"}</td></tr>
+          <tr><th>OAE Result Right:</th><td> ${reportData.ears[0]?.oaeresultRight || "N/A"}</td></tr>
+          <tr><th>OAE Refer Result Right:</th><td> ${reportData.ears[0]?.oaeresultReferTextRight || "N/A"}</td></tr>
+          <tr><th>OAE Refer Result Left:</th><td> ${reportData.ears[0]?.oaeresultReferTextLeft || "N/A"}</td></tr>
         </table>
 
         <h2 style="color: black;">Oral Health</h2>
@@ -779,6 +820,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
+          <tr><th>Teeth Staining:</th><td>${reportData.oralHealth[0]?.teethStaining ? "Yes" : "No"}</td></tr>
+          <tr><th>Teeth Staining Severity:</th><td>${reportData.oralHealth[0]?.teethStainingSeverity || "N/A"}</td></tr>
+          
           <tr><th>Referral Results:</th><td> ${reportData.oralHealth[0]?.screeningResults || "N/A"}</td></tr>
           <tr><th>Additional Comments:</th><td> ${reportData.oralHealth[0]?.additionalComments || "N/A"}</td></tr>
         </table>

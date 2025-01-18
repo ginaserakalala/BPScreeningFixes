@@ -214,6 +214,14 @@ if (earsForm) {
     'wearsHearingAid','audiometerCheck'].forEach((groupName) => {
     document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
       document.getElementById(`${groupName}-warning`).style.display = 'none';
+      if(groupName === 'audiometerCheck'){
+        if(this.checked){
+          document.getElementById('audiometerLossCheckTypes').style.display = 'block';
+        }
+        else{
+          document.getElementById('audiometerLossCheckTypes').style.display = 'none';
+        }
+      }
     });
     document.getElementById(`${groupName}No`).addEventListener('change', () => {
       document.getElementById(`${groupName}-warning`).style.display = 'none';

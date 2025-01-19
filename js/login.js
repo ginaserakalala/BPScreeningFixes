@@ -5,16 +5,7 @@ document.getElementById('loginForm').addEventListener('submit',
 
         const identityNumber = document.getElementById("identityNumber").value.trim();
         const password = document.getElementById("password").value.trim();
-        // http://localhost:8081/api/auth/signin
-        //https://bp-prod-app-a15e414be88d.herokuapp.com/api/auth/signin
-
-        // Check credentials for the single allowed user
-        // if (username === "HW001" && password === "HW1") {
-        //     window.location.href = "/pages/dashboard.html"; // Redirect to dashboard
-        // } else {
-        //     document.getElementById("loginError").style.display = "block"; // Show error
-        // }
-        try {
+             try {
             const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/auth/signin',
                 {
                     method: 'POST',

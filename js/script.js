@@ -489,9 +489,20 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 style="color: black;">Eyes Form</h2>
         <table>
           <tr><th>Discharge:</th><td>${reportData.eyes[0]?.discharge ? "Yes" : "No"} (${reportData.eyes[0]?.dischargeSeverity || "N/A"})</td></tr>
+          <tr><th>Discharge Severity:</th><td> ${reportData.eyes[0]?.dischargeSeverity || "N/A"}</td></tr>
           <tr><th>Squint:</th><td>${reportData.eyes[0]?.squint ? "Yes" : "No"} (${reportData.eyes[0]?.squintSeverity || "N/A"})</td></tr>
+          <tr><th>Squint Severity:</th><td> ${reportData.eyes[0]?.squintSeverity || "N/A"}</td></tr>
           <tr><th>Inflammation:</th><td>${reportData.eyes[0]?.inflammation ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflammation Severity:</th><td> ${reportData.eyes[0]?.inflammationSeverity || "N/A"}</td></tr>
           <tr><th>Right Eye (OD):</th><td>SPH: ${reportData.eyes[0]?.rightEyeODSPH || "N/A"}, CYL: ${reportData.eyes[0]?.rightEyeODCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.rightEyeODAXIS || "N/A"}</td></tr>
+          <tr><th>Left Eye (OS):</th><td>SPH: ${reportData.eyes[0]?.leftEyeOSSPH || "N/A"}, CYL: ${reportData.eyes[0]?.leftEyeOSCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.leftEyeOSAXIS || "N/A"}</td></tr>
+          <tr><th>Eyes (PD):</th><td>PD: ${reportData.eyes[0]?.bothEyesPD || "N/A"}</td></tr>
+          
+          <tr><th>Wears Glasses Left Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsGlassesLeftSnellenTest || "N/A"}</td></tr>
+          <tr><th>Wears Glasses Right Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsGlassesRightSnellenTest || "N/A"}</td></tr>
+         
+          <tr><th>Wears No Glasses Left Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsNoGlassesLeftSnellenTest || "N/A"}</td></tr>
+          <tr><th>Wears No Glasses Right Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsNoGlassesRightSnellenTest || "N/A"}</td></tr>
           
           <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"}</td></tr>
           <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
@@ -521,8 +532,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 style="color: black;">Oral Health</h2>
         <table>
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
+          <tr><th>Dental Caries Severity:</th><td>${reportData.oralHealth[0]?.dentalCariesSeverity || "N/A"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
+          <tr><th>Gum Disease Severity:</th><td>${reportData.oralHealth[0]?.gumDiseaseSeverity || "N/A"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
+          <tr><th>Thrush/Sores Severity:</th><td>${reportData.oralHealth[0]?.thrushSoresSeverity || "N/A"}</td></tr>
           <tr><th>Teeth Staining:</th><td>${reportData.oralHealth[0]?.teethStaining ? "Yes" : "No"}</td></tr>
           <tr><th>Teeth Staining Severity:</th><td>${reportData.oralHealth[0]?.teethStainingSeverity || "N/A"}</td></tr>
           

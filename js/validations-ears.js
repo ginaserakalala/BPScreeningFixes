@@ -17,8 +17,9 @@ document.getElementById('screening-id').addEventListener('input', async function
 
     if (response.ok) {
       // Screening ID is available
-      messageElement.textContent = 'Screening ID is available.';
-      messageElement.style.color = 'green';
+
+      // messageElement.textContent = 'Screening ID is available.';
+      // messageElement.style.color = 'green';
       if (submitButton) submitButton.disabled = false; // Enable submit button
     } else if (response.status === 400) {
       // Screening ID already exists

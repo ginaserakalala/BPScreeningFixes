@@ -242,20 +242,16 @@
             }
 
             /* Styles for very small screens */
-            /* Styles for smaller screens */
-            html, body {
-                margin: 0;
-                padding: 0;
-                height: 100%; /* Ensure that html and body take up the full height */
-            }
 
             body {
                 font-family: Arial, sans-serif;
                 background: linear-gradient(to right, #ffffff, #82c4f7);
+                background-color: #282222;
                 color: #333;
                 transition: background 0.3s, color 0.3s;
                 display: flex; /* Use flexbox to ensure the content fills up the available space */
                 flex-direction: column; /* Stack the content vertically */
+                min-height: 100vh;
             }
 
             .app-heading {

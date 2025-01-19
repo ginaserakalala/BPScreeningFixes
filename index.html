@@ -142,10 +142,10 @@
         }
 
         .image-box img {
-            height:642px;
+            height: 642px;
             /*max-height: 480px; !* Matches the form height dynamically *!*/
             width: 400px;
-            margin-left:-20px;
+            margin-left: -20px;
             border-radius: 6px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -190,7 +190,8 @@
         .app-heading:hover {
             text-decoration: underline;
         }
-        .logo{
+
+        .logo {
             height: 150px;
             width: 150px;
         }
@@ -211,13 +212,15 @@
                 display: flex; /* Use flexbox to ensure the content fills up the available space */
                 flex-direction: column; /* Stack the content vertically */
             }
+
             .app-heading {
                 font-size: 18px;
                 position: absolute;
             }
 
             .login-container {
-                flex-direction: column;
+                flex-direction: row;
+                display: flex;
             }
 
             .login-box {
@@ -226,10 +229,19 @@
             }
 
             .image-box img {
-               display:none;
+                display: none;
+            }
+
+            #modeSwitch {
+                display: none;
             }
         }
+
         @media only screen and (max-width: 480px) {
+            #modeSwitch {
+                display: none;
+            }
+
             /* Styles for very small screens */
             /* Styles for smaller screens */
             html, body {
@@ -246,13 +258,15 @@
                 display: flex; /* Use flexbox to ensure the content fills up the available space */
                 flex-direction: column; /* Stack the content vertically */
             }
+
             .app-heading {
                 font-size: 18px;
                 position: absolute;
             }
 
             .login-container {
-                flex-direction: column;
+                flex-direction: row;
+                display: flex;
             }
 
             .login-box {
@@ -261,10 +275,9 @@
             }
 
             .image-box img {
-                display:none;
+                display: none;
             }
         }
-
 
 
     </style>
@@ -282,23 +295,23 @@
 
         <form id="loginForm">
             <div class="user-box">
-              <label for="identityNumber" class="form-label"></label><br>
-            <input class="form-control" id="identityNumber" placeholder="RSA Identity Number" required>
-    </div>
-    <div class="user-box">
-        <label for="password" class="form-label"></label>
-        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="identityNumber" class="form-label"></label><br>
+                <input class="form-control" id="identityNumber" placeholder="RSA Identity Number" required>
+            </div>
+            <div class="user-box">
+                <label for="password" class="form-label"></label>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
 
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary w-100">Login</button>
-    </form>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
         <p class="text-danger mt-3" id="loginError" style="display: none;">Invalid credentials, please try again.</p>
-</div>
-<!-- Image Section -->
-<div class="image-box">
-    <img src="./assets/images/login_opt2.jpeg" alt="Healthcare">
-</div>
+    </div>
+    <!-- Image Section -->
+    <div class="image-box">
+        <img src="./assets/images/login_opt2.jpeg" alt="Healthcare">
+    </div>
 </div>
 <script src="/js/script.js"></script>
 <script src="/js/login.js"></script>

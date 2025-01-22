@@ -250,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (yesCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "block"; // Show severity dropdown
+                        severityDropdown.required = true; // Make the dropdown required
                     }
                     noCheckbox.checked = false; // Uncheck "No" checkbox
                 }
@@ -318,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (yesCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "block"; // Show severity dropdown
+                        severityDropdown.required = true; // Make the dropdown required
                     }
                     noCheckbox.checked = false; // Uncheck "No" checkbox
                 }
@@ -424,6 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (yesCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "block"; // Show dropdown (if applicable)
+                        severityDropdown.required = true; // Make the dropdown required
                     }
                     noCheckbox.checked = false; // Uncheck "No"
                 }

@@ -355,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (wearsGlassesYes.checked) {
                 wearsGlassesNo.checked = false; // Deselect "No"
                 snellenTestResults.style.display = "block"; // Show Snellen Test Results
+                severityDropdown.required = true; // Make the dropdown required
             }
         });
 
@@ -362,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (wearsGlassesNo.checked) {
                 wearsGlassesYes.checked = false; // Deselect "Yes"
                 snellenTestResults.style.display = "block"; // Hide Snellen Test Results
+                severityDropdown.required = false; // Make the dropdown required
             }
         });
     } else {

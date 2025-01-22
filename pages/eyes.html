@@ -37,7 +37,7 @@
 
             <div id="discharge-severity" class="mt-2" style="display: none;">
                 <label for="dischargeSeverity">Severity:</label>
-                <select class="form-select" id="dischargeSeverity" name="dischargeSeverity">
+                <select class="form-select" id="dischargeSeverity" name="dischargeSeverity" required>
                     <option value="" disabled selected>Choose Severity</option>
                     <option value="mild">Mild</option>
                     <option value="moderate">Moderate</option>
@@ -59,7 +59,7 @@
 
             <div id="inflammation-severity" class="mt-2" style="display: none;">
                 <label for="inflammationSeverity">Severity:</label>
-                <select class="form-select" id="inflammationSeverity" name="inflammationSeverity">
+                <select class="form-select" id="inflammationSeverity" name="inflammationSeverity" required>
                     <option value="" disabled selected>Choose Severity</option>
                     <option value="mild">Mild</option>
                     <option value="moderate">Moderate</option>
@@ -81,7 +81,7 @@
 
             <div id="squint-severity" class="mt-2" style="display: none;">
                 <label for="squintSeverity">Severity:</label>
-                <select class="form-select" id="squintSeverity" name="squintSeverity">
+                <select class="form-select" id="squintSeverity" name="squintSeverity" required>
                     <option value="" disabled selected>Choose Severity</option>
                     <option value="mild">Mild</option>
                     <option value="moderate">Moderate</option>
@@ -105,7 +105,7 @@
 
             <div id="otherAbnormality-severity" class="mt-2" style="display: none;">
                 <label for="otherAbnormalitySeverity">Severity:</label>
-                <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity">
+                <select class="form-select" id="otherAbnormalitySeverity" name="otherAbnormalitySeverity" required>
                     <option value="" disabled selected>Choose Severity</option>
                     <option value="mild">Mild</option>
                     <option value="moderate">Moderate</option>
@@ -128,8 +128,8 @@
             <!-- Snellen Test -->
             <div id="snellenTestResults" class="mt-4">
                 <label for="rightEyeSnellen">Right Eye Snellen Test Result:</label>
-                <select class="form-select" id="rightEyeSnellen" name="rightEyeSnellen">
-                    <option value="" disabled selected>Right Eye Snellen Test Result</option>
+                <select class="form-select" id="rightEyeSnellen" name="rightEyeSnellen" required>
+                    <option value="" disabled selected>Choose Right Eye Snellen Test Option</option>
 
                     <option value="6/6">6/6</option>
                     <option value="6/9">6/9</option>
@@ -141,8 +141,8 @@
                     <option value="None">None</option>
                 </select>
                 <label for="leftEyeSnellen" class="mt-2">Left Eye Snellen Test Result:</label>
-                <select class="form-select" id="leftEyeSnellen" name="leftEyeSnellen">
-                    <option value="" disabled selected>Left Eye Snellen Test Result</option>
+                <select class="form-select" id="leftEyeSnellen" name="leftEyeSnellen" required>
+                    <option value="" disabled selected>Choose Left Eye Snellen Test Option</option>
                     <option value="6/6">6/6</option>
                     <option value="6/9">6/9</option>
                     <option value="6/12">6/12</option>

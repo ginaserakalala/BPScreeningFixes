@@ -130,6 +130,7 @@ if (eyesForm) {
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
 
 
+
       const payload = {
         screeningID,
         discharge,

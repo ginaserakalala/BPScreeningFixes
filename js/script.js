@@ -260,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (noCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "none"; // Hide severity dropdown
+                        severityDropdown.required = false;
                     }
                     yesCheckbox.checked = false; // Uncheck "Yes" checkbox
                 }
@@ -327,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (noCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "none"; // Hide severity dropdown
+                        severityDropdown.required = false;
                     }
                     yesCheckbox.checked = false; // Uncheck "Yes" checkbox
                 }
@@ -432,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (noCheckbox.checked) {
                     if (severityDropdown) {
                         severityDropdown.style.display = "none"; // Hide dropdown (if applicable)
+                        severityDropdown.required = false;
                     }
                     yesCheckbox.checked = false; // Uncheck "Yes"
                 }

@@ -55,6 +55,103 @@ else{
 }
 
 
+
+// Add an event listener to the search button
+document.getElementById('search-btn').addEventListener('click', async () => {
+  // Get the search input value
+  const searchInput = document.getElementById('search-input').value;
+
+  // Make a GET request to the API to search for the screening ID
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/oralhealth/${searchInput}`);
+
+  // Check if the response was successful
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+
+    // Check if the screening ID exists
+    if (data.exists) {
+      // Populate the oral health form with the search results
+      document.getElementById('screening-id').value = data.screeningId;
+      document.getElementById('dentalcariesYes').checked = data.dentalcaries === 'yes';
+      document.getElementById('dentalcariesNo').checked = data.dentalcaries === 'no';
+      document.getElementById('dentalcariesSeverity').value = data.dentalcariesSeverity;
+      document.getElementById('gumdiseaseYes').checked = data.gumdisease === 'yes';
+      document.getElementById('gumdiseaseNo').checked = data.gumdisease === 'no';
+      document.getElementById('gumdiseaseSeverity').value = data.gumdiseaseSeverity;
+      document.getElementById('thrushYes').checked = data.thrush === 'yes';
+      document.getElementById('thrushNo').checked = data.thrush === 'no';
+      document.getElementById('thrushSeverity').value = data.thrushSeverity;
+      document.getElementById('otherAbnormalityYes').checked = data.otherAbnormality === 'yes';
+      document.getElementById('otherAbnormalityNo').checked = data.otherAbnormality === 'no';
+      document.getElementById('otherAbnormalitySeverity').value = data.otherAbnormalitySeverity;
+      document.getElementById('teethStainingYes').checked = data.teethStaining === 'yes';
+      document.getElementById('teethStainingNo').checked = data.teethStaining === 'no';
+      document.getElementById('teethStainingSeverity').value = data.teethStainingSeverity;
+      document.getElementById('screeningresult').value = data.screeningResult;
+      document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
+    } else {
+      alert('Screening ID not found');
+    }
+  } else {
+    console.error('Error searching for screening ID');
+  }
+});
+
+
+// Add an event listener to the update button
+document.getElementById('update-btn').addEventListener('click', async () => {
+  // Get the oral health form data
+  const screeningId = document.getElementById('screening-id').value;
+  const dentalcaries = document.getElementById('dentalcariesYes').checked ? 'yes' : 'no';
+  const dentalcariesSeverity = document.getElementById('dentalcariesSeverity').value;
+  const gumdisease = document.getElementById('gumdiseaseYes').checked ? 'yes' : 'no';
+  const gumdiseaseSeverity = document.getElementById('gumdiseaseSeverity').value;
+  const thrush = document.getElementById('thrushYes').checked ? 'yes' : 'no';
+  const thrushSeverity = document.getElementById('thrushSeverity').value;
+  const otherAbnormality = document.getElementById('otherAbnormalityYes').checked ? 'yes' : 'no';
+  const otherAbnormalitySeverity = document.getElementById('otherAbnormalitySeverity').value;
+  const teethStaining = document.getElementById('teethStainingYes').checked ? 'yes' : 'no';
+  const teethStainingSeverity = document.getElementById('teethStainingSeverity').value;
+  const screeningResult = document.getElementById('screeningresult').value;
+  const additionalComments = document.getElementById('exampleFormControlTextarea1').value;
+
+  // Create a JSON payload
+  const payload = {
+    screeningId: screeningId,
+    dentalcaries: dentalcaries,
+    dentalcariesSeverity: dentalcariesSeverity,
+    gumdisease: gumdisease,
+    gumdiseaseSeverity: gumdiseaseSeverity,
+    thrush: thrush,
+    thrushSeverity: thrushSeverity,
+    otherAbnormality: otherAbnormality,
+    otherAbnormalitySeverity: otherAbnormalitySeverity,
+    teethStaining: teethStaining,
+    teethStainingSeverity: teethStainingSeverity,
+    screeningResult: screeningResult,
+    additionalComments: additionalComments,
+  };
+
+  // Make a PUT request to the API to update the oral health data
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/oralhealth/${screeningId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  // Check if the response was successful
+  if (response.ok) {
+    alert('Oral health data updated successfully!');
+  } else {
+  alert('Error updating oral health data. Please try again.')
+  }
+    console.error('Error updating oral health data');
+  }
+});
+
 const oralHealthForm = document.getElementById('oral-health-form');
 if (oralHealthForm) {
   oralHealthForm.addEventListener('submit', async (event) => {

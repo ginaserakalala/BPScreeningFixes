@@ -54,6 +54,147 @@ else{
   document.getElementById('update-btn').style.display = 'none';
 }
 
+// Add an event listener to the search button
+document.getElementById('search-btn').addEventListener('click', async () => {
+  // Get the search input value
+  const searchInput = document.getElementById('search-input').value;
+
+  // Make a GET request to the API to search for the screening ID
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears/${searchInput}`);
+
+  // Check if the response was successful
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+
+    // Check if the screening ID exists
+    if (data.exists) {
+      // Populate the ears form with the search results
+      document.getElementById('screening-id').value = data.screeningId;
+      document.getElementById('dischargeLeftYes').checked = data.dischargeLeft === 'yes';
+      document.getElementById('dischargeLeftNo').checked = data.dischargeLeft === 'no';
+      document.getElementById('dischargeRightYes').checked = data.dischargeRight === 'yes';
+      document.getElementById('dischargeRightNo').checked = data.dischargeRight === 'no';
+      document.getElementById('dischargeLeftSeverity').value = data.dischargeLeftSeverity;
+      document.getElementById('dischargeRightSeverity').value = data.dischargeRightSeverity;
+      document.getElementById('inflammationLeftYes').checked = data.inflammationLeft === 'yes';
+      document.getElementById('inflammationLeftNo').checked = data.inflammationLeft === 'no';
+      document.getElementById('inflammationRightYes').checked = data.inflammationRight === 'yes';
+      document.getElementById('inflammationRightNo').checked = data.inflammationRight === 'no';
+      document.getElementById('inflammationLeftSeverity').value = data.inflammationLeftSeverity;
+      document.getElementById('inflammationRightSeverity').value = data.inflammationRightSeverity;
+      document.getElementById('inflamedLeftYes').checked = data.inflamedLeft === 'yes';
+      document.getElementById('inflamedLeftNo').checked = data.inflamedLeft === 'no';
+      document.getElementById('inflamedRightYes').checked = data.inflamedRight === 'yes';
+      document.getElementById('inflamedRightNo').checked = data.inflamedRight === 'no';
+      document.getElementById('inflamedLeftSeverity').value = data.inflamedLeftSeverity;
+      document.getElementById('inflamedRightSeverity').value = data.inflamedRightSeverity;
+      document.getElementById('otherAbnormalityLeftYes').checked = data.otherAbnormalityLeft === 'yes';
+      document.getElementById('otherAbnormalityLeftNo').checked = data.otherAbnormalityLeft === 'no';
+      document.getElementById('otherAbnormalityRightYes').checked = data.otherAbnormalityRight === 'yes';
+      document.getElementById('otherAbnormalityRightNo').checked = data.otherAbnormalityRight === 'no';
+      document.getElementById('otherAbnormalityLeftSeverity').value = data.otherAbnormalityLeftSeverity;
+      document.getElementById('otherAbnormalityRightSeverity').value = data.otherAbnormalityRightSeverity;
+      document.getElementById('wearsHearingAidYes').checked = data.wearsHearingAid === 'yes';
+      document.getElementById('wearsHearingAidNo').checked = data.wearsHearingAid === 'no';
+      document.getElementById('oaeresultleft').value = data.oaeResultLeft;
+      document.getElementById('oaeresultright').value = data.oaeResultRight;
+      document.getElementById('refer-textbox-left-input').value = data.referCommentLeft;
+      document.getElementById('refer-textbox-right-input').value = data.referCommentRight;
+      document.getElementById('audiometerCheckYes').checked = data.audiometerCheck === 'yes';
+      document.getElementById('audiometerCheckNo').checked = data.audiometerCheck === 'no';
+      document.getElementById('audiometerCheckTypes').value = data.audiometerCheckType;
+      document.getElementById('management').value = data.management;
+      document.getElementById('screeningresult').value = data.screeningResult;
+      document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
+    } else {
+      alert('Screening ID not found');
+    }
+  } else {
+    console.error('Error searching for screening ID');
+  }
+});
+
+// Add an event listener to the update button
+document.getElementById('update-btn').addEventListener('click', async () => {
+  // Get the ears form data
+  const screeningId = document.getElementById('screening-id').value;
+  const dischargeLeft = document.getElementById('dischargeLeftYes').checked ? 'yes' : 'no';
+  const dischargeRight = document.getElementById('dischargeRightYes').checked ? 'yes' : 'no';
+  const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity').value;
+  const dischargeRightSeverity = document.getElementById('dischargeRightSeverity').value;
+  const inflammationLeft = document.getElementById('inflammationLeftYes').checked ? 'yes' : 'no';
+  const inflammationRight = document.getElementById('inflammationRightYes').checked ? 'yes' : 'no';
+  const inflammationLeftSeverity = document.getElementById('inflammationLeftSeverity').value;
+  const inflammationRightSeverity = document.getElementById('inflammationRightSeverity').value;
+  const inflamedLeft = document.getElementById('inflamedLeftYes').checked ? 'yes' : 'no';
+  const inflamedRight = document.getElementById('inflamedRightYes').checked ? 'yes' : 'no';
+  const inflamedLeftSeverity = document.getElementById('inflamedLeftSeverity').value;
+  const inflamedRightSeverity = document.getElementById('inflamedRightSeverity').value;
+  const otherAbnormalityLeft = document.getElementById('otherAbnormalityLeftYes').checked ? 'yes' : 'no';
+  const otherAbnormalityRight = document.getElementById('otherAbnormalityRightYes').checked ? 'yes' : 'no';
+  const otherAbnormalityLeftSeverity = document.getElementById('otherAbnormalityLeftSeverity').value;
+  const otherAbnormalityRightSeverity = document.getElementById('otherAbnormalityRightSeverity').value;
+  const wearsHearingAid = document.getElementById('wearsHearingAidYes').checked ? 'yes' : 'no';
+  const oaeResultLeft = document.getElementById('oaeresultleft').value;
+  const oaeResultRight = document.getElementById('oaeresultright').value;
+  const referCommentLeft = document.getElementById('refer-textbox-left-input').value;
+  const referCommentRight = document.getElementById('refer-textbox-right-input').value;
+  const audiometerCheck = document.getElementById('audiometerCheckYes').checked ? 'yes' : 'no';
+  const audiometerCheckType = document.getElementById('audiometerCheckTypes').value;
+  const management = document.getElementById('management').value;
+  const screeningResult = document.getElementById('screeningresult').value;
+  const additionalComments = document.getElementById('exampleFormControlTextarea1').value;
+
+  // Create a JSON payload
+  const payload = {
+    screeningId: screeningId,
+    dischargeLeft: dischargeLeft,
+    dischargeRight: dischargeRight,
+    dischargeLeftSeverity: dischargeLeftSeverity,
+    dischargeRightSeverity: dischargeRightSeverity,
+    inflammationLeft: inflammationLeft,
+    inflammationRight: inflammationRight,
+    inflammationLeftSeverity: inflammationLeftSeverity,
+    inflammationRightSeverity: inflammationRightSeverity,
+    inflamedLeft: inflamedLeft,
+    inflamedRight: inflamedRight,
+    inflamedLeftSeverity: inflamedLeftSeverity,
+    inflamedRightSeverity: inflamedRightSeverity,
+    otherAbnormalityLeft: otherAbnormalityLeft,
+    otherAbnormalityRight: otherAbnormalityRight,
+    otherAbnormalityLeftSeverity: otherAbnormalityLeftSeverity,
+    otherAbnormalityRightSeverity: otherAbnormalityRightSeverity,
+    wearsHearingAid: wearsHearingAid,
+    oaeResultLeft: oaeResultLeft,
+    oaeResultRight: oaeResultRight,
+    referCommentLeft: referCommentLeft,
+    referCommentRight: referCommentRight,
+    audiometerCheck: audiometerCheck,
+    audiometerCheckType: audiometerCheckType,
+    management: management,
+    screeningResult: screeningResult,
+    additionalComments: additionalComments,
+  };
+
+  // Make a PUT request to the API to update the ears data
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears/${screeningId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  // Check if the response was successful
+  if (response.ok) {
+    alert('Ears data updated successfully!');
+  } else {
+  alert("Error updating ears data. Please try again.")
+  }
+    console.error('Error updating ears data');
+  }
+});
 
 const earsForm = document.getElementById('ears-form');
 if (earsForm) {

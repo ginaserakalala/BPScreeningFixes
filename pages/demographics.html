@@ -25,6 +25,13 @@
         <h1 class="text-center mb-4">Demographics Form</h1>
 
         <form id="demographics-form">
+
+            <div class="mb-3" id="search-container" style="display: none;">
+                <input type="text" id="search-input" placeholder="Search by Screening ID">
+                <button id="search-btn">Search</button>
+            </div>
+
+
             <!-- Screening ID -->
             <div class="mb-3">
                 <label for="screening-id" class="form-label"></label>
@@ -32,6 +39,8 @@
                        pattern="\d{5}" title="Screening ID must contain only numbers and be exactly 5 Digits.">
                        <small id="screening-id-message" class="form-text"></small>
             </div>
+
+
             <div class="mb-3">
                 <label for="school-name" class="form-label"></label>
                 <select id="school-name" class="form-select" required>
@@ -140,6 +149,8 @@
 
                 <button type="button" class="btn btn-primary" id="home-btn">Home</button>
                 <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                <!-- Add an update button for admins -->
+                <button id="update-btn" style="display: none;" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>

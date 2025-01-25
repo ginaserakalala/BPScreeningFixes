@@ -16,8 +16,10 @@ document.getElementById('loginForm').addEventListener('submit',
                 }
             );
             if (response.ok) {
-                const responseData = await response.text();
+                // const responseData = await response.text();
+                const responseData = await response.json();
                 console.log(responseData);
+                localStorage.setItem('role', responseData.role); //Store user's role in local storage
                 document.getElementById('loginError').textContent = responseData;
                 window.location.href="/pages/dashboard.html";
             } else {

@@ -41,6 +41,19 @@ document.getElementById('screening-id').addEventListener('input', async function
   }
 });
 
+// Check the user's role and conditionally render the search and update buttons
+const role= localStorage.getItem('role');
+if(role === 'admin'){
+  // Render the search and update buttons
+  document.getElementById('search-container').style.display='block';
+  document.getElementById('update-btn').style.display = 'block';
+}
+else{
+  // Hide the search and update buttons
+  document.getElementById('search-container').style.display='none';
+  document.getElementById('update-btn').style.display = 'none';
+}
+
 
 const oralHealthForm = document.getElementById('oral-health-form');
 if (oralHealthForm) {

@@ -12,7 +12,10 @@
     <div class="card p-4 shadow-lg border-0 rounded-4 custom-container">
       <h2 class="text-center mb-4 eyetext">Oral Health Screening Form</h2>
       <form id="oral-health-form">
-
+        <div class="mb-3" id="search-container" style="display: none;">
+          <input type="text" id="search-input" placeholder="Search by Screening ID">
+          <button id="search-btn">Search</button>
+        </div>
        
         <div class="mb-3">
           <label for="screening-id" class="form-label" ></label>
@@ -146,6 +149,9 @@
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-primary" id="home-btn">Home</button>
           <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+
+          <!-- Add an update button for admins -->
+          <button id="update-btn" style="display: none;" class="btn btn-primary">Update</button>
         </div>
       </form>
     </div>

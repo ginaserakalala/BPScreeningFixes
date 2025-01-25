@@ -20,6 +20,7 @@ document.getElementById('loginForm').addEventListener('submit',
                 const responseData = await response.json();
                 console.log(responseData);
                 localStorage.setItem('role', responseData.role); //Store user's role in local storage
+                localStorage.setItem('userID',responseData.id); //Store user's id in local storage
                 document.getElementById('loginError').textContent = responseData;
                 window.location.href="/pages/dashboard.html";
             } else {

@@ -153,6 +153,9 @@ if (earsForm) {
       // Additional Comments
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || "";
 
+      // Get the user's ID from local storage
+      const userID = localStorage.getItem('userID');
+
       // Create a JSON payload matching the EarsDto structure
       const payload = {
         screeningID,
@@ -182,7 +185,8 @@ if (earsForm) {
         oaeresultRight,
         oaeresultReferTextRight,
         oaeresultLeft,
-        oaeresultReferTextLeft
+        oaeresultReferTextLeft,
+        userID
       };
 
       // Send POST request

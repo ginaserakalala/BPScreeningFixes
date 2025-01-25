@@ -129,6 +129,8 @@ if (eyesForm) {
       const screeningResults = document.getElementById('screeningresult')?.value || null;
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || null;
 
+      // Get the user's ID from local storage
+      const userID = localStorage.getItem('userID');
 
 
       const payload = {
@@ -154,7 +156,8 @@ if (eyesForm) {
         wearsNoGlassesRightSnellenTest,
         wearsNoGlassesLeftSnellenTest,
         screeningResults,
-        additionalComments
+        additionalComments,
+        userID
       };
 
       const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes', {

@@ -114,6 +114,9 @@ if (oralHealthForm) {
       // Additional Comments
       const additionalComments = document.getElementById('exampleFormControlTextarea1')?.value || ''; // String
 
+      // Get the user's ID from local storage
+      const userID = localStorage.getItem('userID');
+
       // Create a JSON payload matching `OralHealthDto`
       const payload = {
         screeningID,                     // String
@@ -131,7 +134,8 @@ if (oralHealthForm) {
         teethStaining,                  // Boolean
         teethStainingSeverity,          // String
         screeningResults,
-        additionalComments              // String
+        additionalComments,              // String
+        userID
       };
 
       // Send a POST request to the Oral Health API endpoint

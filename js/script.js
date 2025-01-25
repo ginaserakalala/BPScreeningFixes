@@ -258,6 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const age = document.getElementById('age').value;
                 const schoolName = document.getElementById('school-name').value;
 
+                // Get the user's ID from local storage
+                const userID = localStorage.getItem('userID');
                 // Create a JSON payload
                 const payload = {
                     screeningID: screeningID,
@@ -267,7 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     age: age,
                     sex: sex,
                     dateOfBirth: dateOfBirth,
-                    schoolName: schoolName
+                    schoolName: schoolName,
+                    userID: userID
                 };
                 // Send a POST request to the demographics API endpoint
                 const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {

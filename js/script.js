@@ -156,18 +156,87 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //   formIds.forEach(setupFormSubmission);
 
-//    // Check the user's role and conditionally render the search and update buttons
-//    const role= localStorage.getItem('role');
-//    if(role === 'admin'){
-//        // Render the search and update buttons
-//        document.getElementById('search-container').style.display='block';
-//        document.getElementById('update-btn').style.display = 'block';
-//    }
-//    else{
-//        // Hide the search and update buttons
-//        document.getElementById('search-container').style.display='none';
-//        document.getElementById('update-btn').style.display = 'none';
-//    }
+    // Check the user's role and conditionally render the search and update buttons
+    const role= localStorage.getItem('role');
+    if(role === 'admin'){
+        // Render the search and update buttons
+        document.getElementById('search-container').style.display='block';
+        document.getElementById('update-btn').style.display = 'block';
+    }
+    else{
+        // Hide the search and update buttons
+        document.getElementById('search-container').style.display='none';
+        document.getElementById('update-btn').style.display = 'none';
+    }
+
+    // Add an event listener to the search button
+    document.getElementById('search-btn').addEventListener('click', async () => {
+        // Get the search input value
+        const searchInput = document.getElementById('search-input').value;
+
+        // Make a GET request to the API to search for the screening ID
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${searchInput}`);
+
+        // Check if the response was successful
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+
+            // Populate the demographics form with the search results
+            document.getElementById('screening-id').value = data.screeningID;
+            document.getElementById('first-name').value = data.firstName;
+            document.getElementById('last-name').value = data.lastName;
+            document.getElementById('dob').value = data.dateOfBirth;
+            document.getElementById('grade').value = data.grade;
+            document.getElementById('sex').value = data.sex;
+            document.getElementById('age').value = data.age;
+            document.getElementById('school-name').value = data.schoolName;
+        } else {
+            console.error('Error searching for screening ID');
+        }
+    });
+
+    // Add an event listener to the update button
+    document.getElementById('update-btn').addEventListener('click', async () => {
+        // Get the demographics form data
+        const screeningID = document.getElementById('screening-id').value;
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const dateOfBirth = document.getElementById('dob').value;
+        const grade = document.getElementById('grade').value;
+        const sex = document.getElementById('sex').value;
+        const age = document.getElementById('age').value;
+        const schoolName = document.getElementById('school-name').value;
+
+        // Create a JSON payload
+        const payload = {
+            screeningID: screeningID,
+            firstName: firstName,
+            lastName: lastName,
+            grade: grade,
+            age: age,
+            sex: sex,
+            dateOfBirth: dateOfBirth,
+            schoolName: schoolName
+        };
+
+        // Make a PUT request to the API to update the demographics data
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${screeningID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (response.ok) {
+            alert('Demographics data updated successfully!');
+        } else {
+            console.error('Error updating demographics data');
+        }
+    });
+
 
 
 
@@ -190,7 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const schoolName = document.getElementById('school-name').value;
 
                 // Get the user's ID from local storage
-                const userID = localStorage.getItem('userID');
+//                const userID = localStorage.getItem('userID');
+                const userID = 1;
                 // Create a JSON payload
                 const payload = {
                     screeningID: screeningID,
@@ -467,5 +537,161 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+// *** Generate Report Button Logic ***
+    const generateReportBtn = document.getElementById("generate-report-btn");
 
+    if (generateReportBtn) {
+        generateReportBtn.addEventListener("click", async function () {
+            // Get the Screening ID from the form
+            const screeningId = document.getElementById("screening-id").value;
+
+            // Validate if the Screening ID is provided
+            if (!screeningId) {
+                alert("Please provide the Screening ID.");
+                return;
+            }
+
+            try {
+                // Fetch the data from the backend API using the screening ID
+                const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningId}`);
+
+                // Check if the response is valid
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
+                }
+
+                // Parse the JSON data
+                const reportData = await response.json();
+
+                // Dynamically generate the report content
+                const reportContent = `
+        <h4 style="color: black;">Screening Report</h4>
+        <p><strong>Screening ID:</strong> ${reportData.ScreeningID}</p>
+        <h2 style="color: black;>Demographics and Screening Report</h2>
+
+        <h2 style="color: black;">Demographics</h2>
+        <table>
+          <tr><th>First Name:</th><td>${reportData.demographics[0]?.firstName || "N/A"}</td></tr>
+          <tr><th>Last Name:</th><td>${reportData.demographics[0]?.lastName || "N/A"}</td></tr>
+          <tr><th>School Name:</th><td>${reportData.demographics[0]?.schoolName || "N/A"}</td></tr>
+
+          <tr><th>Age:</th><td>${reportData.demographics[0]?.age || "N/A"}</td></tr>
+          <tr><th>Sex:</th><td>${reportData.demographics[0]?.dateOfBirth || "N/A"}</td></tr>
+          <tr><th>Grade:</th><td>${reportData.demographics[0]?.grade || "N/A"}</td></tr>
+          <tr><th>Date of birth:</th><td>${reportData.demographics[0]?.sex || "N/A"}</td></tr>
+        </table>
+
+        <h2 style="color: black;">Eyes Form</h2>
+        <table>
+          <tr><th>Discharge:</th><td>${reportData.eyes[0]?.discharge ? "Yes" : "No"} (${reportData.eyes[0]?.dischargeSeverity || "N/A"})</td></tr>
+          <tr><th>Discharge Severity:</th><td> ${reportData.eyes[0]?.dischargeSeverity || "N/A"}</td></tr>
+          <tr><th>Squint:</th><td>${reportData.eyes[0]?.squint ? "Yes" : "No"} (${reportData.eyes[0]?.squintSeverity || "N/A"})</td></tr>
+          <tr><th>Squint Severity:</th><td> ${reportData.eyes[0]?.squintSeverity || "N/A"}</td></tr>
+          <tr><th>Inflammation:</th><td>${reportData.eyes[0]?.inflammation ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflammation Severity:</th><td> ${reportData.eyes[0]?.inflammationSeverity || "N/A"}</td></tr>
+          <tr><th>Right Eye (OD):</th><td>SPH: ${reportData.eyes[0]?.rightEyeODSPH || "N/A"}, CYL: ${reportData.eyes[0]?.rightEyeODCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.rightEyeODAXIS || "N/A"}</td></tr>
+          <tr><th>Left Eye (OS):</th><td>SPH: ${reportData.eyes[0]?.leftEyeOSSPH || "N/A"}, CYL: ${reportData.eyes[0]?.leftEyeOSCYL || "N/A"}, AXIS: ${reportData.eyes[0]?.leftEyeOSAXIS || "N/A"}</td></tr>
+          <tr><th>Eyes (PD):</th><td>PD: ${reportData.eyes[0]?.bothEyesPD || "N/A"}</td></tr>
+
+          <tr><th>Wears Glasses Left Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsGlassesLeftSnellenTest || "N/A"}</td></tr>
+          <tr><th>Wears Glasses Right Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsGlassesRightSnellenTest || "N/A"}</td></tr>
+
+          <tr><th>Wears No Glasses Left Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsNoGlassesLeftSnellenTest || "N/A"}</td></tr>
+          <tr><th>Wears No Glasses Right Eye Snellel Result:</th><td>${reportData.eyes[0]?.wearsNoGlassesRightSnellenTest || "N/A"}</td></tr>
+
+          <tr><th>Referral Results:</th><td> ${reportData.eyes[0]?.screeningResults || "N/A"}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.eyes[0]?.additionalComments || "N/A"}</td></tr>
+        </table>
+
+        <h2 style="color: black;">Ears Form</h2>
+        <table>
+          <tr><th>Discharge Left:</th><td>${reportData.ears[0]?.dischargeLeft ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
+          <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
+          <tr><th>Wears Hearing Aid:</th><td>${reportData.ears[0]?.wearsHearingAid ? "Yes" : "No"}</td></tr>
+
+          <tr><th>Audio Meter Check Yes Results:</th><td>${reportData.ears[0]?.audioMeterCheckYes ? "Yes" : "No"}</td></tr>
+          <tr><th>Audio Meter Check No Results:</th><td>${reportData.ears[0]?.audioMeterCheckNo ? "Yes" : "No"}</td></tr>
+
+          <tr><th>Wax Impaction Left:</th><td>${reportData.ears[0]?.waxImpactionLeft ? "Yes" : "No"} (${reportData.ears[0]?.waxSeverityLeft || "N/A"})</td></tr>
+          <tr><th>Referral Results:</th><td> ${reportData.ears[0]?.screeningResults || "N/A"} </td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.ears[0]?.additionalComments || "N/A"}</td></tr>
+          <tr><th>Management:</th><td> ${reportData.ears[0]?.management || "N/A"}</td></tr>
+          <tr><th>Audio Meter Check Type:</th><td> ${reportData.ears[0]?.audioMeterCheckType || "N/A"}</td></tr>
+          <tr><th>OAE Result Left:</th><td> ${reportData.ears[0]?.oaeresultLeft || "N/A"}</td></tr>
+          <tr><th>OAE Result Right:</th><td> ${reportData.ears[0]?.oaeresultRight || "N/A"}</td></tr>
+          <tr><th>OAE Refer Result Right:</th><td> ${reportData.ears[0]?.oaeresultReferTextRight || "N/A"}</td></tr>
+          <tr><th>OAE Refer Result Left:</th><td> ${reportData.ears[0]?.oaeresultReferTextLeft || "N/A"}</td></tr>
+        </table>
+
+        <h2 style="color: black;">Oral Health</h2>
+        <table>
+          <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
+          <tr><th>Dental Caries Severity:</th><td>${reportData.oralHealth[0]?.dentalCariesSeverity || "N/A"}</td></tr>
+          <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
+          <tr><th>Gum Disease Severity:</th><td>${reportData.oralHealth[0]?.gumDiseaseSeverity || "N/A"}</td></tr>
+          <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
+          <tr><th>Thrush/Sores Severity:</th><td>${reportData.oralHealth[0]?.thrushSoresSeverity || "N/A"}</td></tr>
+          <tr><th>Teeth Staining:</th><td>${reportData.oralHealth[0]?.teethStaining ? "Yes" : "No"}</td></tr>
+          <tr><th>Teeth Staining Severity:</th><td>${reportData.oralHealth[0]?.teethStainingSeverity || "N/A"}</td></tr>
+
+          <tr><th>Referral Results:</th><td> ${reportData.oralHealth[0]?.screeningResults || "N/A"}</td></tr>
+          <tr><th>Additional Comments:</th><td> ${reportData.oralHealth[0]?.additionalComments || "N/A"}</td></tr>
+        </table>
+      `;
+
+                // Show the Report Preview
+                const reportPreview = document.getElementById("report-preview");
+                if (reportPreview) {
+                    // Set the dynamically generated content inside the preview section
+                    document.getElementById("report-content").innerHTML = reportContent;
+
+                    // Make the preview section visible
+                    reportPreview.style.display = "block";
+                } else {
+                    console.error("Report preview section not found!");
+                }
+            } catch (error) {
+                // Handle errors (e.g., network issues, invalid screening ID)
+                console.error(error.message);
+                alert("Error generating report: " + error.message);
+            }
+        });
+    }
+
+    // *** Print Button Logic ***
+    const printBtn = document.getElementById("print-report-btn");
+    if (printBtn) {
+        printBtn.addEventListener("click", function () {
+            const reportContent = document.getElementById("report-content").innerHTML;
+
+            // Check if content is available
+            if (!reportContent) {
+                alert("No content to print.");
+                return;
+            }
+
+            const printWindow = window.open("", "_blank", "width=800,height=600");
+
+            printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            h4 { color: #333; }
+            p { color: #555; }
+          </style>
+        </head>
+        <body>
+          ${reportContent}
+        </body>
+      </html>
+    `);
+
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        });
+    }
 });

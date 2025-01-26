@@ -21,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit',
                 console.log(responseData);
                 localStorage.setItem('role', responseData.role); //Store user's role in local storage
                 localStorage.setItem('userID',responseData.id); //Store user's id in local storage
-                console.log('Set userID from local storage:', userID);
+                console.log('Set userID from local storage:', localStorage.setItem('userID',responseData.id));
 
 //                // Retrieve userID from local storage
 //                const userID = localStorage.getItem('userID');

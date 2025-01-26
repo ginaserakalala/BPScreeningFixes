@@ -110,6 +110,77 @@ document.getElementById('screening-id').addEventListener('input', async function
         }
     });
 
+// Check the user's role and conditionally render the search and update buttons
+    const role= localStorage.getItem('role');
+    if(role === 'admin'){
+        // Render the search and update buttons
+        document.getElementById('search-container').style.display='block';
+        document.getElementById('update-btn').style.display = 'block';
+    }
+    else{
+        // Hide the search and update buttons
+        document.getElementById('search-container').style.display='none';
+        document.getElementById('update-btn').style.display = 'none';
+    }
+
+
+     const demographicsForm = document.getElementById('demographics-form');
+
+        if (demographicsForm) {
+            demographicsForm.addEventListener('submit', async (event) => {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                try {
+                    // Get the form data
+                    const screeningID = document.getElementById('screening-id').value;
+                    const firstName = document.getElementById('first-name').value;
+                    const lastName = document.getElementById('last-name').value;
+                    const dateOfBirth = document.getElementById('dob').value;
+                    const grade = document.getElementById('grade').value;
+                    const sex = document.getElementById('sex').value;
+                    const age = document.getElementById('age').value;
+                    const schoolName = document.getElementById('school-name').value;
+
+                    // Get the user's ID from local storage
+    //                const userID = localStorage.getItem('userID');
+                    const userID = 1;
+                    // Create a JSON payload
+                    const payload = {
+                        screeningID: screeningID,
+                        firstName: firstName,
+                        lastName: lastName,
+                        grade: grade,
+                        age: age,
+                        sex: sex,
+                        dateOfBirth: dateOfBirth,
+                        schoolName: schoolName,
+                        userID: userID
+                    };
+                    // Send a POST request to the demographics API endpoint
+                    const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    });
+
+                    // Check if the response was successful
+                    if (!response.ok) {
+                        console.log(`Error submitting demographics form: ${response.statusText}`);
+                    }
+
+                    // Display a success message
+                    alert('Demographics Form submitted! Please click OK to continue');
+
+                    location.reload();
+                } catch (error) {
+                    // Log any errors
+                    console.error(error);
+                }
+            });
+        }
 
 
 

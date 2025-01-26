@@ -42,4 +42,76 @@ document.getElementById('screening-id').addEventListener('input', async function
 });
 
 
+// Add an event listener to the search button
+    document.getElementById('search-btn').addEventListener('click', async () => {
+        // Get the search input value
+        const searchInput = document.getElementById('search-input').value;
+
+        // Make a GET request to the API to search for the screening ID
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${searchInput}`);
+
+        // Check if the response was successful
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+
+            // Populate the demographics form with the search results
+            document.getElementById('screening-id').value = data.screeningID;
+            document.getElementById('first-name').value = data.firstName;
+            document.getElementById('last-name').value = data.lastName;
+            document.getElementById('dob').value = data.dateOfBirth;
+            document.getElementById('grade').value = data.grade;
+            document.getElementById('sex').value = data.sex;
+            document.getElementById('age').value = data.age;
+            document.getElementById('school-name').value = data.schoolName;
+        } else {
+            console.error('Error searching for screening ID');
+        }
+    });
+
+    // Add an event listener to the update button
+    document.getElementById('update-btn').addEventListener('click', async () => {
+        // Get the demographics form data
+        const screeningID = document.getElementById('screening-id').value;
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const dateOfBirth = document.getElementById('dob').value;
+        const grade = document.getElementById('grade').value;
+        const sex = document.getElementById('sex').value;
+        const age = document.getElementById('age').value;
+        const schoolName = document.getElementById('school-name').value;
+
+        // Create a JSON payload
+        const payload = {
+            screeningID: screeningID,
+            firstName: firstName,
+            lastName: lastName,
+            grade: grade,
+            age: age,
+            sex: sex,
+            dateOfBirth: dateOfBirth,
+            schoolName: schoolName
+        };
+
+        // Make a PUT request to the API to update the demographics data
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${screeningID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        // Check if the response was successful
+        if (response.ok) {
+            alert('Demographics data updated successfully!');
+        } else {
+            console.error('Error updating demographics data');
+        }
+    });
+
+
+
+
+
 

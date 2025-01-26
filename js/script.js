@@ -156,18 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //   formIds.forEach(setupFormSubmission);
 
-    // Check the user's role and conditionally render the search and update buttons
-    const role= localStorage.getItem('role');
-    if(role === 'admin'){
-        // Render the search and update buttons
-        document.getElementById('search-container').style.display='block';
-        document.getElementById('update-btn').style.display = 'block';
-    }
-    else{
-        // Hide the search and update buttons
-        document.getElementById('search-container').style.display='none';
-        document.getElementById('update-btn').style.display = 'none';
-    }
+//    // Check the user's role and conditionally render the search and update buttons
+//    const role= localStorage.getItem('role');
+//    if(role === 'admin'){
+//        // Render the search and update buttons
+//        document.getElementById('search-container').style.display='block';
+//        document.getElementById('update-btn').style.display = 'block';
+//    }
+//    else{
+//        // Hide the search and update buttons
+//        document.getElementById('search-container').style.display='none';
+//        document.getElementById('update-btn').style.display = 'none';
+//    }
 
     // Add an event listener to the search button
     document.getElementById('search-btn').addEventListener('click', async () => {

@@ -143,8 +143,8 @@ document.getElementById('screening-id').addEventListener('input', async function
                     const schoolName = document.getElementById('school-name').value;
 
                     // Get the user's ID from local storage
-    //                const userID = localStorage.getItem('userID');
-                    const userID = 1;
+                    const userID = localStorage.getItem('userID');
+
                     // Create a JSON payload
                     const payload = {
                         screeningID: screeningID,

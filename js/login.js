@@ -23,11 +23,8 @@ document.getElementById('loginForm').addEventListener('submit',
                 localStorage.setItem('role', responseData.role); //Store user's role in local storage
                 localStorage.setItem('userID',responseData.userID); //Store user's id in local storage
 
-                console.log('Set userID from local storage:', localStorage.setItem('userID',responseData.userID));
+                 console.log('Set userID from local storage:', localStorage.getItem('userID'));
 
-//                // Retrieve userID from local storage
-//                const userID = localStorage.getItem('userID');
-//                console.log('Retrieved userID from local storage:', userID);
 
                 document.getElementById('loginError').textContent = responseData;
                 window.location.href="/pages/dashboard.html";

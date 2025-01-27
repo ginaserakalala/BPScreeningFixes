@@ -1,215 +1,216 @@
 document.getElementById('screening-id').addEventListener('input', async function (event) {
-  const screeningID = event.target.value; // Get the current value of the input field
-  const messageElement = document.getElementById('screening-id-message'); // Element to show the message
-  const submitButton = document.querySelector('form button[type="submit"]'); // Get the form submit button
+    const screeningID = event.target.value; // Get the current value of the input field
+    const messageElement = document.getElementById('screening-id-message'); // Element to show the message
+    const submitButton = document.querySelector('form button[type="submit"]'); // Get the form submit button
 
-  // Clear the message element if the field is empty or invalid
-  if (!screeningID || screeningID.length !== 5) {
-    messageElement.textContent = ''; // Clear the message
-    messageElement.style.color = ''; // Reset styling
-    if (submitButton) submitButton.disabled = true; // Disable submit button
-    return; // Exit early
-  }
-
-  try {
-    // Make the GET request to the backend
-    const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/check-screening-id?screeningID=${screeningID}`);
-
-    if (response.ok) {
-      // Screening ID is available
-
-      // messageElement.textContent = 'Screening ID is available.';
-      // messageElement.style.color = 'green';
-      if (submitButton) submitButton.disabled = false; // Enable submit button
-    } else if (response.status === 400) {
-      // Screening ID already exists
-      messageElement.textContent = 'Screening ID already exists.';
-      messageElement.style.color = 'red';
-      if (submitButton) submitButton.disabled = true; // Disable submit button
-    } else {
-      // Handle other errors
-      messageElement.textContent = 'Error checking Screening ID.';
-      messageElement.style.color = 'orange';
-      if (submitButton) submitButton.disabled = true; // Disable submit button
+    // Clear the message element if the field is empty or invalid
+    if (!screeningID || screeningID.length !== 5) {
+        messageElement.textContent = ''; // Clear the message
+        messageElement.style.color = ''; // Reset styling
+        if (submitButton) submitButton.disabled = true; // Disable submit button
+        return; // Exit early
     }
-  } catch (error) {
-    // Handle network errors
-    console.error('Error checking Screening ID:', error);
-    messageElement.textContent = 'Error while connecting to the server.';
-    messageElement.style.color = 'orange';
-    if (submitButton) submitButton.disabled = true; // Disable submit button
-  }
+
+    try {
+        // Make the GET request to the backend
+        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/check-screening-id?screeningID=${screeningID}`);
+
+        if (response.ok) {
+            // Screening ID is available
+
+            // messageElement.textContent = 'Screening ID is available.';
+            // messageElement.style.color = 'green';
+            if (submitButton) submitButton.disabled = false; // Enable submit button
+        } else if (response.status === 400) {
+            // Screening ID already exists
+            messageElement.textContent = 'Screening ID already exists.';
+            messageElement.style.color = 'red';
+            if (submitButton) submitButton.disabled = true; // Disable submit button
+        } else {
+            // Handle other errors
+            messageElement.textContent = 'Error checking Screening ID.';
+            messageElement.style.color = 'orange';
+            if (submitButton) submitButton.disabled = true; // Disable submit button
+        }
+    } catch (error) {
+        // Handle network errors
+        console.error('Error checking Screening ID:', error);
+        messageElement.textContent = 'Error while connecting to the server.';
+        messageElement.style.color = 'orange';
+        if (submitButton) submitButton.disabled = true; // Disable submit button
+    }
 });
 
 
 // Add an event listener to the search button
-    document.getElementById('search-btn').addEventListener('click', async () => {
-        // Get the search input value
-        const searchInput = document.getElementById('search-input').value;
+document.getElementById('search-btn').addEventListener('click', async () => {
+    // Get the search input value
+    const searchInput = document.getElementById('search-input').value;
 
-        // Make a GET request to the API to search for the screening ID
-        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${searchInput}`);
+    // Make a GET request to the API to search for the screening ID
+    const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${searchInput}`);
 
-        // Check if the response was successful
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
+    // Check if the response was successful
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
 
-            // Populate the demographics form with the search results
-            document.getElementById('screening-id').value = data.screeningID;
-            document.getElementById('first-name').value = data.firstName;
-            document.getElementById('last-name').value = data.lastName;
-            document.getElementById('dob').value = data.dateOfBirth;
-            document.getElementById('age').value = data.age;
+        // Populate the demographics form with the search results
+        document.getElementById('screening-id').value = data.screeningID;
+        document.getElementById('first-name').value = data.firstName;
+        document.getElementById('last-name').value = data.lastName;
+        document.getElementById('dob').value = data.dateOfBirth;
+        document.getElementById('age').value = data.age;
 
-            //Set the selected option for grade
-            const gradeSelect = document.getElementById('grade');
-            const gradeOptions = gradeSelect.options;
-            for(let i=0;i<gradeOptions;i++){
-            if(gradeOptions[i].value === data.grade){
+        //Set the selected option for grade
+        const gradeSelect = document.getElementById('grade');
+        const gradeOptions = gradeSelect.options;
+        for (let i = 0; i < gradeOptions; i++) {
+            if (gradeOptions[i].value === data.grade) {
                 gradeOptions[i].selected = true;
                 break;
             }
-            }
+        }
 
-            //Set the selected option for sex
-            const sexSelect = document.getElementById('sex');
-            const sexOptions = sexSelect.options;
-            for(let i=0;i< sexOptions;i++){
-            if(sexOptions[i].value === data.sex){
+        //Set the selected option for sex
+        const sexSelect = document.getElementById('sex');
+        const sexOptions = sexSelect.options;
+        for (let i = 0; i < sexOptions; i++) {
+            if (sexOptions[i].value === data.sex) {
                 sexOptions[i].selected = true;
                 break;
             }
-            }
+        }
 
-            //Set the selected option for school name
-            const schoolNameSelect = document.getElementById('school-name');
-            const schoolNameOption = schoolNameSelect.options;
-            for(let i=0;i<schoolNameOption;i++){
-                if(schoolNameOption[i].value === data.schoolName){
-                    schoolNameOption[i].selected = true;
-                    break;
-                }
+        //Set the selected option for school name
+        const schoolNameSelect = document.getElementById('school-name');
+        const schoolNameOption = schoolNameSelect.options;
+        for (let i = 0; i < schoolNameOption; i++) {
+            if (schoolNameOption[i].value === data.schoolName) {
+                schoolNameOption[i].selected = true;
+                break;
             }
-        } else {
-        alert("Error searching for demographics screening ID")
         }
-            console.error('Error searching for screening ID');
-        }
+
+    } else {
+        alert('Screening ID not found');
+    }
+    if(!response.ok){
+        console.error("Error retrieving the screening ID");
+    }
+});
+
+// Add an event listener to the update button
+document.getElementById('update-btn').addEventListener('click', async () => {
+    // Get the demographics form data
+    const screeningID = document.getElementById('screening-id').value;
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const dateOfBirth = document.getElementById('dob').value;
+    const grade = document.getElementById('grade').value;
+    const sex = document.getElementById('sex').value;
+    const age = document.getElementById('age').value;
+    const schoolName = document.getElementById('school-name').value;
+
+    // Create a JSON payload
+    const payload = {
+        screeningID: screeningID,
+        firstName: firstName,
+        lastName: lastName,
+        grade: grade,
+        age: age,
+        sex: sex,
+        dateOfBirth: dateOfBirth,
+        schoolName: schoolName
+    };
+
+    // Make a PUT request to the API to update the demographics data
+    const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${screeningID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
     });
 
-    // Add an event listener to the update button
-    document.getElementById('update-btn').addEventListener('click', async () => {
-        // Get the demographics form data
-        const screeningID = document.getElementById('screening-id').value;
-        const firstName = document.getElementById('first-name').value;
-        const lastName = document.getElementById('last-name').value;
-        const dateOfBirth = document.getElementById('dob').value;
-        const grade = document.getElementById('grade').value;
-        const sex = document.getElementById('sex').value;
-        const age = document.getElementById('age').value;
-        const schoolName = document.getElementById('school-name').value;
-
-        // Create a JSON payload
-        const payload = {
-            screeningID: screeningID,
-            firstName: firstName,
-            lastName: lastName,
-            grade: grade,
-            age: age,
-            sex: sex,
-            dateOfBirth: dateOfBirth,
-            schoolName: schoolName
-        };
-
-        // Make a PUT request to the API to update the demographics data
-        const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics/${screeningID}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        });
-
-        // Check if the response was successful
-        if (response.ok) {
-            alert('Demographics data updated successfully!');
-        } else {
-            console.error('Error updating demographics data');
-        }
-    });
+    // Check if the response was successful
+    if (response.ok) {
+        alert('Demographics data updated successfully!');
+    } else {
+        console.error('Error updating demographics data');
+    }
+});
 
 // Check the user's role and conditionally render the search and update buttons
-    const role= localStorage.getItem('role');
-    if(role === 'admin'){
-        // Render the search and update buttons
-        document.getElementById('search-container').style.display='block';
-        document.getElementById('update-btn').style.display = 'block';
-    }
-    else{
-        // Hide the search and update buttons
-        document.getElementById('search-container').style.display='none';
-        document.getElementById('update-btn').style.display = 'none';
-    }
+const role = localStorage.getItem('role');
+if (role === 'admin') {
+    // Render the search and update buttons
+    document.getElementById('search-container').style.display = 'block';
+    document.getElementById('update-btn').style.display = 'block';
+} else {
+    // Hide the search and update buttons
+    document.getElementById('search-container').style.display = 'none';
+    document.getElementById('update-btn').style.display = 'none';
+}
 
 
-     const demographicsForm = document.getElementById('demographics-form');
+const demographicsForm = document.getElementById('demographics-form');
 
-        if (demographicsForm) {
-            demographicsForm.addEventListener('submit', async (event) => {
-                // Prevent the default form submission behavior
-                event.preventDefault();
+if (demographicsForm) {
+    demographicsForm.addEventListener('submit', async (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
 
-                try {
-                    // Get the form data
-                    const screeningID = document.getElementById('screening-id').value;
-                    const firstName = document.getElementById('first-name').value;
-                    const lastName = document.getElementById('last-name').value;
-                    const dateOfBirth = document.getElementById('dob').value;
-                    const grade = document.getElementById('grade').value;
-                    const sex = document.getElementById('sex').value;
-                    const age = document.getElementById('age').value;
-                    const schoolName = document.getElementById('school-name').value;
+        try {
+            // Get the form data
+            const screeningID = document.getElementById('screening-id').value;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const dateOfBirth = document.getElementById('dob').value;
+            const grade = document.getElementById('grade').value;
+            const sex = document.getElementById('sex').value;
+            const age = document.getElementById('age').value;
+            const schoolName = document.getElementById('school-name').value;
 
-                    // Get the user's ID from local storage
-                    const userID = localStorage.getItem('userID');
+            // Get the user's ID from local storage
+            const userID = localStorage.getItem('userID');
 
-                    // Create a JSON payload
-                    const payload = {
-                        screeningID: screeningID,
-                        firstName: firstName,
-                        lastName: lastName,
-                        grade: grade,
-                        age: age,
-                        sex: sex,
-                        dateOfBirth: dateOfBirth,
-                        schoolName: schoolName,
-                        userID: userID
-                    };
-                    // Send a POST request to the demographics API endpoint
-                    const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(payload),
-                    });
-
-                    // Check if the response was successful
-                    if (!response.ok) {
-                        console.log(`Error submitting demographics form: ${response.statusText}`);
-                    }
-
-                    // Display a success message
-                    alert('Demographics Form submitted! Please click OK to continue');
-
-                    location.reload();
-                } catch (error) {
-                    // Log any errors
-                    console.error(error);
-                }
+            // Create a JSON payload
+            const payload = {
+                screeningID: screeningID,
+                firstName: firstName,
+                lastName: lastName,
+                grade: grade,
+                age: age,
+                sex: sex,
+                dateOfBirth: dateOfBirth,
+                schoolName: schoolName,
+                userID: userID
+            };
+            // Send a POST request to the demographics API endpoint
+            const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/demographics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
             });
+
+            // Check if the response was successful
+            if (!response.ok) {
+                console.log(`Error submitting demographics form: ${response.statusText}`);
+            }
+
+            // Display a success message
+            alert('Demographics Form submitted! Please click OK to continue');
+
+            location.reload();
+        } catch (error) {
+            // Log any errors
+            console.error(error);
         }
+    });
+}
 
 
 

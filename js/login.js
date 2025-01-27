@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit',
                 localStorage.setItem('role', responseData.role); //Store user's role in local storage
                 localStorage.setItem('userID',responseData.userID); //Store user's id in local storage
 
-                 console.log('Set userID from local storage:', localStorage.getItem('userID'));
+                 console.log('Get userID from local storage:', localStorage.getItem('userID'));
 
 
                 document.getElementById('loginError').textContent = responseData;

@@ -177,8 +177,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
    }
     console.error('Error updating eyes data');
 
-  }
-});
+  });
 
 // Select the form
 const eyesForm = document.getElementById('eyes-form');

@@ -193,8 +193,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   alert("Error updating ears data. Please try again.")
   }
     console.error('Error updating ears data');
-  }
-});
+  });
 
 const earsForm = document.getElementById('ears-form');
 if (earsForm) {

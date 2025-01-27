@@ -149,8 +149,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   alert('Error updating oral health data. Please try again.')
   }
     console.error('Error updating oral health data');
-  }
-});
+  });
 
 const oralHealthForm = document.getElementById('oral-health-form');
 if (oralHealthForm) {

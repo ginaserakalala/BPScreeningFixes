@@ -71,32 +71,162 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     if (data.exists) {
       // Populate the eyes form with the search results
       document.getElementById('screening-id').value = data.screeningId;
-      document.getElementById('dischargeYes').checked = data.discharge === 'yes';
-      document.getElementById('dischargeNo').checked = data.discharge === 'no';
-      document.getElementById('dischargeSeverity').value = data.dischargeSeverity;
-      document.getElementById('inflammationYes').checked = data.inflammation === 'yes';
-      document.getElementById('inflammationNo').checked = data.inflammation === 'no';
-      document.getElementById('inflammationSeverity').value = data.inflammationSeverity;
-      document.getElementById('squintYes').checked = data.squint === 'yes';
-      document.getElementById('squintNo').checked = data.squint === 'no';
-      document.getElementById('squintSeverity').value = data.squintSeverity;
-      document.getElementById('otherAbnormalityYes').checked = data.otherAbnormality === 'yes';
-      document.getElementById('otherAbnormalityNo').checked = data.otherAbnormality === 'no';
-      document.getElementById('otherAbnormalitySeverity').value = data.otherAbnormalitySeverity;
-      document.getElementById('wearsGlassesYes').checked = data.wearsGlasses === 'yes';
-      document.getElementById('wearsGlassesNo').checked = data.wearsGlasses === 'no';
-      document.getElementById('rightEyeSnellen').value = data.rightEyeSnellen;
-      document.getElementById('leftEyeSnellen').value = data.leftEyeSnellen;
-      document.getElementById('eyeResultSnellenYes').checked = data.eyeResultSnellen === 'yes';
-      document.getElementById('eyeResultSnellenNo').checked = data.eyeResultSnellen === 'no';
-      document.getElementById('od-sph').value = data.odSph;
-      document.getElementById('od-cyl').value = data.odCyl;
-      document.getElementById('od-axis').value = data.odAxis;
-      document.getElementById('os-sph').value = data.osSph;
-      document.getElementById('os-cyl').value = data.osCyl;
-      document.getElementById('os-axis').value = data.osAxis;
-      document.getElementById('os-pd').value = data.osPd;
-      document.getElementById('screeningresult').value = data.screeningResult;
+
+       // Discharge
+              if (data.discharge === 'yes') {
+                  document.getElementById('dischargeYes').checked = true;
+              } else if (data.discharge === 'no') {
+                  document.getElementById('dischargeNo').checked = true;
+              }
+
+              // Discharge Severity
+              const dischargeSeveritySelect = document.getElementById('dischargeSeverity');
+              for (let i = 0; i < dischargeSeveritySelect.options.length; i++) {
+                  if (dischargeSeveritySelect.options[i].value === data.dischargeSeverity) {
+                      dischargeSeveritySelect.options[i].selected = true;
+                      break;
+                  }
+              }
+
+              // Inflammation
+              if (data.inflammation === 'yes') {
+                  document.getElementById('inflammationYes').checked = true;
+              } else if (data.inflammation === 'no') {
+                  document.getElementById('inflammationNo').checked = true;
+              }
+
+              // Inflammation Severity
+              const inflammationSeveritySelect = document.getElementById('inflammationSeverity');
+              for (let i = 0; i < inflammationSeveritySelect.options.length; i++) {
+                  if (inflammationSeveritySelect.options[i].value === data.inflammationSeverity) {
+                      inflammationSeveritySelect.options[i].selected = true;
+                      break;
+                  }
+              }
+
+              // Squint
+              if (data.squint === 'yes') {
+                  document.getElementById('squintYes').checked = true;
+              } else if (data.squint === 'no') {
+                  document.getElementById('squintNo').checked = true;
+              }
+
+              // Squint Severity
+              const squintSeveritySelect = document.getElementById('squintSeverity');
+              for (let i = 0; i < squintSeveritySelect.options.length; i++) {
+                  if (squintSeveritySelect.options[i].value === data.squintSeverity) {
+                      squintSeveritySelect.options[i].selected = true;
+                      break;
+                  }
+              }
+
+              // Other Abnormality
+              if (data.otherAbnormality === 'yes') {
+                  document.getElementById('otherAbnormalityYes').checked = true;
+              } else if (data.otherAbnormality === 'no') {
+                  document.getElementById('otherAbnormalityNo').checked = true;
+              }
+
+              // Other Abnormality Severity
+              const otherAbnormalitySeveritySelect = document.getElementById('otherAbnormalitySeverity');
+              for (let i = 0; i < otherAbnormalitySeveritySelect.options.length; i++) {
+                  if (otherAbnormalitySeveritySelect.options[i].value === data.otherAbnormalitySeverity) {
+                      otherAbnormalitySeveritySelect.options[i].selected = true;
+                      break;
+                  }
+              }
+
+              // Wears Glasses
+              if (data.wearsGlasses === 'yes') {
+                  document.getElementById('wearsGlassesYes').checked = true;
+              } else if (data.wearsGlasses === 'no') {
+                  document.getElementById('wearsGlassesNo').checked = true;
+              }
+
+              // Snellen Test
+              const rightEyeSnellenSelect = document.getElementById('rightEyeSnellen');
+              for (let i = 0; i < rightEyeSnellenSelect.options.length; i++) {
+                  if (rightEyeSnellenSelect.options[i].value === data.rightEyeSnellen) {
+                      rightEyeSnellenSelect.options[i].selected = true;
+                      break;
+                  }
+              }
+
+              const leftEyeSnellenSelect = document.getElementById('leftEyeSnellen');
+              for (let i = 0; i < leftEyeSnellenSelect.options.length; i++) {
+                  if (leftEyeSnellenSelect.options[i].value === data.leftEyeSnellen) {
+                      leftEyeSnellenSelect.options[i].selected = true;
+                      break;
+                  }
+              }
+       if(data.eyeResultSnellen === 'yes'){
+        document.getElementById('eyeResultSnellenYes').checked = true;
+       }
+       else if(data.eyeResultSnellen === 'no'){
+        document.getElementById('eyeResultSnellenNo').checked  = true;
+       }
+
+                const odSphSelect = document.getElementById('od-sph');
+                     for (let i = 0; i < odSphSelect.options.length; i++) {
+                         if (odSphSelect.options[i].value === data.odSph) {
+                             odSphSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+
+                     const odCylSelect = document.getElementById('od-cyl');
+                     for (let i = 0; i < odCylSelect.options.length; i++) {
+                         if (odCylSelect.options[i].value === data.odCyl) {
+                             odCylSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+                  const odAxisSelect = document.getElementById('od-axis');
+                     for (let i = 0; i < odAxisSelect.options.length; i++) {
+                         if (odAxisSelect.options[i].value === data.odAxis) {
+                             odAxisSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+               const osSphSelect = document.getElementById('os-sph');
+                     for (let i = 0; i < osSphSelect.options.length; i++) {
+                         if (osSphSelect.options[i].value === data.osSph) {
+                             osSphSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+               const osCylSelect = document.getElementById('os-cyl');
+                     for (let i = 0; i < osCylSelect.options.length; i++) {
+                         if (osCylSelect.options[i].value === data.osCyl) {
+                             osCylSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+
+
+                     const osAxisSelect = document.getElementById('os-axis');
+                     for (let i = 0; i < osAxisSelect.options.length; i++) {
+                         if (osAxisSelect.options[i].value === data.osAxis) {
+                             osAxisSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+                 const osPdSelect = document.getElementById('os-pd');
+                     for (let i = 0; i < osPdSelect.options.length; i++) {
+                         if (osPdSelect.options[i].value === data.osPd) {
+                             osPdSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+                  const screeningResultSelect = document.getElementById('screeningresult');
+                     for (let i = 0; i < screeningResultSelect.options.length; i++) {
+                         if (screeningResultSelect.options[i].value === data.screeningResult) {
+                             screeningResultSelect.options[i].selected = true;
+                             break;
+                         }
+                     }
+
+
       document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
     } else {
       alert('Screening ID not found');

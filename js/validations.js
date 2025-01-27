@@ -60,11 +60,40 @@ document.getElementById('screening-id').addEventListener('input', async function
             document.getElementById('first-name').value = data.firstName;
             document.getElementById('last-name').value = data.lastName;
             document.getElementById('dob').value = data.dateOfBirth;
-            document.getElementById('grade').value = data.grade;
-            document.getElementById('sex').value = data.sex;
             document.getElementById('age').value = data.age;
-            document.getElementById('school-name').value = data.schoolName;
+
+            //Set the selected option for grade
+            const gradeSelect = document.getElementById('grade');
+            const gradeOptions = gradeSelect.options;
+            for(let i=0;i<gradeOptions;i++){
+            if(gradeOptions[i].value === data.grade){
+                gradeOptions[i].selected = true;
+                break;
+            }
+            }
+
+            //Set the selected option for sex
+            const sexSelect = document.getElementById('sex');
+            const sexOptions = sexSelect.options;
+            for(let i=0;i< sexOptions;i++){
+            if(sexOptions[i].value === data.sex){
+                sexOptions[i].selected = true;
+                break;
+            }
+            }
+
+            //Set the selected option for school name
+            const schoolNameSelect = document.getElementById('school-name');
+            const schoolNameOption = schoolNameSelect.options;
+            for(let i=0;i<schoolNameOption;i++){
+                if(schoolNameOption[i].value === data.schoolName){
+                    schoolNameOption[i].selected = true;
+                    break;
+                }
+            }
         } else {
+        alert("Error searching for demographics screening ID")
+        }
             console.error('Error searching for screening ID');
         }
     });

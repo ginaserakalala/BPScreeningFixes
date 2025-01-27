@@ -73,22 +73,95 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     if (data.exists) {
       // Populate the oral health form with the search results
       document.getElementById('screening-id').value = data.screeningId;
-      document.getElementById('dentalcariesYes').checked = data.dentalcaries === 'yes';
-      document.getElementById('dentalcariesNo').checked = data.dentalcaries === 'no';
-      document.getElementById('dentalcariesSeverity').value = data.dentalcariesSeverity;
-      document.getElementById('gumdiseaseYes').checked = data.gumdisease === 'yes';
-      document.getElementById('gumdiseaseNo').checked = data.gumdisease === 'no';
-      document.getElementById('gumdiseaseSeverity').value = data.gumdiseaseSeverity;
-      document.getElementById('thrushYes').checked = data.thrush === 'yes';
-      document.getElementById('thrushNo').checked = data.thrush === 'no';
-      document.getElementById('thrushSeverity').value = data.thrushSeverity;
-      document.getElementById('otherAbnormalityYes').checked = data.otherAbnormality === 'yes';
-      document.getElementById('otherAbnormalityNo').checked = data.otherAbnormality === 'no';
-      document.getElementById('otherAbnormalitySeverity').value = data.otherAbnormalitySeverity;
-      document.getElementById('teethStainingYes').checked = data.teethStaining === 'yes';
-      document.getElementById('teethStainingNo').checked = data.teethStaining === 'no';
-      document.getElementById('teethStainingSeverity').value = data.teethStainingSeverity;
-      document.getElementById('screeningresult').value = data.screeningResult;
+
+       // Dental Caries
+               if (data.dentalCaries === 'yes') {
+                   document.getElementById('dentalcariesYes').checked = true;
+               } else if (data.dentalCaries === 'no') {
+                   document.getElementById('dentalcariesNo').checked = true;
+               }
+
+               // Dental Caries Severity
+               const dentalCariesSeveritySelect = document.getElementById('dentalcariesSeverity');
+               for (let i = 0; i < dentalCariesSeveritySelect.options.length; i++) {
+                   if (dentalCariesSeveritySelect.options[i].value === data.dentalCariesSeverity) {
+                       dentalCariesSeveritySelect.options[i].selected = true;
+                       break;
+                   }
+               }
+
+               // Gum Disease
+               if (data.gumDisease === 'yes') {
+                   document.getElementById('gumdiseaseYes').checked = true;
+               } else if (data.gumDisease === 'no') {
+                   document.getElementById('gumdiseaseNo').checked = true;
+               }
+
+               // Gum Disease Severity
+               const gumDiseaseSeveritySelect = document.getElementById('gumdiseaseSeverity');
+               for (let i = 0; i < gumDiseaseSeveritySelect.options.length; i++) {
+                   if (gumDiseaseSeveritySelect.options[i].value === data.gumDiseaseSeverity) {
+                       gumDiseaseSeveritySelect.options[i].selected = true;
+                       break;
+                   }
+               }
+
+               // Thrush Sores
+               if (data.thrushSores === 'yes') {
+                   document.getElementById('thrushYes').checked = true;
+               } else if (data.thrushSores === 'no') {
+                   document.getElementById('thrushNo').checked = true;
+               }
+
+               // Thrush Sores Severity
+               const thrushSoresSeveritySelect = document.getElementById('thrushSeverity');
+               for (let i = 0; i < thrushSoresSeveritySelect.options.length; i++) {
+                   if (thrushSoresSeveritySelect.options[i].value === data.thrushSoresSeverity) {
+                       thrushSoresSeveritySelect.options[i].selected = true;
+                       break;
+                   }
+               }
+
+               // Other Abnormality
+               if (data.otherAbnormality === 'yes') {
+                   document.getElementById('otherAbnormalityYes').checked = true;
+               } else if (data.otherAbnormality === 'no') {
+                   document.getElementById('otherAbnormalityNo').checked = true;
+               }
+
+               // Other Abnormality Severity
+               const otherAbnormalitySeveritySelect = document.getElementById('otherAbnormalitySeverity');
+               for (let i = 0; i < otherAbnormalitySeveritySelect.options.length; i++) {
+                   if (otherAbnormalitySeveritySelect.options[i].value === data.otherAbnormalitySeverity) {
+                       otherAbnormalitySeveritySelect.options[i].selected = true;
+                       break;
+                   }
+               }
+
+               // Teeth Staining
+               if (data.teethStaining === 'yes') {
+                   document.getElementById('teethStainingYes').checked = true;
+               } else if (data.teethStaining === 'no') {
+                   document.getElementById('teethStainingNo').checked = true;
+               }
+
+               // Teeth Staining Severity
+               const teethStainingSeveritySelect = document.getElementById('teethStainingSeverity');
+               for (let i = 0; i < teethStainingSeveritySelect.options.length; i++) {
+                   if (teethStainingSeveritySelect.options[i].value === data.teethStainingSeverity) {
+                       teethStainingSeveritySelect.options[i].selected = true;
+                       break;
+                   }
+               }
+
+               // Screening Results
+               const screeningResultSelect = document.getElementById('screeningresult');
+               for (let i = 0; i < screeningResultSelect.options.length; i++) {
+                   if (screeningResultSelect.options[i].value === data.screeningResult) {
+                       screeningResultSelect.options[i].selected = true;
+                       break;
+                   }
+               }
       document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
     } else {
       alert('Screening ID not found');

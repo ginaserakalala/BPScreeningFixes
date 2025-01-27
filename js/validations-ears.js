@@ -71,42 +71,216 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     if (data.exists) {
       // Populate the ears form with the search results
       document.getElementById('screening-id').value = data.screeningId;
-      document.getElementById('dischargeLeftYes').checked = data.dischargeLeft === 'yes';
-      document.getElementById('dischargeLeftNo').checked = data.dischargeLeft === 'no';
-      document.getElementById('dischargeRightYes').checked = data.dischargeRight === 'yes';
-      document.getElementById('dischargeRightNo').checked = data.dischargeRight === 'no';
-      document.getElementById('dischargeLeftSeverity').value = data.dischargeLeftSeverity;
-      document.getElementById('dischargeRightSeverity').value = data.dischargeRightSeverity;
-      document.getElementById('inflammationLeftYes').checked = data.inflammationLeft === 'yes';
-      document.getElementById('inflammationLeftNo').checked = data.inflammationLeft === 'no';
-      document.getElementById('inflammationRightYes').checked = data.inflammationRight === 'yes';
-      document.getElementById('inflammationRightNo').checked = data.inflammationRight === 'no';
-      document.getElementById('inflammationLeftSeverity').value = data.inflammationLeftSeverity;
-      document.getElementById('inflammationRightSeverity').value = data.inflammationRightSeverity;
-      document.getElementById('inflamedLeftYes').checked = data.inflamedLeft === 'yes';
-      document.getElementById('inflamedLeftNo').checked = data.inflamedLeft === 'no';
-      document.getElementById('inflamedRightYes').checked = data.inflamedRight === 'yes';
-      document.getElementById('inflamedRightNo').checked = data.inflamedRight === 'no';
-      document.getElementById('inflamedLeftSeverity').value = data.inflamedLeftSeverity;
-      document.getElementById('inflamedRightSeverity').value = data.inflamedRightSeverity;
-      document.getElementById('otherAbnormalityLeftYes').checked = data.otherAbnormalityLeft === 'yes';
-      document.getElementById('otherAbnormalityLeftNo').checked = data.otherAbnormalityLeft === 'no';
-      document.getElementById('otherAbnormalityRightYes').checked = data.otherAbnormalityRight === 'yes';
-      document.getElementById('otherAbnormalityRightNo').checked = data.otherAbnormalityRight === 'no';
-      document.getElementById('otherAbnormalityLeftSeverity').value = data.otherAbnormalityLeftSeverity;
-      document.getElementById('otherAbnormalityRightSeverity').value = data.otherAbnormalityRightSeverity;
-      document.getElementById('wearsHearingAidYes').checked = data.wearsHearingAid === 'yes';
-      document.getElementById('wearsHearingAidNo').checked = data.wearsHearingAid === 'no';
-      document.getElementById('oaeresultleft').value = data.oaeResultLeft;
-      document.getElementById('oaeresultright').value = data.oaeResultRight;
-      document.getElementById('refer-textbox-left-input').value = data.referCommentLeft;
-      document.getElementById('refer-textbox-right-input').value = data.referCommentRight;
-      document.getElementById('audiometerCheckYes').checked = data.audiometerCheck === 'yes';
-      document.getElementById('audiometerCheckNo').checked = data.audiometerCheck === 'no';
-      document.getElementById('audiometerCheckTypes').value = data.audiometerCheckType;
-      document.getElementById('management').value = data.management;
-      document.getElementById('screeningresult').value = data.screeningResult;
-      document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
+
+      //Check yes result for dischargeLeft
+      if(data.dischargeLeft === 'yes'){
+        document.getElementById('dischargeLeftYes').checked = true;
+      }
+      else if(data.dischargeLeft === 'no'){
+      document.getElementById('dischargeLeftNo').checked = true;
+      }
+
+      if(data.dischargeRight === 'yes'){
+        document.getElementById('dischargeRightYes').checked = true;
+      }
+      else if(data.dischargeRight === 'no'){
+        document.getElementById('dischargeRightNo').checked = true;
+      }
+
+      const dischargeLeftSeveritySelect = document.getElementById('dischargeLeftSeverity');
+      const dischargeLeftSeverityOption = dischargeLeftSeveritySelect.options;
+
+      for(let i=0;i<dischargeLeftSeveritySelect;i++){
+        if(dischargeLeftSeverityOption[i].value === data.dischargeLeftSeverity ){
+            dischargeLeftSeverityOption[i].selected = true;
+            break;
+        }
+      }
+
+      const dischargeRightSeveritySelect = document.getElementById('dischargeRightSeverity');
+      const dischargeRightSeverityOption = dischargeRightSeveritySelect.options;
+
+            for(let i=0;i<dischargeRightSeveritySelect;i++){
+              if(dischargeRightSeverityOption[i].value === data.dischargeRightSeverity ){
+                  dischargeRightSeverityOption[i].selected = true;
+                  break;
+              }
+            }
+      if(data.inflammationLeft === 'yes'){
+            document.getElementById('inflammationLeftYes').checked = true;
+      }
+       else if(data.inflammationLeft === 'no'){
+        document.getElementById('inflammationLeftNo').checked = true;
+       }
+      if(data.inflammationRight === 'yes'){
+        document.getElementById('inflammationRightYes').checked = true;
+      }
+      else if(data.inflammationRight === 'no'){
+        document.getElementById('inflammationRightNo').checked = true;
+      }
+
+      const inflammationLeftSeveritySelect = document.getElementById('inflammationLeftSeverity');
+      const inflammationLeftSeverityOption = inflammationLeftSeveritySelect.options;
+      for(let i =0;i<inflammationLeftSeverityOption;i++){
+        if(inflammationLeftSeverityOption[i].value === data.inflammationLeftSeverity){
+            inflammationLeftSeverityOption[i].selected = true;
+            break;
+        }
+      }
+
+      const inflammationRightSeveritySelect = document.getElementById('inflammationLeftSeverity');
+      const inflammationRightSeverityOption = inflammationRightSeveritySelect.options;
+            for(let i =0;i<inflammationLeftSeverityOption;i++){
+              if(inflammationRightSeverityOption[i].value === data.inflammationRightSeverity){
+                  inflammationRightSeverityOption[i].selected = true;
+                  break;
+              }
+            }
+
+         if(data.inflamedLeft === 'yes'){
+              document.getElementById('inflamedLeftYes').checked = true;
+            }
+            else if(data.inflamedLeft === 'no'){
+              document.getElementById('inflamedLeftNo').checked = true;
+            }
+
+            if(data.inflamedRight === 'yes'){
+                   document.getElementById('inflamedRightYes').checked = true;
+                 }
+       else if(data.inflamedRight === 'no'){
+               document.getElementById('inflamedRightNo').checked  = true;
+            }
+
+             if(data.otherAbnormalityLeft === 'yes'){
+                   document.getElementById('otherAbnormalityLeftYes').checked = true;
+                 }
+       else if(data.otherAbnormalityLeft === 'no'){
+               document.getElementById('otherAbnormalityLeftNo').checked  = true;
+            }
+
+            if(data.otherAbnormalityRight === 'yes'){
+                   document.getElementById('otherAbnormalityRightYes').checked = true;
+                 }
+       else if(data.otherAbnormalityRight === 'no'){
+               document.getElementById('otherAbnormalityRightNo').checked  = true;
+            }
+
+             if(data.wearsHearingAid === 'yes'){
+                   document.getElementById('wearsHearingAidYes').checked= true;
+                 }
+       else if(data.wearsHearingAid === 'no'){
+               document.getElementById('wearsHearingAidNo').checked  = true;
+            }
+
+
+              if(data.audiometerCheck === 'yes'){
+                   document.getElementById('audiometerCheckYes').checked= true;
+                 }
+       else if(data.audiometerCheck === 'no'){
+               document.getElementById('audiometerCheckNo').checked  = true;
+            }
+
+            const inflamedLeftSeveritySelect = document.getElementById('inflamedLeftSeverity');
+              const inflamedLeftSeverityOption = inflamedLeftSeveritySelect.options;
+                    for(let i =0;i<inflamedLeftSeverityOption;i++){
+                      if(inflamedLeftSeverityOption[i].value === data.inflamedLeftSeverity){
+                          inflamedLeftSeverityOption[i].selected = true;
+                          break;
+                      }
+                    }
+               const inflamedRightSeveritySelect = document.getElementById('inflamedRightSeverity');
+              const inflamedRightSeverityOption = inflamedRightSeveritySelect.options;
+                    for(let i =0;i<inflamedRightSeverityOption;i++){
+                      if(inflamedRightSeverityOption[i].value === data.inflamedRightSeverity){
+                          inflamedRightSeverityOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+
+              const otherAbnormalityLeftSeveritySelect = document.getElementById('otherAbnormalityLeftSeverity');
+              const otherAbnormalityLeftSeverityOption = otherAbnormalityLeftSeveritySelect.options;
+                    for(let i =0;i<otherAbnormalityLeftSeverityOption;i++){
+                      if(otherAbnormalityLeftSeverityOption[i].value === data.otherAbnormalityLeftSeverity){
+                          otherAbnormalityLeftSeverityOption[i].selected = true;
+                          break;
+                      }
+                    }
+             const otherAbnormalityRightSeveritySelect = document.getElementById('otherAbnormalityRightSeverity');
+              const otherAbnormalityRightSeverityOption = otherAbnormalityRightSeveritySelect.options;
+                    for(let i =0;i<otherAbnormalityRightSeverityOption;i++){
+                      if(otherAbnormalityRightSeverityOption[i].value === data.otherAbnormalityRightSeverity){
+                          otherAbnormalityRightSeverityOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+
+              const oaeResultLeftSelect = document.getElementById('oaeresultleft');
+              const oaeResultLeftOption = oaeResultLeftSelect.options;
+                    for(let i =0;i<oaeResultLeftOption;i++){
+                      if(oaeResultLeftOption[i].value === data.oaeResultLeft){
+                          oaeResultLeftOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+              const oaeResultRightSelect = document.getElementById('oaeresultright');
+              const oaeResultRightOption = oaeResultRightSelect.options;
+                    for(let i =0;i<oaeResultRightOption;i++){
+                      if(oaeResultRightOption[i].value === data.oaeResultRight){
+                          oaeResultRightOption[i].selected = true;
+                          break;
+                      }
+                    }
+              const referCommentLeftSelect = document.getElementById('refer-textbox-left-input');
+              const referCommentLeftOption = referCommentLeftSelect.options;
+                    for(let i =0;i<referCommentLeftOption;i++){
+                      if(referCommentLeftOption[i].value === data.referCommentLeft){
+                          referCommentLeftOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+              const referCommentRightSelect = document.getElementById('refer-textbox-right-input');
+              const referCommentRightOption = referCommentRightSelect.options;
+                    for(let i =0;i<referCommentRightOption;i++){
+                      if(referCommentRightOption[i].value === data.referCommentRight){
+                          referCommentRightOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+
+
+              const audiometerCheckTypeSelect = document.getElementById('audiometerCheckTypes');
+              const audiometerCheckTypeOption = audiometerCheckTypeSelect.options;
+                    for(let i =0;i<audiometerCheckTypeOption;i++){
+                      if(audiometerCheckTypeOption[i].value === data.audiometerCheckType){
+                          audiometerCheckTypeOption[i].selected = true;
+                          break;
+                      }
+                    }
+              const managementSelect = document.getElementById('management');
+              const managementOption = managementSelect.options;
+                    for(let i =0;i<managementOption;i++){
+                      if(managementOption[i].value === data.management){
+                          managementOption[i].selected = true;
+                          break;
+                      }
+                    }
+              const screeningResultSelect = document.getElementById('screeningresult');
+              const screeningResultOption = screeningResultSelect.options;
+                    for(let i =0;i<screeningResultOption;i++){
+                      if(screeningResultOption[i].value === data.screeningResult){
+                          screeningResultOption[i].selected = true;
+                          break;
+                      }
+                    }
+
+           document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
+
+
     } else {
       alert('Screening ID not found');
     }

@@ -103,7 +103,6 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 // Add an event listener to the update button
 document.getElementById('update-btn').addEventListener('click', async () => {
     // Get the demographics form data
-    const screeningID = document.getElementById('screening-id').value;
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
     const dateOfBirth = document.getElementById('dob').value;
@@ -114,7 +113,6 @@ document.getElementById('update-btn').addEventListener('click', async () => {
 
     // Create a JSON payload
     const payload = {
-        screeningID: screeningID,
         firstName: firstName,
         lastName: lastName,
         grade: grade,

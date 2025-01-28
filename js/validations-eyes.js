@@ -165,58 +165,20 @@ document.getElementById('search-btn').addEventListener('click', async () => {
         document.getElementById('eyeResultSnellenNo').checked  = true;
        }
 
-                const odSphSelect = document.getElementById('od-sph');
-                     for (let i = 0; i < odSphSelect.options.length; i++) {
-                         if (odSphSelect.options[i].value === data.odSph) {
-                             odSphSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
+       document.getElementById('od-sph').value =data.odSph;
 
-                     const odCylSelect = document.getElementById('od-cyl');
-                     for (let i = 0; i < odCylSelect.options.length; i++) {
-                         if (odCylSelect.options[i].value === data.odCyl) {
-                             odCylSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
-                  const odAxisSelect = document.getElementById('od-axis');
-                     for (let i = 0; i < odAxisSelect.options.length; i++) {
-                         if (odAxisSelect.options[i].value === data.odAxis) {
-                             odAxisSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
-               const osSphSelect = document.getElementById('os-sph');
-                     for (let i = 0; i < osSphSelect.options.length; i++) {
-                         if (osSphSelect.options[i].value === data.osSph) {
-                             osSphSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
-               const osCylSelect = document.getElementById('os-cyl');
-                     for (let i = 0; i < osCylSelect.options.length; i++) {
-                         if (osCylSelect.options[i].value === data.osCyl) {
-                             osCylSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
+                document.getElementById('od-cyl').value = data.odCyl;
 
+               document.getElementById('od-axis').value = data.odAxis;
 
-                     const osAxisSelect = document.getElementById('os-axis');
-                     for (let i = 0; i < osAxisSelect.options.length; i++) {
-                         if (osAxisSelect.options[i].value === data.osAxis) {
-                             osAxisSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
-                 const osPdSelect = document.getElementById('os-pd');
-                     for (let i = 0; i < osPdSelect.options.length; i++) {
-                         if (osPdSelect.options[i].value === data.osPd) {
-                             osPdSelect.options[i].selected = true;
-                             break;
-                         }
-                     }
+               document.getElementById('os-sph').value = data.osSph;
+
+               document.getElementById('os-cyl').value = data.osCyl;
+
+               document.getElementById('os-axis').value = data.osAxis;
+
+                 document.getElementById('os-pd').value = data.osPd;
+
                   const screeningResultSelect = document.getElementById('screeningresult');
                      for (let i = 0; i < screeningResultSelect.options.length; i++) {
                          if (screeningResultSelect.options[i].value === data.screeningResult) {

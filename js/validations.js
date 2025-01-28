@@ -95,7 +95,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     }
     if(!response.ok){
         alert("Error retrieving the screening ID");
-        const data = await response.json();
+        const data = await response.text();
         console.log(`demographics failure data is ${data}`);
         console.error("Error retrieving the screening ID");
     }

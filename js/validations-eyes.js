@@ -228,10 +228,9 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 
 
       document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
-    } else {
-      alert('Screening ID not found');
     }
-  } else {
+  } if(!response.ok) {
+      alert('Error searching for screening id');
     console.error('Error searching for screening ID');
   }
 });

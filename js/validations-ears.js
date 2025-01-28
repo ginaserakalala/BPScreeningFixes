@@ -282,7 +282,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 
 
     }
-  } else {
+  } if(!response.ok) {
       alert("Error searching for screening ID");
     console.error('Error searching for screening ID');
   }

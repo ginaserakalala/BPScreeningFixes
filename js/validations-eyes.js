@@ -301,9 +301,9 @@ document.getElementById('update-btn').addEventListener('click', async () => {
     alert('Eyes data updated successfully!');
   }
    else {
-   alert('Error updating eyes data. Please try again.')
+      console.error('Error updating eyes data');
    }
-    console.error('Error updating eyes data');
+
 
   });
 

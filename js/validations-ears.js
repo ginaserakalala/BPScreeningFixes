@@ -359,9 +359,9 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   if (response.ok) {
     alert('Ears data updated successfully!');
   } else {
-  alert("Error updating ears data. Please try again.")
+      console.error('Error updating ears data');
   }
-    console.error('Error updating ears data');
+
   });
 
 const earsForm = document.getElementById('ears-form');

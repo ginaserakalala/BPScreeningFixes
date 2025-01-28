@@ -216,9 +216,9 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   if (response.ok) {
     alert('Oral health data updated successfully!');
   } else {
-  alert('Error updating oral health data. Please try again.')
+      console.error('Error updating oral health data');
   }
-    console.error('Error updating oral health data');
+
   });
 
 const oralHealthForm = document.getElementById('oral-health-form');

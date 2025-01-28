@@ -65,12 +65,11 @@ document.getElementById('search-btn').addEventListener('click', async () => {
   // Check if the response was successful
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
 
-    // Check if the screening ID exists
-    if (data.exists) {
+
+
       // Populate the eyes form with the search results
-      document.getElementById('screening-id').value = data.screeningId;
+      document.getElementById('screening-id').value = data.screeningID;
 
        // Discharge
               if (data.discharge === 'yes') {
@@ -229,7 +228,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 
       document.getElementById('exampleFormControlTextarea1').value = data.additionalComments;
     }
-  } if(!response.ok) {
+   if(!response.ok) {
       alert('Error searching for screening id');
     console.error('Error searching for screening ID');
   }
@@ -261,7 +260,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   const osPd = document.getElementById('os-pd').value;
   const screeningResult = document.getElementById('screeningresult').value;
   const additionalComments = document.getElementById('exampleFormControlTextarea1').value;
-
+    const screeningID = document.getElementById('screening-id').value;
   // Create a JSON payload
   const payload = {
 
@@ -289,7 +288,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   };
 
   // Make a PUT request to the API to update the eyes data
-  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes/${screeningId}`, {
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/eyes/${screeningID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

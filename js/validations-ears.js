@@ -65,12 +65,10 @@ document.getElementById('search-btn').addEventListener('click', async () => {
   // Check if the response was successful
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
 
-    // Check if the screening ID exists
-    if (data.exists) {
+
       // Populate the ears form with the search results
-      document.getElementById('screening-id').value = data.screeningId;
+      document.getElementById('screening-id').value = data.screeningID;
 
       //Check yes result for dischargeLeft
       if(data.dischargeLeft === 'yes'){
@@ -282,7 +280,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 
 
     }
-  } if(!response.ok) {
+  if(!response.ok) {
       alert("Error searching for screening ID");
     console.error('Error searching for screening ID');
   }
@@ -317,7 +315,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   const management = document.getElementById('management').value;
   const screeningResult = document.getElementById('screeningresult').value;
   const additionalComments = document.getElementById('exampleFormControlTextarea1').value;
-
+  const screeningID = document.getElementById('screening-id').value;
   // Create a JSON payload
   const payload = {
     dischargeLeft: dischargeLeft,
@@ -349,7 +347,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
   };
 
   // Make a PUT request to the API to update the ears data
-  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears/${screeningId}`, {
+  const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/ears/${screeningID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

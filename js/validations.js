@@ -53,7 +53,6 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     // Check if the response was successful
     if (response.ok) {
         const data = await response.json();
-        console.log(`demographics zzzzzz ${data}`);
 
         // Populate the demographics form with the search results
         document.getElementById('screening-id').value = data.screeningID;

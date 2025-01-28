@@ -240,7 +240,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 // Add an event listener to the update button
 document.getElementById('update-btn').addEventListener('click', async () => {
   // Get the eyes form data
-  const screeningId = document.getElementById('screening-id').value;
+
   const discharge = document.getElementById('dischargeYes').checked ? 'yes' : 'no';
   const dischargeSeverity = document.getElementById('dischargeSeverity').value;
   const inflammation = document.getElementById('inflammationYes').checked ? 'yes' : 'no';
@@ -265,7 +265,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
 
   // Create a JSON payload
   const payload = {
-    screeningId: screeningId,
+
     discharge: discharge,
     dischargeSeverity: dischargeSeverity,
     inflammation: inflammation,

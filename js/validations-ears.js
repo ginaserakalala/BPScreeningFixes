@@ -292,7 +292,6 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 // Add an event listener to the update button
 document.getElementById('update-btn').addEventListener('click', async () => {
   // Get the ears form data
-  const screeningId = document.getElementById('screening-id').value;
   const dischargeLeft = document.getElementById('dischargeLeftYes').checked ? 'yes' : 'no';
   const dischargeRight = document.getElementById('dischargeRightYes').checked ? 'yes' : 'no';
   const dischargeLeftSeverity = document.getElementById('dischargeLeftSeverity').value;
@@ -322,7 +321,6 @@ document.getElementById('update-btn').addEventListener('click', async () => {
 
   // Create a JSON payload
   const payload = {
-    screeningId: screeningId,
     dischargeLeft: dischargeLeft,
     dischargeRight: dischargeRight,
     dischargeLeftSeverity: dischargeLeftSeverity,

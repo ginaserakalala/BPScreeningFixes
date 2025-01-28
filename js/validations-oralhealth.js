@@ -175,7 +175,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 // Add an event listener to the update button
 document.getElementById('update-btn').addEventListener('click', async () => {
   // Get the oral health form data
-  const screeningId = document.getElementById('screening-id').value;
+
   const dentalcaries = document.getElementById('dentalcariesYes').checked ? 'yes' : 'no';
   const dentalcariesSeverity = document.getElementById('dentalcariesSeverity').value;
   const gumdisease = document.getElementById('gumdiseaseYes').checked ? 'yes' : 'no';
@@ -191,7 +191,7 @@ document.getElementById('update-btn').addEventListener('click', async () => {
 
   // Create a JSON payload
   const payload = {
-    screeningId: screeningId,
+
     dentalcaries: dentalcaries,
     dentalcariesSeverity: dentalcariesSeverity,
     gumdisease: gumdisease,

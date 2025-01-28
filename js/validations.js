@@ -53,7 +53,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     // Check if the response was successful
     if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        console.log(`demographics zzzzzz ${data}`);
 
         // Populate the demographics form with the search results
         document.getElementById('screening-id').value = data.screeningID;
@@ -92,10 +92,11 @@ document.getElementById('search-btn').addEventListener('click', async () => {
             }
         }
 
-    } else {
-        alert('Screening ID not found');
     }
     if(!response.ok){
+        alert("Error retrieving the screening ID");
+        const data = await response.json();
+        console.log(`demographics failure data is ${data}`);
         console.error("Error retrieving the screening ID");
     }
 });

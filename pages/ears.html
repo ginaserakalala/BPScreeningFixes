@@ -25,6 +25,32 @@
         </div>
 
 
+        <label class="form-check-label" for="foreignBodyDetectionLeft">Foreign Body Detection</label>
+        <div>
+          <input class="form-check-input" type="checkbox" name="foreignBodyDetectionLeft" id="foreignBodyDetectionLeftYes" value="yes">
+          <label class="form-check-label" for="foreignBodyDetectionLeftYes">Yes</label>
+          <input class="form-check-input" type="checkbox" name="foreignBodyDetectionLeft" id="foreignBodyDetectionLeftNo" value="no">
+          <label class="form-check-label" for="foreignBodyDetectionLeftNo">No</label>
+          <small id="foreignBodyDetectionLeft-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+        </div>
+        <br>
+
+        <label class="form-check-label" for="foreignBodyDetectionRight">Foreign Body Detection</label>
+        <div>
+          <input class="form-check-input" type="checkbox" name="foreignBodyDetectionRight" id="foreignBodyDetectionRightYes" value="yes">
+          <label class="form-check-label" for="foreignBodyDetectionRightYes">Yes</label>
+          <input class="form-check-input" type="checkbox" name="foreignBodyDetectionRight" id="foreignBodyDetectionRightNo" value="no">
+          <label class="form-check-label" for="foreignBodyDetectionRightNo">No</label>
+          <small id="foreignBodyDetectionRight-warning" style="margin-left:180px;display:none; font-weight:bold;" class="text-danger">Please select Yes or No</small>
+        </div>
+        <br>
+
+        <div id="managementRemovalContainer" style="display: none; margin-top: 10px;">
+          <label for="managementRemovalBox">Management Removal</label>
+          <textarea id="managementRemovalBox" name="managementRemoval" class="form-control" rows="3" placeholder="Provide details..."></textarea>
+        </div>
+
+
         <label class="form-check-label" for="dischargeLeft">Discharge Left</label>
         <div>
           <input class="form-check-input" type="checkbox" name="dischargeLeft" id="dischargeLeftYes" value="yes">
@@ -113,7 +139,6 @@
         </div>
         <br>
 
-
         <label class="form-check-label" for="inflamedLeft">Inflamed Eardrum Left</label>
         <div>
           <input class="form-check-input" type="checkbox" name="inflamedLeft" id="inflamedLeftYes" value="yes">
@@ -197,6 +222,7 @@
           </select>
         </div>
         <br>
+
          <label class="form-check-label" for="wearsHearingAid">Wears Hearing Aid</label>
         <div>
           <input class="form-check-input" type="checkbox" name="wearsHearingAid" id="wearsHearingAidYes" value="yes">
@@ -207,36 +233,36 @@
         </div>
 
 
-        <div class="mb-3 mt-4">
-          <label for="oaeresultright" class="form-label">OAE Right</label>
-          <select id="oaeresultright" class="form-select" required>
-            <option value="" disabled selected>Choose Option</option>
-            <option value="Pass">Pass</option>
-            <option value="Refer">Refer</option>
+<!--        <div class="mb-3 mt-4">-->
+<!--          <label for="oaeresultright" class="form-label">OAE Right</label>-->
+<!--          <select id="oaeresultright" class="form-select" required>-->
+<!--            <option value="" disabled selected>Choose Option</option>-->
+<!--            <option value="Pass">Pass</option>-->
+<!--            <option value="Refer">Refer</option>-->
 
-          </select>
+<!--          </select>-->
 
 
-        </div>
-        <div id="refer-textbox-right" style="display: none;">
-          <label for="refer-textbox-right-input" class="form-label">Refer Comment Right</label>
-          <textarea id="refer-textbox-right-input" class="form-control" ></textarea>
-        </div>
-        <div class="mb-3 mt-4">
-          <label for="oaeresultleft" class="form-label">OAE Left</label>
-          <select id="oaeresultleft" class="form-select" required>
-            <option value="" disabled selected>Choose Option</option>
-            <option value="Pass">Pass</option>
-            <option value="Refer">Refer</option>
+<!--        </div>-->
+<!--        <div id="refer-textbox-right" style="display: none;">-->
+<!--          <label for="refer-textbox-right-input" class="form-label">Refer Comment Right</label>-->
+<!--          <textarea id="refer-textbox-right-input" class="form-control" ></textarea>-->
+<!--        </div>-->
+<!--        <div class="mb-3 mt-4">-->
+<!--          <label for="oaeresultleft" class="form-label">OAE Left</label>-->
+<!--          <select id="oaeresultleft" class="form-select" required>-->
+<!--            <option value="" disabled selected>Choose Option</option>-->
+<!--            <option value="Pass">Pass</option>-->
+<!--            <option value="Refer">Refer</option>-->
 
-          </select>
+<!--          </select>-->
 
-        </div>
-        <div id="refer-textbox-left" style="display: none;">
-          <label for="refer-textbox-left-input" class="form-label">Refer Comment Left</label>
-          <textarea id="refer-textbox-left-input" class="form-control" ></textarea>
-        </div>
-        <br>
+<!--        </div>-->
+<!--        <div id="refer-textbox-left" style="display: none;">-->
+<!--          <label for="refer-textbox-left-input" class="form-label">Refer Comment Left</label>-->
+<!--          <textarea id="refer-textbox-left-input" class="form-control" ></textarea>-->
+<!--        </div>-->
+<!--        <br>-->
 
         <label class="form-check-label" for="audiometer">Audiometer Check?</label>
         <div>

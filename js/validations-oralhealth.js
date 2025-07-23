@@ -86,7 +86,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
             }
         }
 
-        if(data.dentalCavities === 'yes') {
+        if (data.dentalCavities === 'yes') {
             document.getElementById('dentalcavitiesYes').checked = true;
         } else if (data.dentalCavities === 'no') {
             document.getElementById('dentalcavitiesNo\n').checked = true;
@@ -98,7 +98,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
                 break;
             }
         }
-        if(data.malocclusion === 'yes') {
+        if (data.malocclusion === 'yes') {
             document.getElementById('malocclusionYes').checked = true;
         } else if (data.malocclusion === 'no') {
             document.getElementById('malocclusionNo').checked = true;
@@ -110,9 +110,9 @@ document.getElementById('search-btn').addEventListener('click', async () => {
                 break;
             }
         }
-        if(data.hyperdontia === 'yes') {
+        if (data.hyperdontia === 'yes') {
             document.getElementById('hyperdontiaYes').checked = true;
-        }else if (data.hyperdontia === 'no') {
+        } else if (data.hyperdontia === 'no') {
             document.getElementById('hyperdontiaNo').checked = true;
         }
         const hyperdontiaSeveritySelect = document.getElementById('hyperdontiaSeverity');
@@ -236,10 +236,10 @@ document.getElementById('update-btn').addEventListener('click', async () => {
         dentalCariesSeverity: dentalCariesSeverity,
         dentalCavities: dentalCavities,
         dentalCavitiesSeverity: dentalCavitiesSeverity,
-        malocclusion:malocclusion,
-        malocclusionSeverity:malocclusionSeverity,
-        hyperdontia:hyperdontia,
-        hyperdontiaSeverity:hyperdontiaSeverity,
+        malocclusion: malocclusion,
+        malocclusionSeverity: malocclusionSeverity,
+        hyperdontia: hyperdontia,
+        hyperdontiaSeverity: hyperdontiaSeverity,
         gumdisease: gumdisease,
         gumdiseaseSeverity: gumdiseaseSeverity,
         thrush: thrush,
@@ -413,7 +413,7 @@ if (oralHealthForm) {
         }
     });
     // Add event listeners to hide warnings dynamically as the user selects Yes/No
-    ['dentalcaries','dentalcavities', 'malocclusion', 'hyperdontia',
+    ['dentalcaries', 'dentalcavities', 'malocclusion', 'hyperdontia',
         'gumdisease', 'thrush', 'otherAbnormality', 'teethStaining'].forEach((groupName) => {
         document.getElementById(`${groupName}Yes`).addEventListener('change', () => {
             document.getElementById(`${groupName}-warning`).style.display = 'none';
@@ -423,9 +423,9 @@ if (oralHealthForm) {
         });
     });
 
-    if(otherAbnormalityYes && otherAbnormalityNo && otherAbnormalityComment){
+    if (otherAbnormalityYes && otherAbnormalityNo && otherAbnormalityComment) {
         otherAbnormalityYes.addEventListener('change', () => {
-            if(otherAbnormalityYes.checked){
+            if (otherAbnormalityYes.checked) {
                 otherAbnormalityComment.style.display = 'block';
                 otherAbnormalityComment.setAttribute('required', 'required');
             }
@@ -438,6 +438,57 @@ if (oralHealthForm) {
             }
         });
     }
+
+    document.getElementById('dentalcavitiesYes').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('dentalcavitiesNo').checked = false;
+            document.getElementById('dentalcavities-severity').style.display = 'block';
+        } else {
+            document.getElementById('dentalcavities-severity').style.display = 'none';
+        }
+    });
+
+    document.getElementById('dentalcavitiesNo').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('dentalcavitiesYes').checked = false;
+            document.getElementById('dentalcavities-severity').style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('malocclusionYes').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('malocclusionNo').checked = false;
+            document.getElementById('malocclusion-severity').style.display = 'block';
+        } else {
+            document.getElementById('malocclusion-severity').style.display = 'none';
+        }
+    });
+
+    document.getElementById('malocclusionNo').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('malocclusionYes').checked = false;
+            document.getElementById('malocclusion-severity').style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('hyperdontiaYes').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('hyperdontiaNo').checked = false;
+            document.getElementById('hyperdontia-severity').style.display = 'block';
+        } else {
+            document.getElementById('hyperdontia-severity').style.display = 'none';
+        }
+    });
+
+    document.getElementById('hyperdontiaNo').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('hyperdontiaYes').checked = false;
+            document.getElementById('hyperdontia-severity').style.display = 'none';
+        }
+    });
+
 }
 
 

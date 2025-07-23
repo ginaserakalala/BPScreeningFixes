@@ -406,7 +406,7 @@ if (eyesForm) {
       location.reload();
     } catch (error) {
       console.error('Error:', error);
-      alert('An unexpected error occurred. Please try again.');
+      alert('Please ensure Demographics is populated before populating organ');
     }
   });
 

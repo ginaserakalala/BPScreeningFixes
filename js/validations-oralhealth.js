@@ -397,7 +397,7 @@ if (oralHealthForm) {
             // Check if the response was successful
             if (!response.ok) {
                 console.log(`Error submitting Oral Health form: ${response.statusText}`);
-                alert('Failed to submit the Oral Health form. Please try again.');
+                alert('Please ensure Demographics is populated before populating organ');
                 return;
             }
 

@@ -539,7 +539,7 @@ if (earsForm) {
             // Handle response
             if (!response.ok) {
                 console.error(`Error submitting ears screening form: ${response.statusText}`);
-                alert('Failed to submit the form. Please try again.');
+                alert('Please ensure Demographics is populated before populating organ');
                 return;
             }
 

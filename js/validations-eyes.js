@@ -398,7 +398,7 @@ if (eyesForm) {
 
       if (!response.ok) {
         console.error(`Error submitting form: ${response.statusText}`);
-        alert('An error occurred. Please try again.');
+        alert('Please ensure Demographics is populated before populating organ');
         return;
       }
 

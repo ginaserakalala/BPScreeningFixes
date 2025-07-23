@@ -570,32 +570,34 @@ if (earsForm) {
         });
     });
 }
-document.getElementById('foreignBodyDetectionLeftYes').addEventListener('change', () => {
-    if(this.checked){
+document.getElementById('foreignBodyDetectionLeftYes').addEventListener('change', function () {
+    if (this.checked) {
         document.getElementById('foreignBodyDetectionLeftNo').checked = false;
         document.getElementById('foreignBodyDetectionLeft-warning').style.display = 'none';
         document.getElementById('managementRemovalBox').style.display = 'block';
     }
 });
-document.getElementById('foreignBodyDetectionLeftNo').addEventListener('change', () => {
-    if(this.checked){
+
+document.getElementById('foreignBodyDetectionLeftNo').addEventListener('change', function () {
+    if (this.checked) {
         document.getElementById('foreignBodyDetectionLeftYes').checked = false;
         document.getElementById('foreignBodyDetectionLeft-warning').style.display = 'none';
         if (!document.getElementById('foreignBodyDetectionRightYes').checked) {
             document.getElementById('managementRemovalBox').style.display = 'none';
         }
-
     }
 });
-document.getElementById('foreignBodyDetectionRightYes').addEventListener('change', () => {
-    if(this.checked){
+
+document.getElementById('foreignBodyDetectionRightYes').addEventListener('change', function () {
+    if (this.checked) {
         document.getElementById('foreignBodyDetectionRightNo').checked = false;
         document.getElementById('foreignBodyDetectionRight-warning').style.display = 'none';
         document.getElementById('managementRemovalBox').style.display = 'block';
     }
 });
-document.getElementById('foreignBodyDetectionRightNo').addEventListener('change', () => {
-    if(this.checked){
+
+document.getElementById('foreignBodyDetectionRightNo').addEventListener('change', function () {
+    if (this.checked) {
         document.getElementById('foreignBodyDetectionRightYes').checked = false;
         document.getElementById('foreignBodyDetectionRight-warning').style.display = 'none';
         if (!document.getElementById('foreignBodyDetectionLeftYes').checked) {
@@ -603,6 +605,7 @@ document.getElementById('foreignBodyDetectionRightNo').addEventListener('change'
         }
     }
 });
+
 
 // document.getElementById('oaeresultright').addEventListener('change', function () {
 //     if (this.value === 'Refer') {

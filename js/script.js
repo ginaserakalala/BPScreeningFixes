@@ -560,6 +560,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <table>
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Dental Caries Severity:</th><td>${reportData.oralHealth[0]?.dentalCariesSeverity || "N/A"}</td></tr>
+          <tr><th>Dental Cavities:</th><td>${reportData.oralHealth[0]?.dentalCavities? "Yes" : "No" }</td></tr>
+          <tr><th>Dental Cavities Severity:</th><td>${reportData.oralHealth[0]?.dentalCavitiesSeverity || "N/A"}</td></tr>
+          <tr><th>Malocclusion:</th><td>${reportData.oralHealth[0]?.malocclusion? "Yes" : "No" }</td></tr>
+          <tr><th>Malocclusion Severity:</th><td>${reportData.oralHealth[0]?.malocclusionSeverity? "Yes" : "No" }</td></tr>
+          <tr><th>hyperdontia:</th><td>${reportData.oralHealth[0]?.hyperdontia? "Yes" : "No" }</td></tr>
+          <tr><th>Hyperdontia Severity:</th><td>${reportData.oralHealth[0]?.hyperdontiaSeverity? "Yes" : "No" }</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease Severity:</th><td>${reportData.oralHealth[0]?.gumDiseaseSeverity || "N/A"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>

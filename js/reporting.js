@@ -18,9 +18,7 @@
 
                 // Check if the response is valid
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error(`Response error text from API: ${errorText}`);
-                    throw new Error(`Failed to fetch report for Screening ID: ${screeningId} - ${errorText}`);
+                    throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
                 }
 
                 // Parse the JSON data

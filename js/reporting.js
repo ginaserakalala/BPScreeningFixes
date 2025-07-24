@@ -18,7 +18,6 @@
 
                 // Check if the response is valid
                 if (!response.ok) {
-                    alert("Please ensure Demographics is populated before populating organ");
                     throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
                 }
 

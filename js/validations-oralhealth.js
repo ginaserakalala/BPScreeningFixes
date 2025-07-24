@@ -89,7 +89,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
         if (data.dentalCavities === 'yes') {
             document.getElementById('dentalcavitiesYes').checked = true;
         } else if (data.dentalCavities === 'no') {
-            document.getElementById('dentalcavitiesNo\n').checked = true;
+            document.getElementById('dentalcavitiesNo').checked = true;
         }
         const dentalCavitiesSeveritySelect = document.getElementById('dentalcavitiesSeverity');
         for (let i = 0; i < dentalCavitiesSeveritySelect.options.length; i++) {
@@ -211,8 +211,8 @@ document.getElementById('update-btn').addEventListener('click', async () => {
 
     const dentalCaries = document.getElementById('dentalcariesYes').checked ? 'yes' : 'no';
     const dentalCariesSeverity = document.getElementById('dentalcariesSeverity').value;
-    const dentalCavities = document.getElementById('dentalCavitiesYes').checked ? 'yes' : 'no';
-    const dentalCavitiesSeverity = document.getElementById('dentalCavitiesSeverity').value;
+    const dentalCavities = document.getElementById('dentalcavitiesYes').checked ? 'yes' : 'no';
+    const dentalCavitiesSeverity = document.getElementById('dentalcavitiesSeverity').value;
     const malocclusion = document.getElementById('malocclusionYes').checked ? 'yes' : 'no';
     const malocclusionSeverity = document.getElementById('malocclusionSeverity').value;
     const hyperdontia = document.getElementById('hyperdontiaYes').checked ? 'yes' : 'no';

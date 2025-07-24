@@ -489,6 +489,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Check if the response is valid
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error(`Response error text from API: ${errorText}`);
                     throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
                 }
 
@@ -541,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr><th>Inflamed Eardrum Left:</th><td>${reportData.ears[0]?.inflamedEardrumLeft ? "Yes" : "No"}</td></tr>
           <tr><th>Inflamed Eardrum Right:</th><td>${reportData.ears[0]?.inflamedEardrumRight ? "Yes" : "No"}</td></tr>
           <tr><th>Wears Hearing Aid:</th><td>${reportData.ears[0]?.wearsHearingAid ? "Yes" : "No"}</td></tr>
-
+            
           <tr><th>Audio Meter Check Yes Results:</th><td>${reportData.ears[0]?.audioMeterCheckYes ? "Yes" : "No"}</td></tr>
           <tr><th>Audio Meter Check No Results:</th><td>${reportData.ears[0]?.audioMeterCheckNo ? "Yes" : "No"}</td></tr>
 

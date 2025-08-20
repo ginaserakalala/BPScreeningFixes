@@ -278,7 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 const payload = {
                     referralTo,
                     referralSite,
-                    appointmentBooked,
                     appointmentDate,
                     appointmentHonored,
                     appointmentRebooked,

@@ -20,17 +20,19 @@ if (appointmentOutcomeBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        let appointmentModal = new bootstrap.Modal(appointmentModalEl);
-
+        const appointmentModalEl = document.getElementById("appointmentModal")
+        const appointmentModal = new bootstrap.Modal(appointmentModalEl);
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
             if (!response.ok) {
-                throw new Error(`Failed to fetch report for Screening ID: ${screeningID}`);
+                appointmentModal.hide();
+                alert(`Failed to fetch report for Screening ID: ${screeningID}`);
             }
             appointmentModal.show();
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);
+            appointmentModal.hide();
             alert(`Error with screening ID ${screeningID} please try again`);
         }
     });

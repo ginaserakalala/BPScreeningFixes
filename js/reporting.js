@@ -1,6 +1,46 @@
 // *** Generate Report Button Logic ***
     const generateReportBtn = document.getElementById("generate-report-btn");
+    const appointmentOutcomeBtn = document.getElementById("appointment-outcome");
+    const userRole = localStorage.getItem('role');
 
+    if(userRole === 'admin'){
+        appointmentOutcomeBtn.disabled = false;
+    }
+    else{
+        appointmentOutcomeBtn.style.display = "none";
+        appointmentOutcomeBtn.addEventListener("submit", (event) => {
+            event.preventDefault();
+            alert("You are not allowed to save the referral outcome form");
+        });
+    }
+    if(appointmentOutcomeBtn){
+        appointmentOutcomeBtn.addEventListener("click", async function(){
+            const screeningID = document.getElementById('screening-id').value;
+
+            if(!screeningID){
+                alert('Please provide the Screening ID.');
+                return;
+            }
+            try{
+                const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
+                if(response.ok){
+                    // Bootstrap modal instance
+                    let appointmentModal = new bootstrap.Modal(appointmentModalEl);
+
+                    // Open modal on button click
+                    appointmentBtn.addEventListener("click", function () {
+                        appointmentModal.show();
+                    });
+                }
+                else{
+                    throw new Error(`Failed to fetch data for screening ID ${screeningID}`);
+                }
+            }catch(error){
+                console.error(`Error with screening ID ${screeningID} please try again`);
+                alert(`Error with screening ID ${screeningID} please try again`);
+            }
+        });
+    }
     if (generateReportBtn) {
         generateReportBtn.addEventListener("click", async function () {
             // Get the Screening ID from the form
@@ -141,7 +181,7 @@
             const printWindow = window.open("", "_blank", "width=800,height=600");
 
             printWindow.document.write(`
-      <html>
+      <html lang="en">
         <head>
           <title>Print Report</title>
           <style>
@@ -161,3 +201,132 @@
             printWindow.print();
         });
     }
+
+// Wait until DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    const appointmentBtn = document.getElementById("appointment-outcome");
+    const referralTo = document.getElementById("referral-to");
+    const referralSite = document.getElementById("referral_site");
+    const serviceType = document.getElementById("service_type");
+    const appointmentModalEl = document.getElementById("appointmentModal");
+    const appointmentHonored = document.getElementById("appointment_honored");
+    const appointmentRebookedWrap = document.getElementById("wrap_appointment_rebooked");
+    const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date");
+    const appointmentDate = document.getElementById("appointment_date");
+    const secondAppointmentHonoredWrap = document.getElementById("wrap_second_appointment_honored");
+    const reasonNotHonoredWrap = document.getElementById("wrap_reason_not_honored");
+    const reasonOtherWrap = document.getElementById("wrap_reason_other");
+    const reasonNotHonoredSelect = document.getElementById("reason_not_honored");
+    const finalTracingOutcomeComment= document.getElementById("final_tracing_comments");
+    const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
+
+    // Bootstrap modal instance
+    let appointmentModal = new bootstrap.Modal(appointmentModalEl);
+
+    // Open modal on button click
+    appointmentBtn.addEventListener("click", function () {
+        appointmentModal.show();
+    });
+
+    // Show/hide appointment rebooked section
+    appointmentHonored.addEventListener("change", function () {
+        if (this.value === "NO") {
+            appointmentRebookedWrap.classList.remove("d-none");
+            reasonNotHonoredWrap.classList.remove("d-none");
+        } else {
+            appointmentRebookedWrap.classList.add("d-none");
+            appointmentDateWrap.classList.add("d-none");
+            secondAppointmentHonoredWrap.classList.add("d-none");
+            reasonNotHonoredWrap.classList.add("d-none");
+            reasonOtherWrap.classList.add("d-none");
+        }
+    });
+    
+    const appointmentForm = document.getElementById("appointment_form");
+    if(appointmentForm){
+    appointmentForm.addEventListener("submit", async (event) =>{
+        event.preventDefault();
+       try{
+        const payload = {
+            referralTo,
+             referralSite,
+             appointmentBooked,
+             appointmentDate,
+             appointmentHonored,
+             appointmentRebooked,
+              appointmentRebookedDate,
+              secondAppointmentHonored,
+              reasonsNotHonoringAppointment,
+              serviceType,
+              transportFairReceived,
+              serviceReceivedAfterReferral,
+              finalTracingOutcomeComment,
+              screeningID
+        };
+        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+        alert('Referral outcome saved successfully.');
+        location.reload();
+       }
+       catch(error){
+           console.error(error);
+           alert('Error saving referral outcome');
+       }
+    });
+    }
+
+    // Show/hide appointment date + second appointment honored if rebooked is YES
+    document.getElementById("appointment_rebooked").addEventListener("change", function () {
+        if (this.value === "YES") {
+            appointmentDateWrap.classList.remove("d-none");
+            secondAppointmentHonoredWrap.classList.remove("d-none");
+        } else {
+            appointmentDateWrap.classList.add("d-none");
+            secondAppointmentHonoredWrap.classList.add("d-none");
+        }
+    });
+
+    // Show "Other" text input if "Other" reason is chosen
+    reasonNotHonoredSelect.addEventListener("change", function () {
+        if (this.value === "Other") {
+            reasonOtherWrap.classList.remove("d-none");
+        } else {
+            reasonOtherWrap.classList.add("d-none");
+        }
+    });
+
+    // Save form and show toast
+    document.getElementById("appointment-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!this.checkValidity()) {
+            this.classList.add("was-validated");
+            return;
+        }
+
+        // Hide modal
+        appointmentModal.hide();
+
+        // Show success toast
+        const toastEl = document.getElementById("saveToast");
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+
+        // Reset form
+        this.reset();
+        this.classList.remove("was-validated");
+
+        // Hide all conditional fields again
+        appointmentRebookedWrap.classList.add("d-none");
+        appointmentDateWrap.classList.add("d-none");
+        secondAppointmentHonoredWrap.classList.add("d-none");
+        reasonNotHonoredWrap.classList.add("d-none");
+        reasonOtherWrap.classList.add("d-none");
+    });
+});

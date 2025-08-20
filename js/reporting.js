@@ -209,7 +209,7 @@ if (printBtn) {
 // Wait until DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
     const appointmentBtn = document.getElementById("appointment-outcome");
-    const referralTo = document.getElementById("referral-to");
+    const referralTo = document.getElementById("referral_to");
     const referralSite = document.getElementById("referral_site");
     const serviceType = document.getElementById("service_type");
     const appointmentModalEl = document.getElementById("appointmentModal");
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             try {
-                const referralTo = document.getElementById("referral-to").value || null;
+                const referralTo = document.getElementById("referral_to").value || null;
                 const referralSite = document.getElementById("referral_site").value || null;
                 const appointmentBooked = document.getElementById("val").value || null;
                 const appointmentDate = document.getElementById("appointment_date").value || null;

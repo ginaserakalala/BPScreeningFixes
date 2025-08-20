@@ -28,7 +28,7 @@ if (appointmentOutcomeBtn) {
                 throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
             }
             else{
-                appointmentModal.show();
+                alert('screening ID is fine');
             }
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);

@@ -20,11 +20,9 @@ if (appointmentOutcomeBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        let appointmentModal = new bootstrap.Modal(appointmentModalEl);
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
             if (!response.ok) {
-                appointmentModal.hide();
                 throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
             }
             else{

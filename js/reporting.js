@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const appointmentForm = document.getElementById("appointment_form");
+    const appointmentForm = document.getElementById("appointment-form");
     if (appointmentForm) {
         appointmentForm.addEventListener("submit", async (event) => {
             event.preventDefault();

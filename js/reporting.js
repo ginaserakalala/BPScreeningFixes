@@ -13,24 +13,23 @@ if (userRole === 'admin') {
     });
 }
 if (appointmentOutcomeBtn) {
-    appointmentOutcomeBtn.addEventListener("click", async function () {
+    appointmentOutcomeBtn.addEventListener("click", async function (e) {
         const screeningID = document.getElementById('screening-id').value;
-
+        e.preventDefault();
         if (!screeningID) {
             alert('Please provide the Screening ID.');
             return;
         }
         const appointmentModalEl = document.getElementById("appointmentModal")
-        const appointmentModal = new bootstrap.Modal(appointmentModalEl);
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
             if (!response.ok) {
-                appointmentModal.hide();
                 alert(`Failed to fetch report for Screening ID: ${screeningID}`);
-            }else{
-                appointmentModal.show();
+                return;
             }
+            const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+            appointmentModal.show();
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);
             appointmentModal.hide();

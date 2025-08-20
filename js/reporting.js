@@ -271,11 +271,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
                     body: JSON.stringify(payload),
                 });
+                if(!response.ok){
+                    console.error(`Error submitting form: ${response.statusText}`);
+                    alert(`Something went wrong while submitting form. Please try again`);
+                    return;
+                }
                 alert('Referral outcome saved successfully.');
                 location.reload();
             } catch (error) {
                 console.error(error);
-                alert('Error saving referral outcome');
+                alert('Error saving referral outcome form');
             }
         });
     }

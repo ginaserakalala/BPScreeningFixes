@@ -221,13 +221,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
 
-    // // Bootstrap modal instance
-    // let appointmentModal = new bootstrap.Modal(appointmentModalEl);
-    //
-    // // Open modal on button click
-    // appointmentBtn.addEventListener("click", function () {
-    //     appointmentModal.show();
-    // });
+    // Bootstrap modal instance
+    let appointmentModal = new bootstrap.Modal(appointmentModalEl);
+
+    // Open modal on button click
+    appointmentBtn.addEventListener("click", function () {
+        appointmentModal.hide();
+    });
 
     // Show/hide appointment rebooked section
     appointmentHonored.addEventListener("change", function () {

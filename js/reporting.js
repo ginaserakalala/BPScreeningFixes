@@ -1,65 +1,63 @@
 // *** Generate Report Button Logic ***
-    const generateReportBtn = document.getElementById("generate-report-btn");
-    const appointmentOutcomeBtn = document.getElementById("appointment-outcome");
-    const userRole = localStorage.getItem('role');
+const generateReportBtn = document.getElementById("generate-report-btn");
+const appointmentOutcomeBtn = document.getElementById("appointment-outcome");
+const userRole = localStorage.getItem('role');
 
-    if(userRole === 'admin'){
-        appointmentOutcomeBtn.disabled = false;
-    }
-    else{
-        appointmentOutcomeBtn.style.display = "none";
-        appointmentOutcomeBtn.addEventListener("submit", (event) => {
-            event.preventDefault();
-            alert("You are not allowed to save the referral outcome form");
-        });
-    }
-    if(appointmentOutcomeBtn){
-        appointmentOutcomeBtn.addEventListener("click", async function(){
-            const screeningID = document.getElementById('screening-id').value;
+if (userRole === 'admin') {
+    appointmentOutcomeBtn.disabled = false;
+} else {
+    appointmentOutcomeBtn.style.display = "none";
+    appointmentOutcomeBtn.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("You are not allowed to save the referral outcome form");
+    });
+}
+if (appointmentOutcomeBtn) {
+    appointmentOutcomeBtn.addEventListener("click", async function () {
+        const screeningID = document.getElementById('screening-id').value;
 
-            if(!screeningID){
-                alert('Please provide the Screening ID.');
-                return;
+        if (!screeningID) {
+            alert('Please provide the Screening ID.');
+            return;
+        }
+        try {
+            const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
+            if (response.ok) {
+                alert('No issues with screening ID');
+            } else {
+                throw new Error(`Failed to fetch data for screening ID ${screeningID}`);
             }
-            try{
-                const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
-                if(response.ok){
-                    alert('No issues with screening ID');
-                }
-                else{
-                    throw new Error(`Failed to fetch data for screening ID ${screeningID}`);
-                }
-            }catch(error){
-                console.error(`Error with screening ID ${screeningID} please try again`);
-                alert(`Error with screening ID ${screeningID} please try again`);
+        } catch (error) {
+            console.error(`Error with screening ID ${screeningID} please try again`);
+            alert(`Error with screening ID ${screeningID} please try again`);
+        }
+    });
+}
+if (generateReportBtn) {
+    generateReportBtn.addEventListener("click", async function () {
+        // Get the Screening ID from the form
+        const screeningId = document.getElementById("screening-id").value;
+
+        // Validate if the Screening ID is provided
+        if (!screeningId) {
+            alert("Please provide the Screening ID.");
+            return;
+        }
+
+        try {
+            // Fetch the data from the backend API using the screening ID
+            const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningId}`);
+
+            // Check if the response is valid
+            if (!response.ok) {
+                throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
             }
-        });
-    }
-    if (generateReportBtn) {
-        generateReportBtn.addEventListener("click", async function () {
-            // Get the Screening ID from the form
-            const screeningId = document.getElementById("screening-id").value;
 
-            // Validate if the Screening ID is provided
-            if (!screeningId) {
-                alert("Please provide the Screening ID.");
-                return;
-            }
+            // Parse the JSON data
+            const reportData = await response.json();
 
-            try {
-                // Fetch the data from the backend API using the screening ID
-                const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningId}`);
-
-                // Check if the response is valid
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
-                }
-
-                // Parse the JSON data
-                const reportData = await response.json();
-
-                // Dynamically generate the report content
-                const reportContent = `
+            // Dynamically generate the report content
+            const reportContent = `
         <h4 style="color: black;">Screening Report</h4>
         <p><strong>Screening ID:</strong> ${reportData.ScreeningID}</p>
         <h2 style="color: black;>Demographics and Screening Report</h2>
@@ -123,12 +121,12 @@
         <table>
           <tr><th>Dental Caries:</th><td>${reportData.oralHealth[0]?.dentalCaries ? "Yes" : "No"}</td></tr>
           <tr><th>Dental Caries Severity:</th><td>${reportData.oralHealth[0]?.dentalCariesSeverity || "N/A"}</td></tr>
-          <tr><th>Dental Cavities:</th><td>${reportData.oralHealth[0]?.dentalCavities? "Yes" : "No" }</td></tr>
+          <tr><th>Dental Cavities:</th><td>${reportData.oralHealth[0]?.dentalCavities ? "Yes" : "No"}</td></tr>
           <tr><th>Dental Cavities Severity:</th><td>${reportData.oralHealth[0]?.dentalCavitiesSeverity || "N/A"}</td></tr>
-          <tr><th>Malocclusion:</th><td>${reportData.oralHealth[0]?.malocclusion? "Yes" : "No" }</td></tr>
-          <tr><th>Malocclusion Severity:</th><td>${reportData.oralHealth[0]?.malocclusionSeverity? "Yes" : "No" }</td></tr>
-          <tr><th>hyperdontia:</th><td>${reportData.oralHealth[0]?.hyperdontia? "Yes" : "No" }</td></tr>
-          <tr><th>Hyperdontia Severity:</th><td>${reportData.oralHealth[0]?.hyperdontiaSeverity? "Yes" : "No" }</td></tr>
+          <tr><th>Malocclusion:</th><td>${reportData.oralHealth[0]?.malocclusion ? "Yes" : "No"}</td></tr>
+          <tr><th>Malocclusion Severity:</th><td>${reportData.oralHealth[0]?.malocclusionSeverity ? "Yes" : "No"}</td></tr>
+          <tr><th>hyperdontia:</th><td>${reportData.oralHealth[0]?.hyperdontia ? "Yes" : "No"}</td></tr>
+          <tr><th>Hyperdontia Severity:</th><td>${reportData.oralHealth[0]?.hyperdontiaSeverity ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease:</th><td>${reportData.oralHealth[0]?.gumDisease ? "Yes" : "No"}</td></tr>
           <tr><th>Gum Disease Severity:</th><td>${reportData.oralHealth[0]?.gumDiseaseSeverity || "N/A"}</td></tr>
           <tr><th>Thrush/Sores:</th><td>${reportData.oralHealth[0]?.thrushSores ? "Yes" : "No"}</td></tr>
@@ -141,40 +139,48 @@
         </table>
       `;
 
-                // Show the Report Preview
-                const reportPreview = document.getElementById("report-preview");
-                if (reportPreview) {
-                    // Set the dynamically generated content inside the preview section
-                    document.getElementById("report-content").innerHTML = reportContent;
+            // Show the Report Preview
+            const reportPreview = document.getElementById("report-preview");
+            if (reportPreview) {
+                // Set the dynamically generated content inside the preview section
+                document.getElementById("report-content").innerHTML = reportContent;
 
-                    // Make the preview section visible
-                    reportPreview.style.display = "block";
-                } else {
-                    console.error("Report preview section not found!");
-                }
-            } catch (error) {
-                // Handle errors (e.g., network issues, invalid screening ID)
-                console.error(error.message);
-                alert("Error generating report: " + error.message);
+                // Make the preview section visible
+                reportPreview.style.display = "block";
+            } else {
+                console.error("Report preview section not found!");
             }
-        });
-    }
+        } catch (error) {
+            // Handle errors (e.g., network issues, invalid screening ID)
+            console.error(error.message);
+            alert("Error generating report: " + error.message);
+        }
+    });
+}
 
-    // *** Print Button Logic ***
-    const printBtn = document.getElementById("print-report-btn");
-    if (printBtn) {
-        printBtn.addEventListener("click", function () {
-            const reportContent = document.getElementById("report-content").innerHTML;
 
-            // Check if content is available
-            if (!reportContent) {
-                alert("No content to print.");
-                return;
-            }
+// *** Home button click handler ***
+const homeBtn = document.getElementById("home-btn");
+if (homeBtn) {
+    homeBtn.addEventListener("click", function () {
+        window.location.href = "/pages/dashboard.html";
+    });
+}
+// *** Print Button Logic ***
+const printBtn = document.getElementById("print-report-btn");
+if (printBtn) {
+    printBtn.addEventListener("click", function () {
+        const reportContent = document.getElementById("report-content").innerHTML;
 
-            const printWindow = window.open("", "_blank", "width=800,height=600");
+        // Check if content is available
+        if (!reportContent) {
+            alert("No content to print.");
+            return;
+        }
 
-            printWindow.document.write(`
+        const printWindow = window.open("", "_blank", "width=800,height=600");
+
+        printWindow.document.write(`
       <html lang="en">
         <head>
           <title>Print Report</title>
@@ -190,11 +196,11 @@
       </html>
     `);
 
-            printWindow.document.close();
-            printWindow.focus();
-            printWindow.print();
-        });
-    }
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    });
+}
 
 // Wait until DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -211,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const reasonNotHonoredWrap = document.getElementById("wrap_reason_not_honored");
     const reasonOtherWrap = document.getElementById("wrap_reason_other");
     const reasonNotHonoredSelect = document.getElementById("reason_not_honored");
-    const finalTracingOutcomeComment= document.getElementById("final_tracing_comments");
+    const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
 
     // Bootstrap modal instance
@@ -235,43 +241,42 @@ document.addEventListener("DOMContentLoaded", function () {
             reasonOtherWrap.classList.add("d-none");
         }
     });
-    
+
     const appointmentForm = document.getElementById("appointment_form");
-    if(appointmentForm){
-    appointmentForm.addEventListener("submit", async (event) =>{
-        event.preventDefault();
-       try{
-        const payload = {
-            referralTo,
-             referralSite,
-             appointmentBooked,
-             appointmentDate,
-             appointmentHonored,
-             appointmentRebooked,
-              appointmentRebookedDate,
-              secondAppointmentHonored,
-              reasonsNotHonoringAppointment,
-              serviceType,
-              transportFairReceived,
-              serviceReceivedAfterReferral,
-              finalTracingOutcomeComment,
-              screeningID
-        };
-        const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
+    if (appointmentForm) {
+        appointmentForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            try {
+                const payload = {
+                    referralTo,
+                    referralSite,
+                    appointmentBooked,
+                    appointmentDate,
+                    appointmentHonored,
+                    appointmentRebooked,
+                    appointmentRebookedDate,
+                    secondAppointmentHonored,
+                    reasonsNotHonoringAppointment,
+                    serviceType,
+                    transportFairReceived,
+                    serviceReceivedAfterReferral,
+                    finalTracingOutcomeComment,
+                    screeningID
+                };
+                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+                alert('Referral outcome saved successfully.');
+                location.reload();
+            } catch (error) {
+                console.error(error);
+                alert('Error saving referral outcome');
+            }
         });
-        alert('Referral outcome saved successfully.');
-        location.reload();
-       }
-       catch(error){
-           console.error(error);
-           alert('Error saving referral outcome');
-       }
-    });
     }
 
     // Show/hide appointment date + second appointment honored if rebooked is YES

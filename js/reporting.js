@@ -20,21 +20,15 @@ if (appointmentOutcomeBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
+        let appointmentModal = new bootstrap.Modal(appointmentModalEl);
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
             if (!response.ok) {
-                // Bootstrap modal instance
-                let appointmentModal = new bootstrap.Modal(appointmentModalEl);
-
-                // Open modal on button click
-                appointmentBtn.addEventListener("click", function () {
-                    appointmentModal.hide();
-                });
+                appointmentModal.hide();
                 throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
-
             }
             else{
-                alert("no issues with the database");
+                appointmentModal.show();
             }
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);
@@ -229,13 +223,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
 
-    // Bootstrap modal instance
-    let appointmentModal = new bootstrap.Modal(appointmentModalEl);
-
-    // Open modal on button click
-    appointmentBtn.addEventListener("click", function () {
-        appointmentModal.show();
-    });
+    // // Bootstrap modal instance
+    // let appointmentModal = new bootstrap.Modal(appointmentModalEl);
+    //
+    // // Open modal on button click
+    // appointmentBtn.addEventListener("click", function () {
+    //     appointmentModal.show();
+    // });
 
     // Show/hide appointment rebooked section
     appointmentHonored.addEventListener("change", function () {

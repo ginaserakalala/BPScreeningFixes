@@ -262,7 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 const referralTo = document.getElementById("referral_to").value || null;
                 const referralSite = document.getElementById("referral_site").value || null;
-                const appointmentBooked = document.getElementById("val").value || null;
                 const appointmentDate = document.getElementById("appointment_date").value || null;
                 const appointmentHonored = document.getElementById("appointment_honored").value || null;
                 const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || null;

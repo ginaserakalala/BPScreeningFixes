@@ -216,6 +216,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const appointmentModalEl = document.getElementById("appointmentModal");
     const appointmentHonored = document.getElementById("appointment_honored");
     const appointmentRebookedWrap = document.getElementById("wrap_appointment_rebooked");
+    const appointmentDateWrap = document.getElementById("wrap_appointment_date");
+
     const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date");
     const appointmentDate = document.getElementById("appointment_date");
     const secondAppointmentHonoredWrap = document.getElementById("wrap_second_appointment_honored");

@@ -253,6 +253,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (appointmentForm) {
         appointmentForm.addEventListener("submit", async (event) => {
             event.preventDefault();
+            event.stopPropagation();
+
+            if(!appointmentForm.checkVisibility()){
+                appointmentForm.classList.add("was-validated");
+                return;
+            }
             try {
                 const referralTo = document.getElementById("referral-to").value;
                 const referralSite = document.getElementById("referral_site").value;
@@ -298,6 +304,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(`Something went wrong while submitting form. Please try again`);
                     return;
                 }
+
+                const appointmentModalEl = document.getElementById("appointmentModal");
+                const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+                appointmentModal.hide();
+
+                // Show success toast
+                const toastEl = document.getElementById("saveToast");
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+
+                // Reset form
+                appointmentForm.reset();
+                appointmentForm.classList.remove("was-validated");
+
+                // Hide conditional fields
+                appointmentRebookedWrap.classList.add("d-none");
+                appointmentDateWrap.classList.add("d-none");
+                secondAppointmentHonoredWrap.classList.add("d-none");
+                reasonNotHonoredWrap.classList.add("d-none");
+                reasonOtherWrap.classList.add("d-none");
+
                 alert('Referral outcome saved successfully.');
                 location.reload();
             } catch (error) {
@@ -327,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Save form and show toast
+    // // Save form and show toast
     // document.getElementById("appointment-form").addEventListener("submit", function (event) {
     //     event.preventDefault();
     //     event.stopPropagation();

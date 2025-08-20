@@ -254,21 +254,20 @@ document.addEventListener("DOMContentLoaded", function () {
         appointmentForm.addEventListener("submit", async (event) => {
             event.preventDefault();
             try {
-                const appointmentBtn = document.getElementById("appointment-outcome");
                 const referralTo = document.getElementById("referral-to").value;
                 const referralSite = document.getElementById("referral_site").value;
                 const appointmentBooked = document.getElementById("").value;
-                const appointmentDate = document.getElementById("appointment_date").value;;
-                const appointmentHonored = document.getElementById("appointment_honored").value;;
-                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value;;
-                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value;;
-                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value;;
-                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value;;
-                const serviceType = document.getElementById("service_type").value;;
-                const transportFairReceived = document.getElementById("transport_fare_received").value;;
-                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value;;
-                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value;;
-                const screeningID = document.getElementById('screening-id').value;;
+                const appointmentDate = document.getElementById("appointment_date").value;
+                const appointmentHonored = document.getElementById("appointment_honored").value;
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value;
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value;
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value;
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value;
+                const serviceType = document.getElementById("service_type").value;
+                const transportFairReceived = document.getElementById("transport_fare_received").value;
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value;
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value;
+                const screeningID = document.getElementById('screening-id').value;
 
 
                 const payload = {
@@ -329,32 +328,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Save form and show toast
-    document.getElementById("appointment-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (!this.checkValidity()) {
-            this.classList.add("was-validated");
-            return;
-        }
-
-        // Hide modal
-        appointmentModal.hide();
-
-        // Show success toast
-        const toastEl = document.getElementById("saveToast");
-        const toast = new bootstrap.Toast(toastEl);
-        toast.show();
-
-        // Reset form
-        this.reset();
-        this.classList.remove("was-validated");
-
-        // Hide all conditional fields again
-        appointmentRebookedWrap.classList.add("d-none");
-        appointmentDateWrap.classList.add("d-none");
-        secondAppointmentHonoredWrap.classList.add("d-none");
-        reasonNotHonoredWrap.classList.add("d-none");
-        reasonOtherWrap.classList.add("d-none");
-    });
+    // document.getElementById("appointment-form").addEventListener("submit", function (event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //
+    //     if (!this.checkValidity()) {
+    //         this.classList.add("was-validated");
+    //         return;
+    //     }
+    //
+    //     // Hide modal
+    //     appointmentModal.hide();
+    //
+    //     // Show success toast
+    //     const toastEl = document.getElementById("saveToast");
+    //     const toast = new bootstrap.Toast(toastEl);
+    //     toast.show();
+    //
+    //     // Reset form
+    //     this.reset();
+    //     this.classList.remove("was-validated");
+    //
+    //     // Hide all conditional fields again
+    //     appointmentRebookedWrap.classList.add("d-none");
+    //     appointmentDateWrap.classList.add("d-none");
+    //     secondAppointmentHonoredWrap.classList.add("d-none");
+    //     reasonNotHonoredWrap.classList.add("d-none");
+    //     reasonOtherWrap.classList.add("d-none");
+    // });
 });

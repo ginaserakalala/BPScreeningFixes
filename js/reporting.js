@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             event.stopPropagation();
 
-            if(!appointmentForm.checkVisibility()){
+            if(!appointmentForm.checkValidity()){
                 appointmentForm.classList.add("was-validated");
                 return;
             }

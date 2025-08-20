@@ -22,10 +22,11 @@ if (appointmentOutcomeBtn) {
         }
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
-            if (response.ok) {
-                alert('No issues with screening ID');
-            } else {
-                throw new Error(`Failed to fetch data for screening ID ${screeningID}`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch report for Screening ID: ${screeningId}`);
+            }
+            else{
+                alert("no issues with the database");
             }
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);

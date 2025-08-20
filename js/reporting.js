@@ -28,8 +28,9 @@ if (appointmentOutcomeBtn) {
             if (!response.ok) {
                 appointmentModal.hide();
                 alert(`Failed to fetch report for Screening ID: ${screeningID}`);
+            }else{
+                appointmentModal.show();
             }
-            appointmentModal.show();
         } catch (error) {
             console.error(`Error with screening ID ${screeningID} please try again`);
             appointmentModal.hide();

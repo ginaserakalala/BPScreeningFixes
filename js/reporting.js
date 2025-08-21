@@ -239,6 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
     appointmentHonored.addEventListener("change", function () {
         if (this.value === "NO") {
             appointmentRebookedWrap.classList.remove("d-none");
+            appointmentRebookedDate.classList.remove("d-none");
             reasonNotHonoredWrap.classList.remove("d-none");
         } else {
             appointmentRebookedWrap.classList.add("d-none");
@@ -335,7 +336,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show/hide appointment date + second appointment honored if rebooked is YES
     document.getElementById("appointment_rebooked").addEventListener("change", function () {
         if (this.value === "YES") {
-            appointmentDateWrap.classList.remove("d-none");
             secondAppointmentHonoredWrap.classList.remove("d-none");
         } else {
             appointmentDateWrap.classList.add("d-none");

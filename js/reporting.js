@@ -241,12 +241,21 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentRebookedWrap.classList.remove("d-none");
             appointmentRebookedDate.classList.remove("d-none");
             reasonNotHonoredWrap.classList.remove("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
         } else {
+            appointmentRebookedDate.classList.add("d-none");
             appointmentRebookedWrap.classList.add("d-none");
             appointmentDateWrap.classList.add("d-none");
             secondAppointmentHonoredWrap.classList.add("d-none");
             reasonNotHonoredWrap.classList.add("d-none");
             reasonOtherWrap.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
         }
     });
 
@@ -337,18 +346,24 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("appointment_rebooked").addEventListener("change", function () {
         if (this.value === "YES") {
             secondAppointmentHonoredWrap.classList.remove("d-none");
+            document.getElementById("wrap_second_appointment_honored").setAttribute("required", "true");
+
         } else {
             appointmentDateWrap.classList.add("d-none");
             secondAppointmentHonoredWrap.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_date").removeAttribute("required");
+            document.getElementById("wrap_second_appointment_honored").removeAttribute("required");
         }
     });
 
     // Show "Other" text input if "Other" reason is chosen
-    reasonNotHonoredSelect.addEventListener("change", function () {
-        if (this.value === "Other") {
-            reasonOtherWrap.classList.remove("d-none");
-        } else {
-            reasonOtherWrap.classList.add("d-none");
-        }
-    });
+    // reasonNotHonoredSelect.addEventListener("change", function () {
+    //     if (this.value === "Other") {
+    //         reasonOtherWrap.classList.remove("d-none");
+    //
+    //     } else {
+    //         reasonOtherWrap.classList.add("d-none");
+    //     }
+    // });
 });

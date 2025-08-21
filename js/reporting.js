@@ -261,19 +261,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             try {
-                const referralTo = document.getElementById("referral_to").value || null;
-                const referralSite = document.getElementById("referral_site").value || null;
-                const appointmentDate = document.getElementById("appointment_date").value || null;
-                const appointmentHonored = document.getElementById("appointment_honored").value || null;
-                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || null;
-                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || null;
-                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || null;
-                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || null;
-                const serviceType = document.getElementById("service_type").value || null;
-                const transportFairReceived = document.getElementById("transport_fare_received").value || null;
-                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || null;
-                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || null;
-                const screeningID = document.getElementById('screening-id').value || null;
+                const referralTo = document.getElementById("referral_to").value || N/A;
+                const referralSite = document.getElementById("referral_site").value || N/A;
+                const appointmentDate = document.getElementById("appointment_date").value || N/A;
+                const appointmentHonored = document.getElementById("appointment_honored").value || N/A;
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || N/A;
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || N/A;
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || N/A;
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || N/A;
+                const serviceType = document.getElementById("service_type").value || N/A;
+                const transportFairReceived = document.getElementById("transport_fare_received").value || N/A;
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || N/A;
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || N/A;
+                const screeningID = document.getElementById('screening-id').value || N/A;
 
 
                 const payload = {

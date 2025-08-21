@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 location.reload();
             } catch (error) {
                 console.error(error);
-                alert('Error saving referral outcome form');
+                alert('Error saving referral outcome form.Please try again');
             }
         });
     }
@@ -351,34 +351,4 @@ document.addEventListener("DOMContentLoaded", function () {
             reasonOtherWrap.classList.add("d-none");
         }
     });
-
-    // // Save form and show toast
-    // document.getElementById("appointment-form").addEventListener("submit", function (event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //
-    //     if (!this.checkValidity()) {
-    //         this.classList.add("was-validated");
-    //         return;
-    //     }
-    //
-    //     // Hide modal
-    //     appointmentModal.hide();
-    //
-    //     // Show success toast
-    //     const toastEl = document.getElementById("saveToast");
-    //     const toast = new bootstrap.Toast(toastEl);
-    //     toast.show();
-    //
-    //     // Reset form
-    //     this.reset();
-    //     this.classList.remove("was-validated");
-    //
-    //     // Hide all conditional fields again
-    //     appointmentRebookedWrap.classList.add("d-none");
-    //     appointmentDateWrap.classList.add("d-none");
-    //     secondAppointmentHonoredWrap.classList.add("d-none");
-    //     reasonNotHonoredWrap.classList.add("d-none");
-    //     reasonOtherWrap.classList.add("d-none");
-    // });
 });

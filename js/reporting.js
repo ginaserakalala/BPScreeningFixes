@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
                 const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
                 const screeningID = document.getElementById('screening-id').value || "N/A";
-
+                const contactNumber = document.getElementById('contact_number').value || "N/A";
 
                 const payload = {
                     referralTo,
@@ -298,7 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     transportFairReceived,
                     serviceReceivedAfterReferral,
                     finalTracingOutcomeComment,
-                    screeningID
+                    screeningID,
+                    contactNumber
                 };
                 const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral', {
                     method: 'POST',

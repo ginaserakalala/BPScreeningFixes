@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             appointmentRebookedDate.classList.add("d-none");
             appointmentRebookedWrap.classList.add("d-none");
-            appointmentDateWrap.classList.add("d-none");
+            // appointmentDateWrap.classList.add("d-none");
             secondAppointmentHonoredWrap.classList.add("d-none");
             reasonNotHonoredWrap.classList.add("d-none");
             reasonOtherWrap.classList.add("d-none");

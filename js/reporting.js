@@ -282,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
                 const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
                 const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
                 const screeningID = document.getElementById('screening-id').value || "N/A";
                 const contactNumber = document.getElementById('contact_number').value || "N/A";
 
@@ -299,7 +300,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     serviceReceivedAfterReferral,
                     finalTracingOutcomeComment,
                     screeningID,
-                    contactNumber
+                    contactNumber,
+                    finalTracingOutcomeCommentOther
                 };
                 const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral', {
                     method: 'POST',
@@ -343,6 +345,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const finalTracingSelect = document.getElementById("final_tracing_comments");
+    const otherCommentWrap = document.getElementById("otherCommentWrap");
+    if(finalTracingSelect){
+        finalTracingSelect.addEventListener("change", function(){
+            if(this.value.toLowerCase().includes("other")){
+                otherCommentWrap.classList.remove("d-none");
+            }else{
+                otherCommentWrap.classList.add("d-none");
+                document.getElementById("final_tracing_comments_other").value = "";
+            }
+        });
+    }
     // Show/hide appointment date + second appointment honored if rebooked is YES
     document.getElementById("appointment_rebooked").addEventListener("change", function () {
         if (this.value === "YES") {

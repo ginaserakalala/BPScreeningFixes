@@ -1,19 +1,89 @@
+// TODO: REFACTOR CODE TO NOT BREAK THE DRY rule
+
+
 // *** Generate Report Button Logic ***
 const generateReportBtn = document.getElementById("generate-report-btn");
-const appointmentOutcomeBtn = document.getElementById("appointment-outcome");
+const appointmentOutcomeEarsBtn = document.getElementById("appointment-outcome-ears");
+const appointmentOutcomeEyesBtn  = document.getElementById("appointment-outcome-eyes");
+const appointmentOutcomeOralHealthBtn = document.getElementById("appointment-outcome-oral-health");
 const userRole = localStorage.getItem('role');
 
 if (userRole === 'admin') {
-    appointmentOutcomeBtn.disabled = false;
+    appointmentOutcomeEarsBtn.disabled = false;
+    appointmentOutcomeEyesBtn.disabled = false;
+    appointmentOutcomeOralHealthBtn.disabled = false;
 } else {
-    appointmentOutcomeBtn.style.display = "none";
-    appointmentOutcomeBtn.addEventListener("submit", (event) => {
+    appointmentOutcomeEarsBtn.style.display = "none";
+    appointmentOutcomeEyesBtn.style.display = "none";
+    appointmentOutcomeOralHealthBtn.style.display = "none";
+
+    appointmentOutcomeEarsBtn.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("You are not allowed to save the referral outcome form");
+    });
+    appointmentOutcomeEyesBtn.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("You are not allowed to save the referral outcome form");
+    });
+    appointmentOutcomeOralHealthBtn.addEventListener("submit", (event) => {
         event.preventDefault();
         alert("You are not allowed to save the referral outcome form");
     });
 }
-if (appointmentOutcomeBtn) {
-    appointmentOutcomeBtn.addEventListener("click", async function (e) {
+if (appointmentOutcomeEarsBtn) {
+    appointmentOutcomeEarsBtn.addEventListener("click", async function (e) {
+        const screeningID = document.getElementById('screening-id').value;
+        e.preventDefault();
+        if (!screeningID) {
+            alert('Please provide the Screening ID.');
+            return;
+        }
+        const appointmentModalEl = document.getElementById("appointmentModal")
+
+        try {
+            const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
+            if (!response.ok) {
+                alert(`Failed to fetch report for Screening ID: ${screeningID}`);
+                return;
+            }
+            const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+            appointmentModal.show();
+        } catch (error) {
+            console.error(`Error with screening ID ${screeningID} please try again`);
+            appointmentModal.hide();
+            alert(`Error with screening ID ${screeningID} please try again`);
+        }
+    });
+}
+
+if (appointmentOutcomeEyesBtn) {
+    appointmentOutcomeEyesBtn.addEventListener("click", async function (e) {
+        const screeningID = document.getElementById('screening-id').value;
+        e.preventDefault();
+        if (!screeningID) {
+            alert('Please provide the Screening ID.');
+            return;
+        }
+        const appointmentModalEl = document.getElementById("appointmentModal")
+
+        try {
+            const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
+            if (!response.ok) {
+                alert(`Failed to fetch report for Screening ID: ${screeningID}`);
+                return;
+            }
+            const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+            appointmentModal.show();
+        } catch (error) {
+            console.error(`Error with screening ID ${screeningID} please try again`);
+            appointmentModal.hide();
+            alert(`Error with screening ID ${screeningID} please try again`);
+        }
+    });
+}
+
+if (appointmentOutcomeOralHealthBtn) {
+    appointmentOutcomeOralHealthBtn.addEventListener("click", async function (e) {
         const screeningID = document.getElementById('screening-id').value;
         e.preventDefault();
         if (!screeningID) {
@@ -259,14 +329,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const appointmentForm = document.getElementById("appointment-form");
-    if (appointmentForm) {
-        appointmentForm.addEventListener("submit", async (event) => {
+    const appointmentFormOralHealth = document.getElementById("appointment-form-oral-health");
+    const appointmentFormEyes = document.getElementById("appointment-form-eyes");
+    const appointmentFormEars = document.getElementById("appointment-form-ears");
+    if (appointmentFormEars) {
+        appointmentFormEars.addEventListener("submit", async (event) => {
             event.preventDefault();
             event.stopPropagation();
 
-            if(!appointmentForm.checkValidity()){
-                appointmentForm.classList.add("was-validated");
+            if(!appointmentFormEars.checkValidity()){
+                appointmentFormEars.classList.add("was-validated");
                 return;
             }
             try {
@@ -303,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     contactNumber,
                     finalTracingOutcomeCommentOther
                 };
-                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral', {
+                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral/ears', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -316,7 +388,177 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                const appointmentModalEl = document.getElementById("appointmentModal");
+                const appointmentModalEl = document.getElementById("appointmentModalEars");
+                const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+                appointmentModal.hide();
+
+                // Show success toast
+                const toastEl = document.getElementById("saveToast");
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+
+                // Reset form
+                appointmentForm.reset();
+                appointmentForm.classList.remove("was-validated");
+
+                // Hide conditional fields
+                appointmentRebookedWrap.classList.add("d-none");
+                appointmentDateWrap.classList.add("d-none");
+                secondAppointmentHonoredWrap.classList.add("d-none");
+                reasonNotHonoredWrap.classList.add("d-none");
+                reasonOtherWrap.classList.add("d-none");
+
+                alert('Referral outcome saved successfully.');
+                location.reload();
+            } catch (error) {
+                console.error(error);
+                alert('Error saving referral outcome form.Please try again');
+            }
+        });
+    }
+
+
+    if (appointmentFormEyes) {
+        appointmentFormEyes.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if(!appointmentFormEyes.checkValidity()){
+                appointmentFormEyes.classList.add("was-validated");
+                return;
+            }
+            try {
+                const referralTo = document.getElementById("referral_to").value || "N/A";
+                const referralSite = document.getElementById("referral_site").value || "N/A";
+                const appointmentDate = document.getElementById("appointment_date").value || "N/A";
+                const appointmentHonored = document.getElementById("appointment_honored").value || "N/A";
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || "N/A";
+                const serviceType = document.getElementById("service_type").value || "N/A";
+                const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
+                const screeningID = document.getElementById('screening-id').value || "N/A";
+                const contactNumber = document.getElementById('contact_number').value || "N/A";
+
+                const payload = {
+                    referralTo,
+                    referralSite,
+                    appointmentDate,
+                    appointmentHonored,
+                    appointmentRebooked,
+                    appointmentRebookedDate,
+                    secondAppointmentHonored,
+                    reasonsNotHonoringAppointment,
+                    serviceType,
+                    transportFairReceived,
+                    serviceReceivedAfterReferral,
+                    finalTracingOutcomeComment,
+                    screeningID,
+                    contactNumber,
+                    finalTracingOutcomeCommentOther
+                };
+                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral/eyes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+                if(!response.ok){
+                    console.error(`Error submitting form: ${response.statusText}`);
+                    alert(`Something went wrong while submitting form. Please try again`);
+                    return;
+                }
+
+                const appointmentModalEl = document.getElementById("appointmentModalEyes");
+                const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
+                appointmentModal.hide();
+
+                // Show success toast
+                const toastEl = document.getElementById("saveToast");
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+
+                // Reset form
+                appointmentForm.reset();
+                appointmentForm.classList.remove("was-validated");
+
+                // Hide conditional fields
+                appointmentRebookedWrap.classList.add("d-none");
+                appointmentDateWrap.classList.add("d-none");
+                secondAppointmentHonoredWrap.classList.add("d-none");
+                reasonNotHonoredWrap.classList.add("d-none");
+                reasonOtherWrap.classList.add("d-none");
+
+                alert('Referral outcome saved successfully.');
+                location.reload();
+            } catch (error) {
+                console.error(error);
+                alert('Error saving referral outcome form.Please try again');
+            }
+        });
+    }
+    if (appointmentFormOralHealth) {
+        appointmentFormOralHealth.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if(!appointmentFormOralHealth.checkValidity()){
+                appointmentFormOralHealth.classList.add("was-validated");
+                return;
+            }
+            try {
+                const referralTo = document.getElementById("referral_to").value || "N/A";
+                const referralSite = document.getElementById("referral_site").value || "N/A";
+                const appointmentDate = document.getElementById("appointment_date").value || "N/A";
+                const appointmentHonored = document.getElementById("appointment_honored").value || "N/A";
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || "N/A";
+                const serviceType = document.getElementById("service_type").value || "N/A";
+                const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
+                const screeningID = document.getElementById('screening-id').value || "N/A";
+                const contactNumber = document.getElementById('contact_number').value || "N/A";
+
+                const payload = {
+                    referralTo,
+                    referralSite,
+                    appointmentDate,
+                    appointmentHonored,
+                    appointmentRebooked,
+                    appointmentRebookedDate,
+                    secondAppointmentHonored,
+                    reasonsNotHonoringAppointment,
+                    serviceType,
+                    transportFairReceived,
+                    serviceReceivedAfterReferral,
+                    finalTracingOutcomeComment,
+                    screeningID,
+                    contactNumber,
+                    finalTracingOutcomeCommentOther
+                };
+                const response = await fetch('https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral/oralHealth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+                if(!response.ok){
+                    console.error(`Error submitting form: ${response.statusText}`);
+                    alert(`Something went wrong while submitting form. Please try again`);
+                    return;
+                }
+
+                const appointmentModalEl = document.getElementById("appointmentModalOralHealth");
                 const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalEl);
                 appointmentModal.hide();
 

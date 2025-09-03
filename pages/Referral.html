@@ -8,6 +8,8 @@
     <!--  <link rel="stylesheet" href="../css/style.css">-->
 </head>
 <body class="oral-page">
+<!--// TODO: REFACTOR CODE TO NOT BREAK THE DRY rule
+-->
 <div class="container my-5">
     <div class="card p-4 shadow-lg border-0 rounded-4 custom-container">
         <h2 class="text-center mb-4 eyetext">Referral</h2>
@@ -25,7 +27,16 @@
                 <button type="button" class="btn btn-dark" id="home-btn">Home</button>
                 <div class="ms-auto d-flex gap-2">
                     <button type="button" class="btn btn-primary" id="generate-report-btn">Preview</button>
-                    <button type="button" class="btn btn-dark" id="appointment-outcome" disabled>Open Appointment
+                    <button type="button" class="btn btn-dark" id="appointment-outcome-ears" disabled>Open Ears
+                        Appointment
+                        Outcome
+                    </button>
+                    <button type="button" class="btn btn-dark" id="appointment-outcome-eyes" disabled>Open Eyes
+                        Appointment
+                        Outcome
+                    </button>
+                    <button type="button" class="btn btn-dark" id="appointment-outcome-oral-health" disabled>Open Oral
+                        Health Appointment
                         Outcome
                     </button>
                 </div>
@@ -45,7 +56,7 @@
 </div>
 
 
-<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+<div class="modal fade" id="appointmentModalEyes" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
@@ -53,7 +64,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form id="appointment-form" class="needs-validation" novalidate>
+            <form id="appointment-form-eyes" class="needs-validation" novalidate>
                 <div class="modal-body">
                     <div class="row g-3">
 
@@ -110,8 +121,223 @@
                             <label for="service_type" class="form-label">Service Type</label>
                             <select id="service_type" class="form-select" required>
                                 <option value="" selected disabled>Choose...</option>
-                                <option value="Oral Health">Oral Health</option>
                                 <option value="Eyes">Eyes</option>
+                            </select>
+                            <div class="invalid-feedback">Please select service type</div>
+                        </div>
+
+
+                        <!-- appointment_rebooked -->
+                        <div class="col-md-6" id="wrap_appointment_rebooked">
+                            <label for="appointment_rebooked" class="form-label">Appointment rebooked</label>
+                            <select id="appointment_rebooked" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
+                        <!-- appointment_rebooked_date -->
+                        <div class="col-md-6" id="wrap_appointment_rebooked_date">
+                            <label for="appointment_rebooked_date" class="form-label">Appointment Rebooked date</label>
+                            <input type="date" id="appointment_rebooked_date" class="form-control"/>
+                        </div>
+
+
+                        <!-- second_appointment_honored -->
+                        <div class="col-md-6" id="wrap_second_appointment_honored">
+                            <label for="second_appointment_honored" class="form-label">Second appointment
+                                honored</label>
+                            <select id="second_appointment_honored" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
+                        <!-- reason_not_honored -->
+                        <div class="col-12 d-none" id="wrap_reason_not_honored">
+                            <label for="reason_not_honored" class="form-label">Reason for not honoring
+                                appointment</label>
+                            <select id="reason_not_honored" class="form-select">
+                                <option value="" selected disabled>Choose a reason...</option>
+                                <option value="Absent from school">Absent from school</option>
+                                <option value="Learner refused treatment">Learner refused treatment</option>
+                                <option value="Parent refused treatment">Parent refused treatment</option>
+                                <option value="Taken by parents to private Doctor">Taken by parents to private Doctor
+                                </option>
+                                <option value="Client unavailable">Client unavailable</option>
+                                <option value="Clinic closed / strike">Clinic closed / strike</option>
+                                <option value="Transport challenges">Transport challenges</option>
+                                <option value="Cost related">Cost related</option>
+                                <option value="Referred to different facility">Referred to different facility</option>
+                                <!--                <option value="Other">Other</option>-->
+                            </select>
+                            <div id="wrap_reason_other" class="mt-2 d-none">
+                                <input type="text" id="reason_other" class="form-control" placeholder="Please specify">
+                            </div>
+                        </div>
+
+
+                        <!-- transport_fare_received -->
+                        <div class="col-md-6">
+                            <label for="transport_fare_received" class="form-label">Transport fare received</label>
+                            <select id="transport_fare_received" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            <div class="invalid-feedback">Please select transport fair received</div>
+                        </div>
+
+                        <!-- service_received_after_referral -->
+                        <div class="col-md-6">
+                            <label for="service_received_after_referral" class="form-label">Service received after
+                                referral</label>
+                            <select id="service_received_after_referral" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="PENDING">PENDING</option>
+                            </select>
+                            <div class="invalid-feedback">Please select service received after referral</div>
+                        </div>
+
+                        <!-- parents contact number -->
+                        <div class="col-md-6">
+                            <label for="contact_number" class="form-label">Parent's contact number</label>
+                            <input id="contact_number" type="tel" class="form-control" placeholder="e.g 0821234567"
+                                   required/>
+                            <div class="invalid-feedback">Please enter the parent's contact number</div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="final_tracing_comments" class="form-label">Final linkage outcome</label>
+                            <select id="final_tracing_comments" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option> Require orthodontic treatment after 12 years</option>
+                                <option>Require orthodontic treatment, now</option>
+                                <option>Oral hygiene emphasised and avoid carcogenic food</option>
+                                <option>Tooth/ teeth extraction done</option>
+                                <option>To come back for more extraction</option>
+                                <option>Antibiotics and or antiallergic administered</option>
+                                <option>Refer for tooth restoration</option>
+                                <option>Referred for and received spectacles</option>
+                                <option>To avoid allergens</option>
+                                <option>Succesful ears wax management</option>
+                                <option>Foreign body removed succsessfully</option>
+                                <option>Congenital glaucoma for monthly glaucoma treatment (realease from school on
+                                    appointment date)
+                                </option>
+                                <option>Refered to University of Limpopo</option>
+                                <option>Normal vision, no further referal</option>
+                                <option>Poor vision (sit athe front)</option>
+                                <option>Poor hearing (Sit at the front)</option>
+                                <option>Dropped out</option>
+                                <option>Taken to private doctor by parents</option>
+                                <option>Tooth restoration</option>
+                                <option>Referred for further ophthalmology assessment (other than spectacles)</option>
+                                <option>Hearing aid prescribed / fitted</option>
+                                <option>Suspected perforated eardrum, referred to ENT specialist</option>
+                                <option>Given a referral letter to PHC</option>
+                                <option>Other ( specify)</option>
+                            </select>
+                            <div class="invalid-feedback">Please select common linkage outage</div>
+
+                            <!-- Hidden textbox + button -->
+                            <div id="otherCommentWrap" class="mt-2 d-none">
+                                <input type="text" id="final_tracing_comments_other" class="form-control mb-2"
+                                       placeholder="Please specify"/>
+                                <!--                                <button type="button" id="saveOtherBtn" class="btn btn-primary">Save</button>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- final_tracing_comments -->
+                    <!--            <div class="col-12">-->
+                    <!--              <label for="final_tracing_comments" class="form-label">Final service outcome / Dr's notes</label>-->
+                    <!--              <textarea id="final_tracing_comments" class="form-control" rows="3" placeholder="Add any final notes or outcomes..." ></textarea>-->
+                    <!--              <div class="invalid-feedback">Please add final service outcome</div>-->
+                    <!--            </div>-->
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="appointmentModalEars" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointmentModalLabel">Referral Outcome</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="appointment-form-ears" class="needs-validation" novalidate>
+                <div class="modal-body">
+                    <div class="row g-3">
+
+                        <!-- referral_to-->
+                        <div class="col-md-6">
+                            <label for="referral_to" class="form-label">Referral To</label>
+                            <select id="referral_to" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="PHC">PHC</option>
+                                <option value="Specialist">Specialist</option>
+                            </select>
+                            <div class="invalid-feedback">Please select referral site</div>
+                        </div>
+
+                        <!-- referred_site-->
+                        <div class="col-md-6">
+                            <label for="referral_site" class="form-label">Referred Site</label>
+                            <select id="referral_site" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="Dilokong hospital">Dilokong hospital</option>
+                                <option value="Jane Furse hospital">Jane Furse hospital</option>
+                                <option value="Dilokong hospital">Lydenburg hospital</option>
+                                <option value="PHC">PHC</option>
+                                <option value="PRIVATE DENTIST">PRIVATE DENTIST</option>
+                                <option value="PRIVATE AUDIOLOGIST">PRIVATE AUDIOLOGIST</option>
+                                <option value="PRIVATE OPTOMETRIST">PRIVATE OPTOMETRIST</option>
+                                <option value="VISION 4 CHANGE">VISION 4 CHANGE</option>
+
+                                <option value="PHC-SANE">PHC-SANE</option>
+                                <option value="HC BOSHOFF">HC BOSHOFF</option>
+                            </select>
+                            <div class="invalid-feedback">Please select referral site</div>
+                        </div>
+
+                        <!-- appointment_date -->
+                        <div class="col-md-6" id="wrap_appointment_date">
+                            <label for="appointment_date" class="form-label">Appointment date</label>
+                            <input type="date" id="appointment_date" class="form-control">
+                        </div>
+
+                        <!-- appointment_honored -->
+                        <div class="col-md-6">
+                            <label for="appointment_honored" class="form-label">Appointment honored</label>
+                            <select id="appointment_honored" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            <div class="invalid-feedback">Please select if the appointment was honored.</div>
+                        </div>
+
+                        <!-- service_type -->
+                        <div class="col-md-6">
+                            <label for="service_type" class="form-label">Service Type</label>
+                            <select id="service_type" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
                                 <option value="Ears">Ears</option>
                             </select>
                             <div class="invalid-feedback">Please select service type</div>
@@ -255,13 +481,230 @@
 
                 </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
 </div>
+
+<div class="modal fade" id="appointmentModalOralHealth" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointmentModalLabel">Referral Outcome</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="appointment-form-oral-health" class="needs-validation" novalidate>
+                <div class="modal-body">
+                    <div class="row g-3">
+
+                        <!-- referral_to-->
+                        <div class="col-md-6">
+                            <label for="referral_to" class="form-label">Referral To</label>
+                            <select id="referral_to" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="PHC">PHC</option>
+                                <option value="Specialist">Specialist</option>
+                            </select>
+                            <div class="invalid-feedback">Please select referral site</div>
+                        </div>
+
+                        <!-- referred_site-->
+                        <div class="col-md-6">
+                            <label for="referral_site" class="form-label">Referred Site</label>
+                            <select id="referral_site" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="Dilokong hospital">Dilokong hospital</option>
+                                <option value="Jane Furse hospital">Jane Furse hospital</option>
+                                <option value="Dilokong hospital">Lydenburg hospital</option>
+                                <option value="PHC">PHC</option>
+                                <option value="PRIVATE DENTIST">PRIVATE DENTIST</option>
+                                <option value="PRIVATE AUDIOLOGIST">PRIVATE AUDIOLOGIST</option>
+                                <option value="PRIVATE OPTOMETRIST">PRIVATE OPTOMETRIST</option>
+                                <option value="VISION 4 CHANGE">VISION 4 CHANGE</option>
+
+                                <option value="PHC-SANE">PHC-SANE</option>
+                                <option value="HC BOSHOFF">HC BOSHOFF</option>
+                            </select>
+                            <div class="invalid-feedback">Please select referral site</div>
+                        </div>
+
+                        <!-- appointment_date -->
+                        <div class="col-md-6" id="wrap_appointment_date">
+                            <label for="appointment_date" class="form-label">Appointment date</label>
+                            <input type="date" id="appointment_date" class="form-control">
+                        </div>
+
+                        <!-- appointment_honored -->
+                        <div class="col-md-6">
+                            <label for="appointment_honored" class="form-label">Appointment honored</label>
+                            <select id="appointment_honored" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            <div class="invalid-feedback">Please select if the appointment was honored.</div>
+                        </div>
+
+                        <!-- service_type -->
+                        <div class="col-md-6">
+                            <label for="service_type" class="form-label">Service Type</label>
+                            <select id="service_type" class="form-select" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="Oral Health">Oral Health</option>
+                            </select>
+                            <div class="invalid-feedback">Please select service type</div>
+                        </div>
+
+
+                        <!-- appointment_rebooked -->
+                        <div class="col-md-6" id="wrap_appointment_rebooked">
+                            <label for="appointment_rebooked" class="form-label">Appointment rebooked</label>
+                            <select id="appointment_rebooked" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
+                        <!-- appointment_rebooked_date -->
+                        <div class="col-md-6" id="wrap_appointment_rebooked_date">
+                            <label for="appointment_rebooked_date" class="form-label">Appointment Rebooked date</label>
+                            <input type="date" id="appointment_rebooked_date" class="form-control"/>
+                        </div>
+
+
+                        <!-- second_appointment_honored -->
+                        <div class="col-md-6" id="wrap_second_appointment_honored">
+                            <label for="second_appointment_honored" class="form-label">Second appointment
+                                honored</label>
+                            <select id="second_appointment_honored" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
+                        <!-- reason_not_honored -->
+                        <div class="col-12 d-none" id="wrap_reason_not_honored">
+                            <label for="reason_not_honored" class="form-label">Reason for not honoring
+                                appointment</label>
+                            <select id="reason_not_honored" class="form-select">
+                                <option value="" selected disabled>Choose a reason...</option>
+                                <option value="Absent from school">Absent from school</option>
+                                <option value="Learner refused treatment">Learner refused treatment</option>
+                                <option value="Parent refused treatment">Parent refused treatment</option>
+                                <option value="Taken by parents to private Doctor">Taken by parents to private Doctor
+                                </option>
+                                <option value="Client unavailable">Client unavailable</option>
+                                <option value="Clinic closed / strike">Clinic closed / strike</option>
+                                <option value="Transport challenges">Transport challenges</option>
+                                <option value="Cost related">Cost related</option>
+                                <option value="Referred to different facility">Referred to different facility</option>
+                                <!--                <option value="Other">Other</option>-->
+                            </select>
+                            <div id="wrap_reason_other" class="mt-2 d-none">
+                                <input type="text" id="reason_other" class="form-control" placeholder="Please specify">
+                            </div>
+                        </div>
+
+
+                        <!-- transport_fare_received -->
+                        <div class="col-md-6">
+                            <label for="transport_fare_received" class="form-label">Transport fare received</label>
+                            <select id="transport_fare_received" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            <div class="invalid-feedback">Please select transport fair received</div>
+                        </div>
+
+                        <!-- service_received_after_referral -->
+                        <div class="col-md-6">
+                            <label for="service_received_after_referral" class="form-label">Service received after
+                                referral</label>
+                            <select id="service_received_after_referral" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="PENDING">PENDING</option>
+                            </select>
+                            <div class="invalid-feedback">Please select service received after referral</div>
+                        </div>
+
+                        <!-- parents contact number -->
+                        <div class="col-md-6">
+                            <label for="contact_number" class="form-label">Parent's contact number</label>
+                            <input id="contact_number" type="tel" class="form-control" placeholder="e.g 0821234567"
+                                   required/>
+                            <div class="invalid-feedback">Please enter the parent's contact number</div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="final_tracing_comments" class="form-label">Final linkage outcome</label>
+                            <select id="final_tracing_comments" class="form-select">
+                                <option value="" selected disabled>Choose...</option>
+                                <option> Require orthodontic treatment after 12 years</option>
+                                <option>Require orthodontic treatment, now</option>
+                                <option>Oral hygiene emphasised and avoid carcogenic food</option>
+                                <option>Tooth/ teeth extraction done</option>
+                                <option>To come back for more extraction</option>
+                                <option>Antibiotics and or antiallergic administered</option>
+                                <option>Refer for tooth restoration</option>
+                                <option>Referred for and received spectacles</option>
+                                <option>To avoid allergens</option>
+                                <option>Succesful ears wax management</option>
+                                <option>Foreign body removed succsessfully</option>
+                                <option>Congenital glaucoma for monthly glaucoma treatment (realease from school on
+                                    appointment date)
+                                </option>
+                                <option>Refered to University of Limpopo</option>
+                                <option>Normal vision, no further referal</option>
+                                <option>Poor vision (sit athe front)</option>
+                                <option>Poor hearing (Sit at the front)</option>
+                                <option>Dropped out</option>
+                                <option>Taken to private doctor by parents</option>
+                                <option>Tooth restoration</option>
+                                <option>Referred for further ophthalmology assessment (other than spectacles)</option>
+                                <option>Hearing aid prescribed / fitted</option>
+                                <option>Suspected perforated eardrum, referred to ENT specialist</option>
+                                <option>Given a referral letter to PHC</option>
+                                <option>Other ( specify)</option>
+                            </select>
+                            <div class="invalid-feedback">Please select common linkage outage</div>
+
+                            <!-- Hidden textbox + button -->
+                            <div id="otherCommentWrap" class="mt-2 d-none">
+                                <input type="text" id="final_tracing_comments_other" class="form-control mb-2"
+                                       placeholder="Please specify"/>
+                                <!--                                <button type="button" id="saveOtherBtn" class="btn btn-primary">Save</button>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- final_tracing_comments -->
+                    <!--            <div class="col-12">-->
+                    <!--              <label for="final_tracing_comments" class="form-label">Final service outcome / Dr's notes</label>-->
+                    <!--              <textarea id="final_tracing_comments" class="form-control" rows="3" placeholder="Add any final notes or outcomes..." ></textarea>-->
+                    <!--              <div class="invalid-feedback">Please add final service outcome</div>-->
+                    <!--            </div>-->
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Toast for save confirmation -->

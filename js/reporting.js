@@ -38,7 +38,7 @@ if (appointmentOutcomeEarsBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        const appointmentModalEl = document.getElementById("appointmentModal")
+        const appointmentModalEl = document.getElementById("appointmentModalEars")
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
@@ -64,7 +64,7 @@ if (appointmentOutcomeEyesBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        const appointmentModalEl = document.getElementById("appointmentModal")
+        const appointmentModalEl = document.getElementById("appointmentModalEars")
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);
@@ -90,7 +90,7 @@ if (appointmentOutcomeOralHealthBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        const appointmentModalEl = document.getElementById("appointmentModal")
+        const appointmentModalEl = document.getElementById("appointmentModalOralHealth")
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);

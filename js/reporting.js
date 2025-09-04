@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const referralTo = document.getElementById("referral_to").value || "N/A";
                 const referralSite = document.getElementById("referral_site").value || "N/A";
                 const appointmentDate = document.getElementById("appointment_date").value || "N/A";
-                const appointmentHonored = document.getElementById("appointment_honored").value || "N/A";
+                const appointmentHonored = document.getElementById("appointment_honored_ears").value || "N/A";
                 const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
                 const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
@@ -481,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const referralTo = document.getElementById("referral_to").value || "N/A";
                 const referralSite = document.getElementById("referral_site").value || "N/A";
                 const appointmentDate = document.getElementById("appointment_date").value || "N/A";
-                const appointmentHonored = document.getElementById("appointment_honored").value || "N/A";
+                const appointmentHonored = document.getElementById("appointment_honored_eyes").value || "N/A";
                 const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
                 const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const referralTo = document.getElementById("referral_to").value || "N/A";
                 const referralSite = document.getElementById("referral_site").value || "N/A";
                 const appointmentDate = document.getElementById("appointment_date").value || "N/A";
-                const appointmentHonored = document.getElementById("appointment_honored").value || "N/A";
+                const appointmentHonored = document.getElementById("appointment_honored_oral_health").value || "N/A";
                 const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
                 const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";

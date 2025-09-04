@@ -675,7 +675,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 otherCommentWrapOralHealth.classList.remove("d-none");
             }else{
                 otherCommentWrapOralHealth.classList.add("d-none");
-                document.getElementById("final_tracing_comments_other").value = "";
+                document.getElementById("final_tracing_comments_other_oral_health").value = "";
             }
         });
     }
@@ -685,7 +685,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 otherCommentWrapEyes.classList.remove("d-none");
             }else{
                 otherCommentWrapEyes.classList.add("d-none");
-                document.getElementById("final_tracing_comments_other").value = "";
+                document.getElementById("final_tracing_comments_other_eyes").value = "";
             }
         });
     }
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 otherCommentWrapEars.classList.remove("d-none");
             }else{
                 otherCommentWrapEars.classList.add("d-none");
-                document.getElementById("final_tracing_comments_other").value = "";
+                document.getElementById("final_tracing_comments_other_ears").value = "";
             }
         });
     }

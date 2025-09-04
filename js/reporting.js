@@ -398,8 +398,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 toast.show();
 
                 // Reset form
-                appointmentForm.reset();
-                appointmentForm.classList.remove("was-validated");
+                appointmentFormEars.reset();
+                appointmentFormEars.classList.remove("was-validated");
 
                 // Hide conditional fields
                 appointmentRebookedWrap.classList.add("d-none");
@@ -484,8 +484,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 toast.show();
 
                 // Reset form
-                appointmentForm.reset();
-                appointmentForm.classList.remove("was-validated");
+                appointmentFormEyes.reset();
+                appointmentFormEyes.classList.remove("was-validated");
 
                 // Hide conditional fields
                 appointmentRebookedWrap.classList.add("d-none");
@@ -568,8 +568,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 toast.show();
 
                 // Reset form
-                appointmentForm.reset();
-                appointmentForm.classList.remove("was-validated");
+                appointmentFormOralHealth.reset();
+                appointmentFormOralHealth.classList.remove("was-validated");
 
                 // Hide conditional fields
                 appointmentRebookedWrap.classList.add("d-none");

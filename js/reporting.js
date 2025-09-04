@@ -283,7 +283,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const referralSite = document.getElementById("referral_site");
     const serviceType = document.getElementById("service_type");
     const appointmentModalEl = document.getElementById("appointmentModal");
-    const appointmentHonored = document.getElementById("appointment_honored");
+    const appointmentHonoredEyes = document.getElementById("appointment_honored_eyes");
+    const appointmentHonoredEars = document.getElementById("appointment_honored_ears");
+    const appointmentHonoredOralHealth = document.getElementById("appointment_honored_oral_health");
+
+
     const appointmentRebookedWrap = document.getElementById("wrap_appointment_rebooked");
     const appointmentDateWrap = document.getElementById("wrap_appointment_date");
 
@@ -306,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // });
 
     // Show/hide appointment rebooked section
-    appointmentHonored.addEventListener("change", function () {
+    appointmentHonoredEyes.addEventListener("change", function () {
         if (this.value === "NO") {
             appointmentRebookedWrap.classList.remove("d-none");
             appointmentRebookedDate.classList.remove("d-none");
@@ -328,6 +332,52 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("wrap_reason_not_honored").removeAttribute("required");
         }
     });
+    // Show/hide appointment rebooked section
+    appointmentHonoredEars.addEventListener("change", function () {
+        if (this.value === "NO") {
+            appointmentRebookedWrap.classList.remove("d-none");
+            appointmentRebookedDate.classList.remove("d-none");
+            reasonNotHonoredWrap.classList.remove("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
+        } else {
+            appointmentRebookedDate.classList.add("d-none");
+            appointmentRebookedWrap.classList.add("d-none");
+            // appointmentDateWrap.classList.add("d-none");
+            secondAppointmentHonoredWrap.classList.add("d-none");
+            reasonNotHonoredWrap.classList.add("d-none");
+            reasonOtherWrap.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
+        }
+    });  // Show/hide appointment rebooked section
+    appointmentHonoredOralHealth.addEventListener("change", function () {
+        if (this.value === "NO") {
+            appointmentRebookedWrap.classList.remove("d-none");
+            appointmentRebookedDate.classList.remove("d-none");
+            reasonNotHonoredWrap.classList.remove("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
+        } else {
+            appointmentRebookedDate.classList.add("d-none");
+            appointmentRebookedWrap.classList.add("d-none");
+            // appointmentDateWrap.classList.add("d-none");
+            secondAppointmentHonoredWrap.classList.add("d-none");
+            reasonNotHonoredWrap.classList.add("d-none");
+            reasonOtherWrap.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
+        }
+    });
+
 
     const appointmentFormOralHealth = document.getElementById("appointment-form-oral-health");
     const appointmentFormEyes = document.getElementById("appointment-form-eyes");

@@ -476,11 +476,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 appointmentFormEars.classList.remove("was-validated");
 
                 // Hide conditional fields
-                appointmentRebookedWrap.classList.add("d-none");
-                appointmentDateWrap.classList.add("d-none");
-                secondAppointmentHonoredWrap.classList.add("d-none");
-                reasonNotHonoredWrap.classList.add("d-none");
-                reasonOtherWrap.classList.add("d-none");
+                appointmentRebookedWrapEars.classList.add("d-none");
+                appointmentDateWrapEars.classList.add("d-none");
+                secondAppointmentHonoredWrapEars.classList.add("d-none");
+                reasonNotHonoredWrapEars.classList.add("d-none");
+                reasonOtherWrapEars.classList.add("d-none");
 
                 alert('Referral outcome saved successfully.');
                 location.reload();
@@ -562,11 +562,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 appointmentFormEyes.classList.remove("was-validated");
 
                 // Hide conditional fields
-                appointmentRebookedWrap.classList.add("d-none");
-                appointmentDateWrap.classList.add("d-none");
-                secondAppointmentHonoredWrap.classList.add("d-none");
-                reasonNotHonoredWrap.classList.add("d-none");
-                reasonOtherWrap.classList.add("d-none");
+                appointmentRebookedWrapEyes.classList.add("d-none");
+                appointmentDateWrapEyes.classList.add("d-none");
+                secondAppointmentHonoredWrapEyes.classList.add("d-none");
+                reasonNotHonoredWrapEyes.classList.add("d-none");
+                reasonOtherWrapEyes.classList.add("d-none");
 
                 alert('Referral outcome saved successfully.');
                 location.reload();
@@ -646,11 +646,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 appointmentFormOralHealth.classList.remove("was-validated");
 
                 // Hide conditional fields
-                appointmentRebookedWrap.classList.add("d-none");
-                appointmentDateWrap.classList.add("d-none");
-                secondAppointmentHonoredWrap.classList.add("d-none");
-                reasonNotHonoredWrap.classList.add("d-none");
-                reasonOtherWrap.classList.add("d-none");
+                appointmentRebookedWrapOralHealth.classList.add("d-none");
+                appointmentDateWrapOralHealth.classList.add("d-none");
+                secondAppointmentHonoredWrapOralHealth.classList.add("d-none");
+                reasonNotHonoredWrapOralHealth.classList.add("d-none");
+                reasonOtherWrapOralHealth.classList.add("d-none");
 
                 alert('Referral outcome saved successfully.');
                 location.reload();

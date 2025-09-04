@@ -64,7 +64,7 @@ if (appointmentOutcomeEyesBtn) {
             alert('Please provide the Screening ID.');
             return;
         }
-        const appointmentModalEl = document.getElementById("appointmentModalEars")
+        const appointmentModalEl = document.getElementById("appointmentModalEyes")
 
         try {
             const response = await fetch(`https://bp-prod-app-a15e414be88d.herokuapp.com/api/referral?screeningID=${screeningID}`);

@@ -288,14 +288,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const appointmentHonoredOralHealth = document.getElementById("appointment_honored_oral_health");
 
 
-    const appointmentRebookedWrap = document.getElementById("wrap_appointment_rebooked");
-    const appointmentDateWrap = document.getElementById("wrap_appointment_date");
+    const appointmentRebookedWrapOralHealth = document.getElementById("wrap_appointment_rebooked_oral_health");
+    const appointmentRebookedWrapEyes = document.getElementById("wrap_appointment_rebooked_eyes");
+    const appointmentRebookedWrapEars = document.getElementById("wrap_appointment_rebooked_ears");
 
-    const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date");
-    const appointmentDate = document.getElementById("appointment_date");
-    const secondAppointmentHonoredWrap = document.getElementById("wrap_second_appointment_honored");
-    const reasonNotHonoredWrap = document.getElementById("wrap_reason_not_honored");
-    const reasonOtherWrap = document.getElementById("wrap_reason_other");
+    const appointmentDateWrapEars = document.getElementById("wrap_appointment_date_ears");
+    const appointmentDateWrapOralHealth = document.getElementById("wrap_appointment_date_oral_health");
+    const appointmentDateWrapEyes = document.getElementById("wrap_appointment_date_eyes");
+
+    const appointmentRebookedDateEyes = document.getElementById("wrap_appointment_rebooked_date_eyes");
+    const appointmentRebookedDateOralHealth = document.getElementById("wrap_appointment_rebooked_date_oral_health");
+    const appointmentRebookedDateEars = document.getElementById("wrap_appointment_rebooked_date_ears");
+
+
+    const appointmentDateOralHealth = document.getElementById("appointment_date_oral_health");
+    const appointmentDateEyes = document.getElementById("appointment_date_eyes");
+    const appointmentDateEars = document.getElementById("appointment_date_ears");
+
+
+    const secondAppointmentHonoredWrapEars = document.getElementById("wrap_second_appointment_honored_ears");
+    const secondAppointmentHonoredWrapEyes = document.getElementById("wrap_second_appointment_honored_eyes");
+    const secondAppointmentHonoredWrapOralHealth = document.getElementById("wrap_second_appointment_honored_oral_health");
+
+
+    const reasonNotHonoredWrapEyes = document.getElementById("wrap_reason_not_honored_eyes");
+    const reasonNotHonoredWrapEars = document.getElementById("wrap_reason_not_honored_ears");
+    const reasonNotHonoredWrapOralHealth = document.getElementById("wrap_reason_not_honored_oral_health");
+
+
+    const reasonOtherWrapEyes = document.getElementById("wrap_reason_other_eyes");
+    const reasonOtherWrapEars = document.getElementById("wrap_reason_other_ears");
+    const reasonOtherWrapOralHealth = document.getElementById("wrap_reason_other_oral_health");
+
     const reasonNotHonoredSelect = document.getElementById("reason_not_honored");
     const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
@@ -312,69 +336,69 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show/hide appointment rebooked section
     appointmentHonoredEyes.addEventListener("change", function () {
         if (this.value === "NO") {
-            appointmentRebookedWrap.classList.remove("d-none");
-            appointmentRebookedDate.classList.remove("d-none");
-            reasonNotHonoredWrap.classList.remove("d-none");
+            appointmentRebookedWrapEyes.classList.remove("d-none");
+            appointmentRebookedDateEyes.classList.remove("d-none");
+            reasonNotHonoredWrapEyes.classList.remove("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
-            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
-            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_eyes").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date_eyes").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored_eyes").setAttribute("required", "true");
         } else {
-            appointmentRebookedDate.classList.add("d-none");
-            appointmentRebookedWrap.classList.add("d-none");
+            appointmentRebookedDateEyes.classList.add("d-none");
+            appointmentRebookedWrapEyes.classList.add("d-none");
             // appointmentDateWrap.classList.add("d-none");
-            secondAppointmentHonoredWrap.classList.add("d-none");
-            reasonNotHonoredWrap.classList.add("d-none");
-            reasonOtherWrap.classList.add("d-none");
+            secondAppointmentHonoredWrapEyes.classList.add("d-none");
+            reasonNotHonoredWrapEyes.classList.add("d-none");
+            reasonOtherWrapEyes.classList.add("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
-            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
-            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_eyes").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date_eyes").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored_eyes").removeAttribute("required");
         }
     });
     // Show/hide appointment rebooked section
     appointmentHonoredEars.addEventListener("change", function () {
         if (this.value === "NO") {
-            appointmentRebookedWrap.classList.remove("d-none");
-            appointmentRebookedDate.classList.remove("d-none");
-            reasonNotHonoredWrap.classList.remove("d-none");
+            appointmentRebookedWrapEars.classList.remove("d-none");
+            appointmentRebookedDateEars.classList.remove("d-none");
+            reasonNotHonoredWrapEars.classList.remove("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
-            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
-            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_ears").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date_ears").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored_ears").setAttribute("required", "true");
         } else {
-            appointmentRebookedDate.classList.add("d-none");
-            appointmentRebookedWrap.classList.add("d-none");
+            appointmentRebookedDateEars.classList.add("d-none");
+            appointmentRebookedWrapEars.classList.add("d-none");
             // appointmentDateWrap.classList.add("d-none");
-            secondAppointmentHonoredWrap.classList.add("d-none");
-            reasonNotHonoredWrap.classList.add("d-none");
-            reasonOtherWrap.classList.add("d-none");
+            secondAppointmentHonoredWrapEars.classList.add("d-none");
+            reasonNotHonoredWrapEars.classList.add("d-none");
+            reasonOtherWrapEars.classList.add("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
-            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
-            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_ears").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date_ears").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored_ears").removeAttribute("required");
         }
     });  // Show/hide appointment rebooked section
     appointmentHonoredOralHealth.addEventListener("change", function () {
         if (this.value === "NO") {
-            appointmentRebookedWrap.classList.remove("d-none");
-            appointmentRebookedDate.classList.remove("d-none");
-            reasonNotHonoredWrap.classList.remove("d-none");
+            appointmentRebookedWrapOralHealth.classList.remove("d-none");
+            appointmentRebookedDateOralHealth.classList.remove("d-none");
+            reasonNotHonoredWrapOralHealth.classList.remove("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").setAttribute("required", "true");
-            document.getElementById("wrap_appointment_rebooked_date").setAttribute("required", "true");
-            document.getElementById("wrap_reason_not_honored").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_oral_health").setAttribute("required", "true");
+            document.getElementById("wrap_appointment_rebooked_date_oral_health").setAttribute("required", "true");
+            document.getElementById("wrap_reason_not_honored_oral_health").setAttribute("required", "true");
         } else {
-            appointmentRebookedDate.classList.add("d-none");
-            appointmentRebookedWrap.classList.add("d-none");
+            appointmentRebookedDateOralHealth.classList.add("d-none");
+            appointmentRebookedWrapOralHealth.classList.add("d-none");
             // appointmentDateWrap.classList.add("d-none");
-            secondAppointmentHonoredWrap.classList.add("d-none");
-            reasonNotHonoredWrap.classList.add("d-none");
-            reasonOtherWrap.classList.add("d-none");
+            secondAppointmentHonoredWrapOralHealth.classList.add("d-none");
+            reasonNotHonoredWrapOralHealth.classList.add("d-none");
+            reasonOtherWrapOralHealth.classList.add("d-none");
 
-            document.getElementById("wrap_appointment_rebooked").removeAttribute("required");
-            document.getElementById("wrap_appointment_rebooked_date").removeAttribute("required");
-            document.getElementById("wrap_reason_not_honored").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_oral_health").removeAttribute("required");
+            document.getElementById("wrap_appointment_rebooked_date_oral_health").removeAttribute("required");
+            document.getElementById("wrap_reason_not_honored_oral_health").removeAttribute("required");
         }
     });
 
@@ -392,21 +416,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             try {
-                const referralTo = document.getElementById("referral_to").value || "N/A";
-                const referralSite = document.getElementById("referral_site").value || "N/A";
-                const appointmentDate = document.getElementById("appointment_date").value || "N/A";
+                const referralTo = document.getElementById("referral_to_ears").value || "N/A";
+                const referralSite = document.getElementById("referral_site_ears").value || "N/A";
+                const appointmentDate = document.getElementById("appointment_date_ears").value || "N/A";
                 const appointmentHonored = document.getElementById("appointment_honored_ears").value || "N/A";
-                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
-                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
-                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
-                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || "N/A";
-                const serviceType = document.getElementById("service_type").value || "N/A";
-                const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
-                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
-                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
-                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked_ears").value || "N/A";
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date_ears").value || "N/A";
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored_ears").value || "N/A";
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored_ears").value || "N/A";
+                const serviceType = document.getElementById("service_type_ears").value || "N/A";
+                const transportFairReceived = document.getElementById("transport_fare_received_ears").value || "N/A";
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_ears").value || "N/A";
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments_ears").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other_ears").value || "N/A";
                 const screeningID = document.getElementById('screening-id').value || "N/A";
-                const contactNumber = document.getElementById('contact_number').value || "N/A";
+                const contactNumber = document.getElementById('contact_number_ears').value || "N/A";
 
                 const payload = {
                     referralTo,
@@ -478,21 +502,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             try {
-                const referralTo = document.getElementById("referral_to").value || "N/A";
-                const referralSite = document.getElementById("referral_site").value || "N/A";
-                const appointmentDate = document.getElementById("appointment_date").value || "N/A";
+                const referralTo = document.getElementById("referral_to_eyes").value || "N/A";
+                const referralSite = document.getElementById("referral_site_eyes").value || "N/A";
+                const appointmentDate = document.getElementById("appointment_date_eyes").value || "N/A";
                 const appointmentHonored = document.getElementById("appointment_honored_eyes").value || "N/A";
-                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
-                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
-                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
-                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || "N/A";
-                const serviceType = document.getElementById("service_type").value || "N/A";
-                const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
-                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
-                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
-                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked_eyes").value || "N/A";
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date_eyes").value || "N/A";
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored_eyes").value || "N/A";
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored_eyes").value || "N/A";
+                const serviceType = document.getElementById("service_type_eyes").value || "N/A";
+                const transportFairReceived = document.getElementById("transport_fare_received_eyes").value || "N/A";
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_eyes").value || "N/A";
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments_eyes").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other_eyes").value || "N/A";
                 const screeningID = document.getElementById('screening-id').value || "N/A";
-                const contactNumber = document.getElementById('contact_number').value || "N/A";
+                const contactNumber = document.getElementById('contact_number_eyes').value || "N/A";
 
                 const payload = {
                     referralTo,
@@ -562,21 +586,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             try {
-                const referralTo = document.getElementById("referral_to").value || "N/A";
-                const referralSite = document.getElementById("referral_site").value || "N/A";
-                const appointmentDate = document.getElementById("appointment_date").value || "N/A";
+                const referralTo = document.getElementById("referral_to_oral_health").value || "N/A";
+                const referralSite = document.getElementById("referral_site_oral_health").value || "N/A";
+                const appointmentDate = document.getElementById("appointment_date_oral_health").value || "N/A";
                 const appointmentHonored = document.getElementById("appointment_honored_oral_health").value || "N/A";
-                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked").value || "N/A";
-                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date").value || "N/A";
-                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored").value || "N/A";
-                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored").value || "N/A";
-                const serviceType = document.getElementById("service_type").value || "N/A";
-                const transportFairReceived = document.getElementById("transport_fare_received").value || "N/A";
-                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral").value || "N/A";
-                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments").value || "N/A";
-                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other").value || "N/A";
+                const appointmentRebooked = document.getElementById("wrap_appointment_rebooked_oral_health").value || "N/A";
+                const appointmentRebookedDate = document.getElementById("wrap_appointment_rebooked_date_oral_health").value || "N/A";
+                const secondAppointmentHonored = document.getElementById("wrap_second_appointment_honored_oral_health").value || "N/A";
+                const reasonsNotHonoringAppointment = document.getElementById("wrap_reason_not_honored_oral_health").value || "N/A";
+                const serviceType = document.getElementById("service_type_oral_health").value || "N/A";
+                const transportFairReceived = document.getElementById("transport_fare_received_oral_health").value || "N/A";
+                const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_oral_health").value || "N/A";
+                const finalTracingOutcomeComment = document.getElementById("final_tracing_comments_oral_health").value || "N/A";
+                const finalTracingOutcomeCommentOther = document.getElementById("final_tracing_comments_other_oral_health").value || "N/A";
                 const screeningID = document.getElementById('screening-id').value || "N/A";
-                const contactNumber = document.getElementById('contact_number').value || "N/A";
+                const contactNumber = document.getElementById('contact_number_oral_health').value || "N/A";
 
                 const payload = {
                     referralTo,
@@ -637,20 +661,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const finalTracingSelect = document.getElementById("final_tracing_comments");
-    const otherCommentWrap = document.getElementById("otherCommentWrap");
-    if(finalTracingSelect){
-        finalTracingSelect.addEventListener("change", function(){
+    const finalTracingSelectOralHealth = document.getElementById("final_tracing_comments_oral_health");
+    const finalTracingSelectEyes = document.getElementById("final_tracing_comments_eyes");
+    const finalTracingSelectEars = document.getElementById("final_tracing_comments_ears");
+
+    const otherCommentWrapOralHealth = document.getElementById("otherCommentWrapOralHealth");
+    const otherCommentWrapEyes = document.getElementById("otherCommentWrapEyes");
+    const otherCommentWrapEars = document.getElementById("otherCommentWrapEars");
+
+    if(finalTracingSelectOralHealth){
+        finalTracingSelectOralHealth.addEventListener("change", function(){
             if(this.value.toLowerCase().includes("other")){
-                otherCommentWrap.classList.remove("d-none");
+                otherCommentWrapOralHealth.classList.remove("d-none");
             }else{
-                otherCommentWrap.classList.add("d-none");
+                otherCommentWrapOralHealth.classList.add("d-none");
+                document.getElementById("final_tracing_comments_other").value = "";
+            }
+        });
+    }
+    if(finalTracingSelectEyes){
+        finalTracingSelectEyes.addEventListener("change", function(){
+            if(this.value.toLowerCase().includes("other")){
+                otherCommentWrapEyes.classList.remove("d-none");
+            }else{
+                otherCommentWrapEyes.classList.add("d-none");
+                document.getElementById("final_tracing_comments_other").value = "";
+            }
+        });
+    }
+    if(finalTracingSelectEars){
+        finalTracingSelectEars.addEventListener("change", function(){
+            if(this.value.toLowerCase().includes("other")){
+                otherCommentWrapEars.classList.remove("d-none");
+            }else{
+                otherCommentWrapEars.classList.add("d-none");
                 document.getElementById("final_tracing_comments_other").value = "";
             }
         });
     }
     // Show/hide appointment date + second appointment honored if rebooked is YES
-    document.getElementById("appointment_rebooked").addEventListener("change", function () {
+    document.getElementById("appointment_rebooked_oral_health").addEventListener("change", function () {
         if (this.value === "YES") {
             secondAppointmentHonoredWrap.classList.remove("d-none");
             document.getElementById("wrap_second_appointment_honored").setAttribute("required", "true");
@@ -659,8 +709,36 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentDateWrap.classList.add("d-none");
             secondAppointmentHonoredWrap.classList.add("d-none");
 
-            document.getElementById("wrap_appointment_date").removeAttribute("required");
-            document.getElementById("wrap_second_appointment_honored").removeAttribute("required");
+            document.getElementById("wrap_appointment_date_oral_health").removeAttribute("required");
+            document.getElementById("wrap_second_appointment_honored_oral_health").removeAttribute("required");
+        }
+    });
+    // Show/hide appointment date + second appointment honored if rebooked is YES
+    document.getElementById("appointment_rebooked_eyes").addEventListener("change", function () {
+        if (this.value === "YES") {
+            secondAppointmentHonoredWrapEyes.classList.remove("d-none");
+            document.getElementById("wrap_second_appointment_honored_oral_health").setAttribute("required", "true");
+
+        } else {
+            appointmentDateWrapEyes.classList.add("d-none");
+            secondAppointmentHonoredWrapEyes.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_date_eyes").removeAttribute("required");
+            document.getElementById("wrap_second_appointment_honored_eyes").removeAttribute("required");
+        }
+    });
+    // Show/hide appointment date + second appointment honored if rebooked is YES
+    document.getElementById("appointment_rebooked_ears").addEventListener("change", function () {
+        if (this.value === "YES") {
+            secondAppointmentHonoredWrapEars.classList.remove("d-none");
+            document.getElementById("wrap_second_appointment_honored_eyes").setAttribute("required", "true");
+
+        } else {
+            appointmentDateWrapEars.classList.add("d-none");
+            secondAppointmentHonoredWrapEars.classList.add("d-none");
+
+            document.getElementById("wrap_appointment_date_ears").removeAttribute("required");
+            document.getElementById("wrap_second_appointment_honored_ears").removeAttribute("required");
         }
     });
 

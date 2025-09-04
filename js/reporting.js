@@ -702,12 +702,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show/hide appointment date + second appointment honored if rebooked is YES
     document.getElementById("appointment_rebooked_oral_health").addEventListener("change", function () {
         if (this.value === "YES") {
-            secondAppointmentHonoredWrap.classList.remove("d-none");
-            document.getElementById("wrap_second_appointment_honored").setAttribute("required", "true");
+            secondAppointmentHonoredWrapOralHealth.classList.remove("d-none");
+            document.getElementById("wrap_second_appointment_honored_oral_health").setAttribute("required", "true");
 
         } else {
-            appointmentDateWrap.classList.add("d-none");
-            secondAppointmentHonoredWrap.classList.add("d-none");
+            appointmentDateWrapOralHealth.classList.add("d-none");
+            secondAppointmentHonoredWrapOralHealth.classList.add("d-none");
 
             document.getElementById("wrap_appointment_date_oral_health").removeAttribute("required");
             document.getElementById("wrap_second_appointment_honored_oral_health").removeAttribute("required");

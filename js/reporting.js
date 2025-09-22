@@ -320,6 +320,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const reasonOtherWrapEars = document.getElementById("wrap_reason_other_ears");
     const reasonOtherWrapOralHealth = document.getElementById("wrap_reason_other_oral_health");
 
+
+    const transportFareReceivedEarsWrap = document.getElementById("wrap_transport_fare_received_ears");
+    const transportFareReceivedEyesWrap = document.getElementById("wrap_transport_fare_received_eyes");
+    const transportFareReceivedOralHealthWrap = document.getElementById("wrap_transport_fare_received_oral_health");
+
+    const serviceReceivedAfterWrapEars = document.getElementById("wrap_service_received_after_referral_ears");
+    const serviceReceivedAfterWrapOralHealth = document.getElementById("wrap_service_received_after_referral_oral_health");
+    const serviceReceivedAfterWrapEyes = document.getElementById("wrap_service_received_after_referral_eyes");
+
     const reasonNotHonoredSelect = document.getElementById("reason_not_honored");
     const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
@@ -340,6 +349,14 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentRebookedDateEyes.classList.remove("d-none");
             reasonNotHonoredWrapEyes.classList.remove("d-none");
 
+            transportFareReceivedEarsWrap.classList.add("d-none");
+            transportFareReceivedEyesWrap.classList.add("d-none");
+            transportFareReceivedOralHealthWrap.classList.add("d-none");
+
+            serviceReceivedAfterWrapEars.classList.add("d-none");
+            serviceReceivedAfterWrapEyes.classList.add("d-none");
+            serviceReceivedAfterWrapOralHealth.classList.add("d-none");
+
             document.getElementById("wrap_appointment_rebooked_eyes").setAttribute("required", "true");
             document.getElementById("wrap_appointment_rebooked_date_eyes").setAttribute("required", "true");
             document.getElementById("wrap_reason_not_honored_eyes").setAttribute("required", "true");
@@ -350,6 +367,14 @@ document.addEventListener("DOMContentLoaded", function () {
             secondAppointmentHonoredWrapEyes.classList.add("d-none");
             reasonNotHonoredWrapEyes.classList.add("d-none");
             reasonOtherWrapEyes.classList.add("d-none");
+
+            transportFareReceivedEarsWrap.classList.remove("d-none");
+            transportFareReceivedEyesWrap.classList.remove("d-none");
+            transportFareReceivedOralHealthWrap.classList.remove("d-none");
+
+            serviceReceivedAfterWrapEars.classList.remove("d-none");
+            serviceReceivedAfterWrapEyes.classList.remove("d-none");
+            serviceReceivedAfterWrapOralHealth.classList.remove("d-none");
 
             document.getElementById("wrap_appointment_rebooked_eyes").removeAttribute("required");
             document.getElementById("wrap_appointment_rebooked_date_eyes").removeAttribute("required");
@@ -424,6 +449,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const appointmentRebookedDate = document.getElementById("appointment_rebooked_date_ears").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("second_appointment_honored_ears").value || "N/A";
                 const reasonsNotHonoringAppointment = document.getElementById("reason_not_honored_ears").value || "N/A";
+                const reasonsNotHonoringAppointmentOther = document.getElementById("reason_other_ears").value || "N/A";
+
                 const serviceType = document.getElementById("service_type_ears").value || "N/A";
                 const transportFairReceived = document.getElementById("transport_fare_received_ears").value || "N/A";
                 const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_ears").value || "N/A";
@@ -441,6 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     appointmentRebookedDate,
                     secondAppointmentHonored,
                     reasonsNotHonoringAppointment,
+                    reasonsNotHonoringAppointmentOther,
                     serviceType,
                     transportFairReceived,
                     serviceReceivedAfterReferral,
@@ -510,6 +538,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const appointmentRebookedDate = document.getElementById("appointment_rebooked_date_eyes").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("second_appointment_honored_eyes").value || "N/A";
                 const reasonsNotHonoringAppointment = document.getElementById("reason_not_honored_eyes").value || "N/A";
+                const reasonsNotHonoringAppointmentOther = document.getElementById("reason_other_eyes").value || "N/A";
+
                 const serviceType = document.getElementById("service_type_eyes").value || "N/A";
                 const transportFairReceived = document.getElementById("transport_fare_received_eyes").value || "N/A";
                 const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_eyes").value || "N/A";
@@ -527,6 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     appointmentRebookedDate,
                     secondAppointmentHonored,
                     reasonsNotHonoringAppointment,
+                    reasonsNotHonoringAppointmentOther,
                     serviceType,
                     transportFairReceived,
                     serviceReceivedAfterReferral,
@@ -594,6 +625,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const appointmentRebookedDate = document.getElementById("appointment_rebooked_date_oral_health").value || "N/A";
                 const secondAppointmentHonored = document.getElementById("second_appointment_honored_oral_health").value || "N/A";
                 const reasonsNotHonoringAppointment = document.getElementById("reason_not_honored_oral_health").value || "N/A";
+                const reasonsNotHonoringAppointmentOther = document.getElementById("reason_other_oral_health").value || "N/A";
+
                 const serviceType = document.getElementById("service_type_oral_health").value || "N/A";
                 const transportFairReceived = document.getElementById("transport_fare_received_oral_health").value || "N/A";
                 const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral_oral_health").value || "N/A";
@@ -611,6 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     appointmentRebookedDate,
                     secondAppointmentHonored,
                     reasonsNotHonoringAppointment,
+                    reasonsNotHonoringAppointmentOther,
                     serviceType,
                     transportFairReceived,
                     serviceReceivedAfterReferral,
@@ -669,6 +703,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const otherCommentWrapEyes = document.getElementById("otherCommentWrapEyes");
     const otherCommentWrapEars = document.getElementById("otherCommentWrapEars");
 
+    const reasonOtherCommentOralHealth = document.getElementById("wrap_reason_other_oral_health");
+    const reasonsOtherCommentEyes = document.getElementById("wrap_reason_other_eyes");
+    const reasonsOtherCommentEars = document.getElementById("wrap_reason_other_ears");
+
+    const reasonOtherSelectOralHealth = document.getElementById("reason_other_oral_health");
+    const reasonOtherSelectEyes = document.getElementById("reason_other_eyes");
+    const reasonOtherSelectEars = document.getElementById("reason_other_ears");
+
+
+    if(reasonOtherSelectOralHealth){
+        reasonOtherSelectOralHealth.addEventListener("change", function(){
+            if(this.value.toLower().includes("other")){
+                reasonOtherCommentOralHealth.classList.remove("d-none");
+            }
+            else{
+                reasonOtherCommentOralHealth.classList.add("d-none");
+                document.getElementById("reason_other_oral_health").value = "";
+            }
+        });
+    }
+    if(reasonOtherSelectEyes){
+        reasonOtherSelectEyes.addEventListener("change", function(){
+            if(this.value.toLower().includes("other")){
+                reasonsOtherCommentEyes.classList.remove("d-none");
+            }
+            else{
+                reasonsOtherCommentEyes.classList.add("d-none");
+                document.getElementById("reason_other_eyes").value = "";
+            }
+        });
+    }
+    if(reasonOtherSelectEars){
+        reasonOtherSelectEars.addEventListener("change", function(){
+            if(this.value.toLower().includes("other")){
+                reasonsOtherCommentEars.classList.remove("d-none");
+            }
+            else{
+                reasonsOtherCommentEars.classList.add("d-none");
+                document.getElementById("reason_other_ears").value = "";
+            }
+        });
+    }
     if(finalTracingSelectOralHealth){
         finalTracingSelectOralHealth.addEventListener("change", function(){
             if(this.value.toLowerCase().includes("other")){

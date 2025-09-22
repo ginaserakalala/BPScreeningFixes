@@ -329,6 +329,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const serviceReceivedAfterWrapOralHealth = document.getElementById("wrap_service_received_after_referral_oral_health");
     const serviceReceivedAfterWrapEyes = document.getElementById("wrap_service_received_after_referral_eyes");
 
+
+
+
     const reasonNotHonoredSelect = document.getElementById("reason_not_honored");
     const finalTracingOutcomeComment = document.getElementById("final_tracing_comments");
     const serviceReceivedAfterReferral = document.getElementById("service_received_after_referral");
@@ -349,13 +352,9 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentRebookedDateEyes.classList.remove("d-none");
             reasonNotHonoredWrapEyes.classList.remove("d-none");
 
-            transportFareReceivedEarsWrap.classList.add("d-none");
             transportFareReceivedEyesWrap.classList.add("d-none");
-            transportFareReceivedOralHealthWrap.classList.add("d-none");
 
-            serviceReceivedAfterWrapEars.classList.add("d-none");
             serviceReceivedAfterWrapEyes.classList.add("d-none");
-            serviceReceivedAfterWrapOralHealth.classList.add("d-none");
 
             document.getElementById("wrap_appointment_rebooked_eyes").setAttribute("required", "true");
             document.getElementById("wrap_appointment_rebooked_date_eyes").setAttribute("required", "true");
@@ -368,13 +367,9 @@ document.addEventListener("DOMContentLoaded", function () {
             reasonNotHonoredWrapEyes.classList.add("d-none");
             reasonOtherWrapEyes.classList.add("d-none");
 
-            transportFareReceivedEarsWrap.classList.remove("d-none");
             transportFareReceivedEyesWrap.classList.remove("d-none");
-            transportFareReceivedOralHealthWrap.classList.remove("d-none");
 
-            serviceReceivedAfterWrapEars.classList.remove("d-none");
             serviceReceivedAfterWrapEyes.classList.remove("d-none");
-            serviceReceivedAfterWrapOralHealth.classList.remove("d-none");
 
             document.getElementById("wrap_appointment_rebooked_eyes").removeAttribute("required");
             document.getElementById("wrap_appointment_rebooked_date_eyes").removeAttribute("required");
@@ -388,6 +383,9 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentRebookedDateEars.classList.remove("d-none");
             reasonNotHonoredWrapEars.classList.remove("d-none");
 
+            transportFareReceivedEarsWrap.classList.add("d-none");
+            serviceReceivedAfterWrapEars.classList.add("d-none");
+
             document.getElementById("wrap_appointment_rebooked_ears").setAttribute("required", "true");
             document.getElementById("wrap_appointment_rebooked_date_ears").setAttribute("required", "true");
             document.getElementById("wrap_reason_not_honored_ears").setAttribute("required", "true");
@@ -398,6 +396,10 @@ document.addEventListener("DOMContentLoaded", function () {
             secondAppointmentHonoredWrapEars.classList.add("d-none");
             reasonNotHonoredWrapEars.classList.add("d-none");
             reasonOtherWrapEars.classList.add("d-none");
+
+            transportFareReceivedEarsWrap.classList.remove("d-none");
+
+            serviceReceivedAfterWrapEars.classList.remove("d-none");
 
             document.getElementById("wrap_appointment_rebooked_ears").removeAttribute("required");
             document.getElementById("wrap_appointment_rebooked_date_ears").removeAttribute("required");
@@ -410,6 +412,10 @@ document.addEventListener("DOMContentLoaded", function () {
             appointmentRebookedDateOralHealth.classList.remove("d-none");
             reasonNotHonoredWrapOralHealth.classList.remove("d-none");
 
+
+            transportFareReceivedOralHealthWrap.classList.add("d-none");
+            serviceReceivedAfterWrapOralHealth.classList.add("d-none");
+
             document.getElementById("wrap_appointment_rebooked_oral_health").setAttribute("required", "true");
             document.getElementById("wrap_appointment_rebooked_date_oral_health").setAttribute("required", "true");
             document.getElementById("wrap_reason_not_honored_oral_health").setAttribute("required", "true");
@@ -420,6 +426,11 @@ document.addEventListener("DOMContentLoaded", function () {
             secondAppointmentHonoredWrapOralHealth.classList.add("d-none");
             reasonNotHonoredWrapOralHealth.classList.add("d-none");
             reasonOtherWrapOralHealth.classList.add("d-none");
+
+
+            transportFareReceivedOralHealthWrap.classList.remove("d-none");
+
+            serviceReceivedAfterWrapOralHealth.classList.remove("d-none");
 
             document.getElementById("wrap_appointment_rebooked_oral_health").removeAttribute("required");
             document.getElementById("wrap_appointment_rebooked_date_oral_health").removeAttribute("required");

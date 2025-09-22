@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referral</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="oral-page">
 <!--// TODO: REFACTOR CODE TO NOT BREAK THE DRY rule
@@ -56,7 +56,8 @@
 </div>
 
 <!--EYES!!!!!-->
-<div class="modal fade" id="appointmentModalEyes" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+<div class="modal fade" id="appointmentModalEyes" tabindex="-1" aria-labelledby="appointmentModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
@@ -120,10 +121,10 @@
                         <div class="col-md-6">
                             <label for="service_type_eyes" class="form-label">Service Type</label>
                             <select id="service_type_eyes" class="form-select readonly-select" required>
-<!--                                <option value="" selected disabled>Choose...</option>-->
+                                <!--                                <option value="" selected disabled>Choose...</option>-->
                                 <option value="Eyes">Eyes</option>
                             </select>
-<!--                            <div class="invalid-feedback">Please select service type</div>-->
+                            <!--                            <div class="invalid-feedback">Please select service type</div>-->
                         </div>
 
 
@@ -139,7 +140,8 @@
 
                         <!-- appointment_rebooked_date -->
                         <div class="col-md-6" id="wrap_appointment_rebooked_date_eyes">
-                            <label for="appointment_rebooked_date_eyes" class="form-label">Appointment Rebooked date</label>
+                            <label for="appointment_rebooked_date_eyes" class="form-label">Appointment Rebooked
+                                date</label>
                             <input type="date" id="appointment_rebooked_date_eyes" class="form-control"/>
                         </div>
 
@@ -171,10 +173,11 @@
                                 <option value="Transport challenges">Transport challenges</option>
                                 <option value="Cost related">Cost related</option>
                                 <option value="Referred to different facility">Referred to different facility</option>
-                                <!--                <option value="Other">Other</option>-->
+                                <option value="Other">Other</option>
                             </select>
                             <div id="wrap_reason_other_eyes" class="mt-2 d-none">
-                                <input type="text" id="reason_other_eyes" class="form-control" placeholder="Please specify">
+                                <input type="text" id="reason_other_eyes" class="form-control"
+                                       placeholder="Please specify">
                             </div>
                         </div>
 
@@ -247,8 +250,8 @@
 
                             <!-- Hidden textbox + button -->
                             <div id="otherCommentWrapEyes" class="mt-2 d-none">
-                                <input type="text" id="final_tracing_comments_other_eyes" class="form-control mb-2"
-                                       placeholder="Please specify"/>
+                                <textarea type="text" id="final_tracing_comments_other_eyes" class="form-control mb-2"
+                                       placeholder="Please specify"></textarea>
                                 <!--                                <button type="button" id="saveOtherBtn" class="btn btn-primary">Save</button>-->
                             </div>
                         </div>
@@ -274,7 +277,8 @@
     </div>
 </div>
 <!--EARS!!-->
-<div class="modal fade" id="appointmentModalEars" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+<div class="modal fade" id="appointmentModalEars" tabindex="-1" aria-labelledby="appointmentModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
@@ -338,10 +342,10 @@
                         <div class="col-md-6">
                             <label for="service_type_ears" class="form-label">Service Type</label>
                             <select id="service_type_ears" class="form-select readonly-select" required>
-<!--                                <option value="" selected disabled>Choose...</option>-->
+                                <!--                                <option value="" selected disabled>Choose...</option>-->
                                 <option value="Ears">Ears</option>
                             </select>
-<!--                            <div class="invalid-feedback">Please select service type</div>-->
+                            <!--                            <div class="invalid-feedback">Please select service type</div>-->
                         </div>
 
 
@@ -357,7 +361,8 @@
 
                         <!-- appointment_rebooked_date -->
                         <div class="col-md-6" id="wrap_appointment_rebooked_date_ears">
-                            <label for="appointment_rebooked_date_ears" class="form-label">Appointment Rebooked date</label>
+                            <label for="appointment_rebooked_date_ears" class="form-label">Appointment Rebooked
+                                date</label>
                             <input type="date" id="appointment_rebooked_date_ears" class="form-control"/>
                         </div>
 
@@ -389,10 +394,11 @@
                                 <option value="Transport challenges">Transport challenges</option>
                                 <option value="Cost related">Cost related</option>
                                 <option value="Referred to different facility">Referred to different facility</option>
-                                <!--                <option value="Other">Other</option>-->
+                                <option value="Other">Other</option>
                             </select>
                             <div id="wrap_reason_other_ears" class="mt-2 d-none">
-                                <input type="text" id="reason_other_ears" class="form-control" placeholder="Please specify">
+                                <input type="text" id="reason_other_ears" class="form-control"
+                                       placeholder="Please specify">
                             </div>
                         </div>
 
@@ -465,8 +471,8 @@
 
                             <!-- Hidden textbox + button -->
                             <div id="otherCommentWrapEars" class="mt-2 d-none">
-                                <input type="text" id="final_tracing_comments_other_ears" class="form-control mb-2"
-                                       placeholder="Please specify"/>
+                                <textarea type="text" id="final_tracing_comments_other_ears" class="form-control mb-2"
+                                          placeholder="Please specify"></textarea>
                                 <!--                                <button type="button" id="saveOtherBtn" class="btn btn-primary">Save</button>-->
                             </div>
                         </div>
@@ -493,7 +499,8 @@
 </div>
 
 <!--ORALHEALTH!!!-->
-<div class="modal fade" id="appointmentModalOralHealth" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+<div class="modal fade" id="appointmentModalOralHealth" tabindex="-1" aria-labelledby="appointmentModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
@@ -557,7 +564,7 @@
                         <div class="col-md-6">
                             <label for="service_type_oral_health" class="form-label">Service Type</label>
                             <select id="service_type_oral_health" class="form-select readonly-select" required>
-<!--                                <option value="" selected disabled>Choose...</option>-->
+                                <!--                                <option value="" selected disabled>Choose...</option>-->
                                 <option value="Oral Health">Oral Health</option>
                             </select>
                             <div class="invalid-feedback">Please select service type</div>
@@ -566,7 +573,8 @@
 
                         <!-- appointment_rebooked -->
                         <div class="col-md-6" id="wrap_appointment_rebooked_oral_health">
-                            <label for="appointment_rebooked_oral_health" class="form-label">Appointment rebooked</label>
+                            <label for="appointment_rebooked_oral_health" class="form-label">Appointment
+                                rebooked</label>
                             <select id="appointment_rebooked_oral_health" class="form-select">
                                 <option value="" selected disabled>Choose...</option>
                                 <option value="YES">YES</option>
@@ -576,7 +584,8 @@
 
                         <!-- appointment_rebooked_date -->
                         <div class="col-md-6" id="wrap_appointment_rebooked_date_oral_health">
-                            <label for="appointment_rebooked_date_oral_health" class="form-label">Appointment Rebooked date</label>
+                            <label for="appointment_rebooked_date_oral_health" class="form-label">Appointment Rebooked
+                                date</label>
                             <input type="date" id="appointment_rebooked_date_oral_health" class="form-control"/>
                         </div>
 
@@ -608,17 +617,19 @@
                                 <option value="Transport challenges">Transport challenges</option>
                                 <option value="Cost related">Cost related</option>
                                 <option value="Referred to different facility">Referred to different facility</option>
-                                <!--                <option value="Other">Other</option>-->
+                                <option value="Other">Other</option>
                             </select>
                             <div id="wrap_reason_other_oral_health" class="mt-2 d-none">
-                                <input type="text" id="reason_other_oral_health" class="form-control" placeholder="Please specify">
+                                <input type="text" id="reason_other_oral_health" class="form-control"
+                                       placeholder="Please specify">
                             </div>
                         </div>
 
 
                         <!-- transport_fare_received -->
                         <div class="col-md-6">
-                            <label for="transport_fare_received_oral_health" class="form-label">Transport fare received</label>
+                            <label for="transport_fare_received_oral_health" class="form-label">Transport fare
+                                received</label>
                             <select id="transport_fare_received_oral_health" class="form-select">
                                 <option value="" selected disabled>Choose...</option>
                                 <option value="YES">YES</option>
@@ -629,7 +640,8 @@
 
                         <!-- service_received_after_referral -->
                         <div class="col-md-6">
-                            <label for="service_received_after_referral_oral_health" class="form-label">Service received after
+                            <label for="service_received_after_referral_oral_health" class="form-label">Service received
+                                after
                                 referral</label>
                             <select id="service_received_after_referral_oral_health" class="form-select">
                                 <option value="" selected disabled>Choose...</option>
@@ -643,14 +655,16 @@
                         <!-- parents contact number -->
                         <div class="col-md-6">
                             <label for="contact_number_oral_health" class="form-label">Parent's contact number</label>
-                            <input id="contact_number_oral_health" type="tel" class="form-control" placeholder="e.g 0821234567"
+                            <input id="contact_number_oral_health" type="tel" class="form-control"
+                                   placeholder="e.g 0821234567"
                                    required/>
                             <div class="invalid-feedback">Please enter the parent's contact number</div>
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="final_tracing_comments_oral_health" class="form-label">Final linkage outcome</label>
+                            <label for="final_tracing_comments_oral_health" class="form-label">Final linkage
+                                outcome</label>
                             <select id="final_tracing_comments_oral_health" class="form-select">
                                 <option value="" selected disabled>Choose...</option>
                                 <option> Require orthodontic treatment after 12 years</option>
@@ -684,8 +698,9 @@
 
                             <!-- Hidden textbox + button -->
                             <div id="otherCommentWrapOralHealth" class="mt-2 d-none">
-                                <input type="text" id="final_tracing_comments_other_oral_health" class="form-control mb-2"
-                                       placeholder="Please specify"/>
+                                <textarea type="text" id="final_tracing_comments_other_oral_health"
+                                       class="form-control mb-2"
+                                          placeholder="Please specify"></textarea>
                                 <!--                                <button type="button" id="saveOtherBtn" class="btn btn-primary">Save</button>-->
                             </div>
                         </div>
